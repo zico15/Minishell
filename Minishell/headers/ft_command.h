@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 19:46:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:50:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list_cmd	t_list_cmd;
 struct s_command
 {
 	pid_t				pid;
+	int					index;
 	char				path[100];
 	char				*arg;
 	int					fd[2];

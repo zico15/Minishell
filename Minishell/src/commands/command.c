@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 19:48:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:53:10 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	init(t_command *this, char *arg, char **envp)
 	char		*path;
 	int			i;
 
-	printf("arg: (%s)\n", arg);
 	i = -1;
 	path = NULL;
 	while (envp[++i] && !string().contains(path, "PATH="))
@@ -91,6 +90,7 @@ t_command	*new_command(char *arg)
 	c->arg = arg;
 	c->fd[0] = -1;
 	c->fd[1] = -1;
+	c->index = -1;
 	c->next = NULL;
 	c->path[0] = 0;
 	c->commands = NULL;

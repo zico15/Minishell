@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_cmd.c                                      :+:      :+:    :+:   */
+/*   list_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 23:44:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/01 15:57:19 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:51:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ static t_command	*ft_add(t_command *cmd)
 	{
 		if (this()->list->beging == NULL)
 		{
+			cmd->index = 0;
 			this()->list->beging = cmd;
 			this()->list->end = cmd;
 		}
 		else
 		{
+			cmd->index = this()->list->end->index + 1;
 			this()->list->end->next = cmd;
 			this()->list->end = cmd;
 		}
