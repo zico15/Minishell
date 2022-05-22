@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 16:37:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:49:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	*input(t_command *previou, t_command *this)
 	buffer[read(previou->fd[0], buffer, BUFFER_SIZE)] = 0;
 	printf("%s", buffer);
 	close(previou->fd[0]);
-	next_command(this);
+	next_command(previou, this);
 	return (this->fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 17:22:19 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:48:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 	{
 		close(previou->fd[0]);
 		close(previou->fd[1]);
-		next_command(this);
+		next_command(previou, this);
 	}
 	else if (this->commands)
 		printf("%s %s\n", __COMMAND_NOT_FOUND__, this->commands[0]);
@@ -45,18 +45,33 @@ static int	execute(t_command *this, int input, int out)
 	return (1);
 }
 
-static void	init(t_command *this, char *arg, char **envp)
+static int	init(t_command *this, char *arg, char **envp)
 {
 	char		*path;
 	int			i;
 
 	printf("arg: (%s)\n", arg);
-		i = -1;
+	i = -1;
+	path = NULL;
 	while (envp[++i] && !string().contains(path, "PATH="))
 		path = envp[i];
 	this->commands = string().split(arg, ' ');
 	get_path(this, arg, path);
-	return ;
+	return (1);
+}
+
+static int	*ft_destroy(t_command *this)
+{
+	static int	fd[2] = {-1, -1};
+
+	if (this)
+	{
+		close(this->fd[0]);
+		close(this->fd[1]);
+		free_ob(this->arg);
+		free_list(this->commands);
+	}
+	return (fd);
 }
 
 t_command	*new_command(char *arg)
@@ -72,7 +87,10 @@ t_command	*new_command(char *arg)
 	c->input = ft_input;
 	c->init = init;
 	c->execute = execute;
+	c->destroy = ft_destroy;
 	c->arg = arg;
+	c->fd[0] = -1;
+	c->fd[1] = -1;
 	c->next = NULL;
 	c->path[0] = 0;
 	c->commands = NULL;

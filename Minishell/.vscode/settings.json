@@ -31,6 +31,9 @@
 		"unistd.h": "c",
 		"util.h": "c",
 		"string_util.h": "c",
-		"__string": "c"
+		"__string": "c",
+		"__functional_03": "c",
+		"memory_resource": "c",
+		"functional": "c"
 	}
 }

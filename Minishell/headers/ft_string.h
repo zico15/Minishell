@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 17:20:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:10:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 typedef struct s_string
 {
-	int			(*contains)(char *str, char *hey);
-	char		**(*split)(char const *s, char c);
-	int			(*size)(char *s);
-	char		*(*copy)(char *str);
+	int			(*contains)(const char *str, const char *hey);
+	char		**(*split)(const char *s, char c);
+	int			(*size)(const char *s);
+	char		*(*copy)(const char *str);
 	char		*(*join)(const char *str1, const char *str2);
 
 }	t_string;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:52:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:19:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ char					**token(char *line);
 t_command				*new_command(char *arg);
 t_command				*new_console(char *arg);
 t_command				*new_redirect_output(char *arg);
+t_command				*new_redirect_input(char *arg);
 #endif

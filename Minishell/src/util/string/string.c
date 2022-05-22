@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 18:01:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:33:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "string_util.h"
 #include <stdio.h>
 
-static int	ft_size(char *s)
+static int	ft_size(const char *s)
 {
 	int	i;
 
@@ -27,12 +27,12 @@ static int	ft_size(char *s)
 /***
  * separador c or \n
  * ***/
-static char	**ft_split(char const *s, char c)
+static char	**ft_split(const char *s, char c)
 {
 	return (__split(s, c, 0, 0));
 }
 
-char	*ft_copy(char *str)
+char	*ft_copy(const char *str)
 {
 	char	*copy;
 	int		i;
@@ -47,19 +47,25 @@ char	*ft_copy(char *str)
 	return (copy);
 }
 
-static int	ft_contains(char *str, char *hey)
+static int	ft_contains(const char *str, const char *hey)
 {
 	int	i;
+	int	j;
+	int	co;
 
-	i = 0;
-	while (str && hey && hey[i] && str[i] && hey[i] == str[i])
+	i = -1;
+	co = 0;
+	while (str && str[++i] && !co)
 	{
-		i++;
-		if (!hey[i] || !str[i])
-			return (!hey[i]);
+		j = 0;
+		while (!co && hey && hey[j] && str[i + j] && hey[j] == str[i + j])
+		{
+			j++;
+			if (!hey[j] || !str[i + j])
+				co = !hey[j];
+		}
 	}
-	printf("ft_contains: (%s) / (%s)\n", str, hey);
-	return (0);
+	return (co);
 }
 
 t_string	string(void)

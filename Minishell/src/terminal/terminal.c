@@ -6,11 +6,20 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 18:00:17 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:28:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/ft_pipex.h"
+
+static t_command	*cread_cmd(char *arg)
+{
+	if (string().contains(arg, ">") == true)
+		return (new_redirect_output(arg));
+	if (string().contains(arg, "<") == true)
+		return (new_redirect_input(arg));
+	return (new_command(arg));
+}
 
 static void	execute(t_terminal	*t, char	*line)
 {
@@ -21,23 +30,20 @@ static void	execute(t_terminal	*t, char	*line)
 	argv = token(line);
 	i = 0;
 	(void) t;
+	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
-		if (string().contains(argv[i], ">"))
-			c = new_redirect_output(argv[i]);
-		else
-			c = new_command(argv[i]);
-		if (c)
-		{
-			c->init(c, argv[i], data()->envp);
-			array(t->commands)->add(c);
-		}
+		c = cread_cmd(argv[i]);
+		if (c && c->init(c, argv[i], data()->envp))
+			list(t->commands)->add(c);
 		i++;
 	}
-	pipe(t->fd);
-	array(t->commands)->add(new_console(NULL));
-	close(t->fd[0]);
-	close(t->fd[1]);
+	c = new_command(NULL);
+	pipe(c->fd);
+	list(t->commands)->add(new_console(NULL));
+	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));
+	list(t->commands)->beging = NULL;
+	c->destroy(c);
 }
 
 static void	ft_input(void)
@@ -64,7 +70,7 @@ t_terminal	*new_terminal(char *title)
 		return (0);
 	t->input = ft_input;
 	t->title = title;
-	t->commands = new_array();
+	t->commands = new_list();
 	this()->terminal = t;
 	return (t);
 }

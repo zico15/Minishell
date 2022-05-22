@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 16:34:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:46:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ struct s_command
 	int					fd[2];
 	char				**commands;
 	int					*(*input)(t_command *previou, t_command *this);
-	void				(*init)(t_command *this, char *arg, char **envp);
+	int					(*init)(t_command *this, char *arg, char **envp);
 	int					(*execute)(t_command *this, int input, int out);
+	int					*(*destroy)(t_command *this);
 	struct s_command	*next;
 };
 
@@ -53,6 +54,6 @@ struct s_list_cmd
 void					*new_list(void);
 t_list_cmd				*list(t_list_cmd *t);
 void					list_clear(t_command **c);
-void					next_command(t_command *this);
+int						next_command(t_command *previou, t_command *this);
 
 #endif

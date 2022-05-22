@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:08:29 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 17:59:17 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:14:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief cria uma lista de argumentos
- * 
+ * 		  teste > out
  * @param line 
  * @return ** char** 
  */

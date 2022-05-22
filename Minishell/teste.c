@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 17:47:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:33:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_pipex.h"
+#include <stdio.h>
 
 void	printf_list(char **s)
 {
@@ -24,25 +24,38 @@ void	printf_list(char **s)
 	}
 }
 
+static int	ft_contains(const char *str, const char *hey)
+{
+	int	i;
+	int	j;
+	int	co;
+
+	i = -1;
+	co = 0;
+	while (str && str[++i] && !co)
+	{
+		j = 0;
+		while (hey && hey[j] && str[i + j] && hey[j] == str[i + j])
+		{
+			j++;
+			if (!hey[j] || !str[i + j])
+			{
+				co = !hey[j];
+				break ;
+			}
+		}
+	}
+	return (co);
+}
+
 // -fsanitize=address -g
 int	main2(int argc, char **argv, char **envp)
 {
-	//t_terminal	*t;
 	(void) argc;
 	(void) argv;
-	data()->envp = envp;
-	data()->teste = 1;
-	data()->pid_base = 100;
-	/*init_keys();
-	new_read_line();
-	t = new_terminal("bash-3.2$ ");*/
-	//t->input();
-	if (argc > 1)
-	{
-		char *str = string().join("teste ", "casa");
-		printf("(%s)\n", str);
-		free_ob(str);
-	}
+	(void) envp;
+	int i = ft_contains(".", ".");
+	printf("(%i)\n", i);
 	//system("leaks -- minishell");
 	return (0);
 }

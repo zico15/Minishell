@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 16:29:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 19:47:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ char	*get_path(t_command	*c, char *arg, const char *path)
 	return (NULL);
 }
 
-void	next_command(t_command *this)
+int	next_command(t_command *previou, t_command *this)
 {
+	if (previou)
+		previou->destroy(previou);
 	if (this && this->next)
 	{
 		this->next->input(this, this->next);
+		return (1);
 	}
+	return (0);
 }

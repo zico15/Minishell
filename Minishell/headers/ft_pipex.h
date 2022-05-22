@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:50:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:17:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # define FD_READ_O 0
 
 typedef int	t_pid;
+
+enum e_boolean
+{
+	false,
+	true
+};
 
 typedef struct s_pipex
 {
