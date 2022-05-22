@@ -6,11 +6,12 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/21 22:35:39 by edos-san         ###   ########.fr        #
+#    Updated: 2022/05/22 17:48:03 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= 	main.c	\
+				teste.c	\
 				./src/commands/command.c  \
 				./src/commands/redirect_input.c \
 				./src/commands/redirect_output.c \
@@ -21,7 +22,8 @@ SRCS		= 	main.c	\
 				./src/terminal/key_controller.c  \
 				./src/util/list/list_cmd.c  \
 				./src/util/list/list.c  \
-				./src/util/string.c \
+				./src/util/string/string.c \
+				./src/util/string/string_util.c \
 				./src/util/util.c \
 				./src/util/this.c \
 				./src/util/memory.c \
@@ -29,6 +31,8 @@ SRCS		= 	main.c	\
 				./src/util/array/base_array_util.c \
 
 OBJS		= 	$(SRCS:.c=.o)
+
+//CC			= 	gcc -fsanitize=address -g
 CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f

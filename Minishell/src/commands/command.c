@@ -6,33 +6,27 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:51:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 17:22:19 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/ft_pipex.h"
 
-static int	*ft_input(int fd[2])
+static int	*ft_input(t_command *previou, t_command *this)
 {
-	t_command	*input;
-
-	if (!this()->list || !this()->list->this)
-		return (fd);
-	input = this()->list->this;
-	pipe(input->fd);
-	if (input->path[0] && input->execute(input, fd[0], input->fd[1]))
+	pipe(this->fd);
+	if (this->path[0] && this->execute(this, previou->fd[0], this->fd[1]))
 	{
-		this()->list->this = input->next;
-		this()->list->this->input(input->fd);
-		close(fd[0]);
-		close(fd[1]);
+		close(previou->fd[0]);
+		close(previou->fd[1]);
+		next_command(this);
 	}
-	else if (input->commands)
-		printf("zsh: command not found: %s\n", input->commands[0]);
-	return (input->fd);
+	else if (this->commands)
+		printf("%s %s\n", __COMMAND_NOT_FOUND__, this->commands[0]);
+	return (this->fd);
 }
 
-static int	execute(t_command *cmd, int input, int out)
+static int	execute(t_command *this, int input, int out)
 {
 	pid_t	pit;
 
@@ -42,31 +36,26 @@ static int	execute(t_command *cmd, int input, int out)
 		if (dup2(input, 0) < 0 || dup2(out, 1) < 0 || \
 		close(input) || close(out))
 			exit(0);
-		execve(cmd->path, cmd->commands, data()->envp);
+		execve(this->path, this->commands, data()->envp);
 		exit(0);
 	}
 	waitpid(pit, NULL, 0);
-	data()->teste++;
 	close(input);
 	close(out);
 	return (1);
 }
 
-static void	init(char *arg, char **envp)
+static void	init(t_command *this, char *arg, char **envp)
 {
-	t_command	*c;
 	char		*path;
 	int			i;
 
 	printf("arg: (%s)\n", arg);
-	if (!this()->list || !this()->list->this)
-		return ;
-	c = this()->list->this;
 		i = -1;
 	while (envp[++i] && !string().contains(path, "PATH="))
 		path = envp[i];
-	c->commands = string().split(arg, ' ', 0, NULL);
-	get_path(c, arg, path);
+	this->commands = string().split(arg, ' ');
+	get_path(this, arg, path);
 	return ;
 }
 

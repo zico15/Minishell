@@ -29,6 +29,8 @@
 		"atomic": "c",
 		"system_error": "c",
 		"unistd.h": "c",
-		"util.h": "c"
+		"util.h": "c",
+		"string_util.h": "c",
+		"__string": "c"
 	}
 }

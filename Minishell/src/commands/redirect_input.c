@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirect_input.c                                :+:      :+:    :+:   */
+/*   redirect_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 21:25:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 16:37:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/ft_pipex.h"
 
-static int	*input(int fd[2])
+static int	*input(t_command *previou, t_command *this)
 {
 	char	buffer[BUFFER_SIZE];
 
-	dup2(fd[1], 1);
-	close(fd[1]);
-	buffer[read(fd[0], buffer, BUFFER_SIZE)] = 0;
-	if (this()->list && this()->list->this)
-		this()->list->this = this()->list->this->next;
+	dup2(previou->fd[1], 1);
+	close(previou->fd[1]);
+	buffer[read(previou->fd[0], buffer, BUFFER_SIZE)] = 0;
 	printf("%s", buffer);
-	close(fd[0]);
-	return (fd);
-}
-
-static int	ft_execute(t_command *cmd, int input, int out)
-{
-	(void) cmd;
-	(void) input;
-	(void) out;
-	return (1);
+	close(previou->fd[0]);
+	next_command(this);
+	return (this->fd);
 }
 
 t_command	*new_redirect_input(char *arg)
@@ -42,6 +33,5 @@ t_command	*new_redirect_input(char *arg)
 	if (!c)
 		return (0);
 	c->input = input;
-	c->execute = ft_execute;
 	return (c);
 }

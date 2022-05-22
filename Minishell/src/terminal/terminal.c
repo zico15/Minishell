@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:52:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:00:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ static void	execute(t_terminal	*t, char	*line)
 		if (string().contains(argv[i], ">"))
 			c = new_redirect_output(argv[i]);
 		else
-			c = list(t->commands)->add(new_command(argv[i]));
-		c->init(argv[i], data()->envp);
+			c = new_command(argv[i]);
+		if (c)
+		{
+			c->init(c, argv[i], data()->envp);
+			array(t->commands)->add(c);
+		}
 		i++;
 	}
 	pipe(t->fd);
-	list(t->commands)->add(new_console(NULL));
-	list(t->commands)->get(0)->input(t->fd);
-	list(t->commands)->forEach(list_clear);
+	array(t->commands)->add(new_console(NULL));
 	close(t->fd[0]);
 	close(t->fd[1]);
 }
@@ -62,7 +64,7 @@ t_terminal	*new_terminal(char *title)
 		return (0);
 	t->input = ft_input;
 	t->title = title;
-	t->commands = new_list();
+	t->commands = new_array();
 	this()->terminal = t;
 	return (t);
 }
