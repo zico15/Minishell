@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 18:17:27 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:40:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <signal.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include "ft_command.h"
-# include "ft_string.h"
-# include "ft_terminal.h"
-# include "util.h"
-# include "ft_read_line.h"
+# include <ft_command.h>
+# include <ft_string.h>
+# include <ft_terminal.h>
+# include <util.h>
+# include <ft_read_line.h>
 
 # define FD_WRITE_O 1
 # define FD_READ_O 0
@@ -71,5 +71,8 @@ char		*get_path(t_command	*c, char *arg, const char *path);
 //			TESTE
 void		printf_cmd(t_command **c);
 void		init_keys(void);
+
+//			TOKEN
+char		**token(char *line);
 
 #endif

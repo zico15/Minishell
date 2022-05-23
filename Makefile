@@ -3,32 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
+#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/22 17:48:03 by edos-san         ###   ########.fr        #
+#    Updated: 2022/05/23 16:56:53 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= 	main.c	\
-				teste.c	\
-				./src/commands/command.c  \
-				./src/commands/redirect_input.c \
-				./src/commands/redirect_output.c \
-				./src/commands/console.c  \
-				./src/terminal/terminal.c  \
-				./src/terminal/token.c  \
-				./src/terminal/read_line.c  \
-				./src/terminal/key_controller.c  \
-				./src/util/list/list_cmd.c  \
-				./src/util/list/list.c  \
-				./src/util/string/string.c \
-				./src/util/string/string_util.c \
-				./src/util/util.c \
-				./src/util/this.c \
-				./src/util/memory.c \
-				./src/util/array/base_array.c \
-				./src/util/array/base_array_util.c \
+SRCS		= 	main.c teste.c $(shell find src/ -name '*.c')
 
 OBJS		= 	$(SRCS:.c=.o)
 
@@ -37,15 +19,15 @@ CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell
-INCLUDE		= 	./headers
+INCLUDES	= 	./headers
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJS) -o $(NAME)
 
 bonus: all
 
