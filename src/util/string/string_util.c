@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   string_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 17:22:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:31:56 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/ft_string.h"
+#include <ft_string.h>
 
 char	*__join(const char *str1, const char *str2)
 {

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 16:59:17 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:35:08 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTIL_H
 # define UTIL_H
 
-# include "ft_terminal.h"
-# include "ft_base_array.h"
-# include "ft_command.h"
-# include "ft_read_line.h"
+# include <ft_terminal.h>
+# include <ft_base_array.h>
+# include <ft_command.h>
+# include <ft_read_line.h>
 
 typedef struct s_this
 {

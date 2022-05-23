@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_controller.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:25:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:32:16 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_pipex.h"
+#include <ft_pipex.h>
 
 static void	server_list(int signo, siginfo_t *i, void *context)
 {

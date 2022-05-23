@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 23:44:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:07:23 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:30:44 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/ft_pipex.h"
+#include <ft_pipex.h>
 
 static t_command	*ft_add(t_command *cmd)
 {

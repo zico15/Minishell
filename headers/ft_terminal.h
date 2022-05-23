@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_terminal.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 19:19:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:34:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# include "ft_command.h"
+# include <ft_command.h>
 
 typedef struct s_terminal	t_terminal;
 

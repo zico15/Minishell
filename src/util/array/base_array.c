@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/21 22:25:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:30:13 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/ft_base_array.h"
-#include "../../../headers/util.h"
+#include <ft_base_array.h>
+#include <util.h>
 
 static void	ft_for_each(void (*fun)(t_element *e))
 {
