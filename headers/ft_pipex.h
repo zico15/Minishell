@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:40:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:30:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <ft_command.h>
 # include <ft_string.h>
 # include <ft_terminal.h>
-# include <util.h>
+# include <ft_util.h>
 # include <ft_read_line.h>
 
 # define FD_WRITE_O 1

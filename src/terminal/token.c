@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/23 17:29:00 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:49:38 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	**token(char *line)
 	i = 0;
 	while (cmds && cmds[i])
 	{
-		if ()
-		// array(tokens)->add(cmds[i++]);
+		if (word && cmds[i] == '-')
+			array(tokens)->add(cmds[i++]);
 	}
 	return (NULL);
 }
