@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   this.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:33:20 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:12:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <util.h>
+#include <ft_util.h>
 
 t_this	*this(void)
 {
