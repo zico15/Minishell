@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 17:21:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:23:49 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	base_remove_element_index(int index)
 
 	i = 0;
 	if (!this()->array)
-		return (NULL);
+		return ;
 	e = (this()->array)->begin;
 	while (e)
 	{

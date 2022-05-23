@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:31:56 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:25:14 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,23 @@ char	**__split(char const *s, char c, int j, char **list)
 	if (list)
 		list[--j] = str;
 	return (list);
+}
+
+
+/*
+copys n characters of string 
+*/
+char	*__copy_n(const char *str, int n)
+{
+	char	*copy;
+	int		i;
+
+	if (!str)
+		return (NULL);
+	i = -1;
+	copy = malloc(n + 1);
+	while (copy && str[++i] && i < n)
+		copy[i] = str[i];
+	copy[i] = 0;
+	return (copy);
 }

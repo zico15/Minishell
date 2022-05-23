@@ -6,29 +6,57 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/23 17:49:38 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:15:30 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
+static int	ft_separator(char l)
+{
+	if (l == '|')
+		return (1);
+	return (0);
+}
+
+static char	*str_trim(const char *str)
+{
+	int		size;
+
+	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
+		str++;
+	size = string().size(str) - 1;
+	while (size > 0 && str[size] && (str[size] == ' ' || str[size] == '\t' || str[size] == '\n'))
+		size--;
+	return (string().copy_n(str, size + 1));
+}
+
 char	**token(char *line)
 {
 	int		i;
-	char	**cmds;
-	int		word;
-	void *tokens;
+	int		j;
+	void	*tokens;
+	char	**arr;
 
-	cmds = string().split(line, ' ');
 	tokens = new_array();
-	word = 0;
 	i = 0;
-	while (cmds && cmds[i])
+	while (line[i])
 	{
-		if (word && cmds[i] == '-')
-			array(tokens)->add(cmds[i++]);
+		j = i;
+		while (line[j] && !ft_separator(line[j]))
+			j++;
+		if (j > i)
+			array(tokens)->add(string().copy_n(line + i, j - i));
+		j++;
+		i = j;
 	}
-	return (NULL);
+	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
+	i = -1;
+	while (++i < array(tokens)->size)
+		arr[i] = str_trim(array(tokens)->get(i));
+	arr[i] = NULL;
+	array(tokens)->destroy();
+	return (arr);
 }
 
 // array(tokens)->add("sddf");

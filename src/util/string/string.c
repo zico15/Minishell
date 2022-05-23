@@ -6,12 +6,12 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:31:54 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:10:32 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_string.h>
-#include "string_util.h"
+#include <string_util.h>
 #include <stdio.h>
 
 static int	ft_size(const char *s)
@@ -71,7 +71,7 @@ static int	ft_contains(const char *str, const char *hey)
 t_string	string(void)
 {
 	static t_string	str = {
-		ft_contains, ft_split, ft_size, ft_copy, __join
+		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n
 	};
 
 	return (str);
