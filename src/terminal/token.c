@@ -6,19 +6,28 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/23 16:57:08 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:29:00 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-char **token(char *line)
+char	**token(char *line)
 {
-	(void) line;
+	int		i;
+	char	**cmds;
+	int		word;
 	void *tokens;
 
+	cmds = string().split(line, ' ');
 	tokens = new_array();
-	array(tokens)->add("sddf");
+	word = 0;
+	i = 0;
+	while (cmds && cmds[i])
+	{
+		if ()
+		// array(tokens)->add(cmds[i++]);
+	}
 	return (NULL);
 }
 
