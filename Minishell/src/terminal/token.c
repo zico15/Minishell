@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:08:29 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 21:07:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:29:06 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,32 @@
  * @param line 
  * @return ** char** 
  */
+
 char	**token(char *line)
+{
+	int		i;
+	int		j;
+	int		word;
+	char	**cmds;
+	char	**tokens;
+
+	cmds = string().split(line, ' ');
+	i = 0;
+	word = 0;
+	while (cmds && cmds[i])
+	{
+		if (word && cmds[i][0] == '-')
+			tokens[j] = string().join(cmds[i - 1], cmds[i]);
+
+		i++;
+	}
+	
+
+
+	return (tokens);
+}
+
+/*char	**token(char *line)
 {
 	char		**tokens;
 	int			size;
@@ -44,3 +69,4 @@ char	**token(char *line)
 	}*/
 	return (tokens);
 }
+*/

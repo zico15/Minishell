@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 22:26:36 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/22 19:26:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:19:47 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ t_list_cmd	*list(t_list_cmd *t)
 
 void	list_clear(t_command **c)
 {
-	int	i;
-
-	i = 0;
 	if (c && *c)
 	{
 		(*c)->destroy(*c);
