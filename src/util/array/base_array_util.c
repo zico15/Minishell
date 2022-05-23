@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <ft_base_array.h>
-#include <util.h>
+#include <ft_util.h>
 
 static t_element	*base_add_element(void *value)
 {

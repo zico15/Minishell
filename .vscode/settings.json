@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"ft_base_array.h": "c",
+		"util.h": "c",
+		"ft_util.h": "c",
+		"__functional_03": "c",
+		"functional": "c"
+	}
+}
