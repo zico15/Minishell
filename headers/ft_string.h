@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 18:12:20 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:06:30 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_string
 	char		*(*copy)(const char *str);
 	char		*(*join)(const char *str1, const char *str2);
 	char		*(*copy_n)(const char *str, int n);
-
+	char		*(*str_trim)(const char *str);
 }	t_string;
 
 t_string	string(void);

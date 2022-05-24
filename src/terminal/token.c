@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/23 19:15:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:10:43 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,44 @@
 
 static int	ft_separator(char l)
 {
-	if (l == '|')
+	if (l == '|' || l == '>' || l == '<' || l == '&' || l == ';' || l == '>')
 		return (1);
 	return (0);
-}
-
-static char	*str_trim(const char *str)
-{
-	int		size;
-
-	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
-		str++;
-	size = string().size(str) - 1;
-	while (size > 0 && str[size] && (str[size] == ' ' || str[size] == '\t' || str[size] == '\n'))
-		size--;
-	return (string().copy_n(str, size + 1));
 }
 
 char	**token(char *line)
 {
 	int		i;
 	int		j;
+	int		separator;
 	void	*tokens;
 	char	**arr;
 
+	if (!line)
+		return (NULL);
 	tokens = new_array();
 	i = 0;
+	separator = 0;
 	while (line[i])
 	{
 		j = i;
-		while (line[j] && !ft_separator(line[j]))
+		while (line[j] && (separator || !ft_separator(line[j])))
+		{
+			if (!ft_separator(line[j]))
+				separator = 0;
 			j++;
+		}
 		if (j > i)
-			array(tokens)->add(string().copy_n(line + i, j - i));
-		j++;
+		{
+			separator = 1;
+			array(tokens)->add(string().copy_n(line + i + (line[i] == '|'), j - i));
+		}
 		i = j;
 	}
 	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
 	i = -1;
 	while (++i < array(tokens)->size)
-		arr[i] = str_trim(array(tokens)->get(i));
+		arr[i] = string().str_trim(array(tokens)->get(i));
 	arr[i] = NULL;
 	array(tokens)->destroy();
 	return (arr);
