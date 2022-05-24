@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:56:23 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:09:18 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 	data()->pid_base = 100;
 	init_keys();
 	new_read_line();
-	t = new_terminal("bash-3.2$ ");
+	t = new_terminal("\033[0;32mbash-3.3$\033[0m ");
 	t->input();
 	return (0);
 }

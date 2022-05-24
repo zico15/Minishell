@@ -1,0 +1,9 @@
+Makefile
+headers
+main.c
+minishell
+readline
+src
+t
+teste.c
+teste.dSYM
