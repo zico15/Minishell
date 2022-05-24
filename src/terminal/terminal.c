@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 16:03:53 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:13:52 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_input(void)
 		return ;
 	while (1)
 	{
-		line = read_line(t);
+		line = readline(line);
 		execute(t, line);
 	}
 }
