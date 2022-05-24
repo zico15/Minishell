@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/24 19:12:45 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/05/24 20:42:00 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,12 @@ NAME		= 	minishell
 INCLUDES	= 	./headers
 
 .c.o:
-	$(CC) $(CFLAGS) -I$(INCLUDES) -Ireadline -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-	@$(CC) $(CFLAGS) -I$(INCLUDES) -Ireadline $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -lreadline $(OBJS) -o $(NAME)
 
 bonus: all
 
@@ -45,6 +45,6 @@ norm :
 m: fclean
 
 r:
-	make re && make clean && clear && ./minishell
+	@make re && make clean && clear && ./minishell
 
 .PHONY: all re clean fclean m

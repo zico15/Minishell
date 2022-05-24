@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 19:13:52 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:04:23 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ static void	execute(t_terminal	*t, char	*line)
 	int			i;
 
 	argv = token(line);
+	if (!argv)
+		return ;
 	i = 0;
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
-		printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);
@@ -56,7 +57,7 @@ static void	ft_input(void)
 		return ;
 	while (1)
 	{
-		line = readline(line);
+		line = readline(t->title);
 		execute(t, line);
 	}
 }
