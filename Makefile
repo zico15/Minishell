@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/23 16:56:53 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/05/24 15:59:02 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,6 @@ norm :
 m: fclean
 
 r:
-	make re && clear && ./minishell
+	make re && make clean && clear && ./minishell
 
 .PHONY: all re clean fclean m
