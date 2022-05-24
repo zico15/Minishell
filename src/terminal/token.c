@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/23 19:15:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:19:02 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,9 @@
 
 static int	ft_separator(char l)
 {
-	if (l == '|')
+	if (l == '|' || l == '>')
 		return (1);
 	return (0);
-}
-
-static char	*str_trim(const char *str)
-{
-	int		size;
-
-	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
-		str++;
-	size = string().size(str) - 1;
-	while (size > 0 && str[size] && (str[size] == ' ' || str[size] == '\t' || str[size] == '\n'))
-		size--;
-	return (string().copy_n(str, size + 1));
 }
 
 char	**token(char *line)
@@ -53,7 +41,7 @@ char	**token(char *line)
 	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
 	i = -1;
 	while (++i < array(tokens)->size)
-		arr[i] = str_trim(array(tokens)->get(i));
+		arr[i] = string().str_trim(array(tokens)->get(i));
 	arr[i] = NULL;
 	array(tokens)->destroy();
 	return (arr);

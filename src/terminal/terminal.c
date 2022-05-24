@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 16:00:21 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:03:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	execute(t_terminal	*t, char	*line)
 
 	argv = token(line);
 	i = 0;
-	(void) t;
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{

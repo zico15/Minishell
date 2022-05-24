@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 18:25:14 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:05:22 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,16 @@ char	*__copy_n(const char *str, int n)
 		copy[i] = str[i];
 	copy[i] = 0;
 	return (copy);
+}
+
+char	*__str_trim(const char *str)
+{
+	int		size;
+
+	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
+		str++;
+	size = string().size(str) - 1;
+	while (size > 0 && str[size] && (str[size] == ' ' || str[size] == '\t' || str[size] == '\n'))
+		size--;
+	return (string().copy_n(str, size + 1));
 }
