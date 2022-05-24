@@ -4,9 +4,11 @@
 /*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
 /*   Updated: 2022/05/23 16:29:06 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:16:19 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +28,12 @@ static int	*input(t_command *previou, t_command *this)
 	fd_open = open(this->commands[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_open >= 0)
 		write(fd_open, buffer, size);
+	{
+		if (this->next && this->next->index != __COMMAND_END__)
+			pipe(this->fd);
+		else
+			write(fd_open, buffer, size);
+	}
 	next_command(previou, this);
 	return (this->fd);
 }
