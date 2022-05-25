@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/25 20:45:03 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:05:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ char	**token(char *line)
 		i = j;
 	}
 	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
-	i = -1;
-	while (++i < array(tokens)->size)
+	i = 0;
+	while (i < array(tokens)->size)
+	{
 		arr[i] = string().trim(array(tokens)->get(i));
+		i++;
+	}
 	arr[i] = NULL;
 	array(tokens)->destroy();
 	return (arr);

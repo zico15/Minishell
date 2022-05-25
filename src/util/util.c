@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:33:36 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:09:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ char	*get_path(t_command	*c, char *arg, const char *path)
 
 int	next_command(t_command *previou, t_command *this)
 {
-	if (previou)
+	if (0 && previou)
 		previou->destroy(previou);
-	if (this && this->next)
+	if (this && this->next && this->next->input)
 	{
 		this->next->input(this, this->next);
 		return (1);

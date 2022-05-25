@@ -70,12 +70,12 @@ static t_element	*base_remove_element(t_element	*e)
 				(this()->array)->begin = b->next;
 			else
 				t->next = b->next;
-			if ((this()->array)->free_element && b->value)
-				(this()->array)->free_element(b->value);
+			if (b->value)
+				free(b->value);
 			free(b);
 			if ((this()->array)->size-- >= 0 && !(this()->array)->size)
 				(this()->array)->end = 0;
-			return (e);
+			return (0);
 		}
 		b = b->next;
 	}
@@ -90,12 +90,11 @@ static int	base_destroy(void)
 	if (!this()->array)
 		return (0);
 	b = (this()->array)->begin;
-	while (b && --(this()->array)->size)
+	this()->array->size = 0;
+	while (b)
 	{
 		e = b;
 		b = b->next;
-		if ((this()->array)->free_element && e->value)
-			(this()->array)->free_element(e->value);
 		if (e)
 		{
 			if (e->value)
@@ -125,7 +124,6 @@ void	*new_array(void)
 		a->for_each = __base_for_each;
 		a->set = __base_set_element;
 		a->remove_index = __base_remove_element_index;
-		a->free_element = __base_free_element;
 		array(a);
 	}
 	return (a);

@@ -1,5 +1,5 @@
 
 *.o
-.vscode/settings.json
-.vscode/settings.json
-minishell
+vscode/*
+./minishell
+.DS_Store

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/25 20:44:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:56:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,6 @@ void	__base_remove_element_index(int index)
 		e = e->next;
 		i++;
 	}
-}
-
-int	__base_free_element(void *value)
-{
-	if (value)
-		free(value);
-	return (1);
 }
 
 t_array	*array(t_array *a)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 22:04:23 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:08:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	execute(t_terminal	*t, char	*line)
 {
 	char		**argv;
 	t_command	*c;
+	t_command	*console;
 	int			i;
 
 	argv = token(line);
@@ -41,9 +42,10 @@ static void	execute(t_terminal	*t, char	*line)
 	}
 	c = new_command(NULL);
 	pipe(c->fd);
-	list(t->commands)->add(new_console(NULL));
+	console = list(t->commands)->add(new_console(NULL));
 	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));
 	list(t->commands)->beging = NULL;
+	c->destroy(console);
 	c->destroy(c);
 }
 
