@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/24 20:42:00 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/05/25 20:20:21 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ SRCS		= 	main.c teste.c $(shell find src/ -name '*.c')
 
 OBJS		= 	$(SRCS:.c=.o)
 
-#CC			= 	gcc -fsanitize=address -g
-CC			= 	gcc
+CC			= 	gcc -fsanitize=address -g
+#CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell

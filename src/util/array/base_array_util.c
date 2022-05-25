@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <ft_base_array.h>
+#include <ft_base_array_util.h>
 #include <ft_util.h>
 
 static t_element	*base_add_element(void *value)
@@ -96,7 +97,11 @@ static int	base_destroy(void)
 		if ((this()->array)->free_element && e->value)
 			(this()->array)->free_element(e->value);
 		if (e)
+		{
+			if (e->value)
+				free(e->value);
 			free(e);
+		}
 	}
 	free(this()->array);
 	this()->array = NULL;
@@ -117,6 +122,10 @@ void	*new_array(void)
 		a->get = base_get_element;
 		a->remove = base_remove_element;
 		a->destroy = base_destroy;
+		a->for_each = __base_for_each;
+		a->set = __base_set_element;
+		a->remove_index = __base_remove_element_index;
+		a->free_element = __base_free_element;
 		array(a);
 	}
 	return (a);

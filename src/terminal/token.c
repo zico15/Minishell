@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/24 21:18:31 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:45:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ char	**token(char *line)
 		if (j > i)
 		{
 			separator = 1;
-			array(tokens)->add(string().copy_n(line + i + (line[i] == '|'), j - i));
+			(array(tokens)->add)(string().copy_n(line + i + (line[i] == '|'), j - i));
 		}
 		i = j;
 	}
 	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
 	i = -1;
 	while (++i < array(tokens)->size)
-		arr[i] = string().str_trim(array(tokens)->get(i));
+		arr[i] = string().trim(array(tokens)->get(i));
 	arr[i] = NULL;
 	array(tokens)->destroy();
 	return (arr);
