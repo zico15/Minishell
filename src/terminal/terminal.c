@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/25 21:08:27 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:05:10 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	execute(t_terminal	*t, char	*line)
 {
 	char		**argv;
 	t_command	*c;
-	t_command	*console;
 	int			i;
 
 	argv = token(line);
@@ -35,6 +34,7 @@ static void	execute(t_terminal	*t, char	*line)
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
+		//printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);
@@ -42,10 +42,9 @@ static void	execute(t_terminal	*t, char	*line)
 	}
 	c = new_command(NULL);
 	pipe(c->fd);
-	console = list(t->commands)->add(new_console(NULL));
+	list(t->commands)->add(new_console(NULL));
 	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));
 	list(t->commands)->beging = NULL;
-	c->destroy(console);
 	c->destroy(c);
 }
 

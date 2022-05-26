@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
+#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/25 20:20:21 by edos-san         ###   ########.fr        #
+#    Updated: 2022/05/26 17:09:43 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,33 +14,42 @@ SRCS		= 	main.c teste.c $(shell find src/ -name '*.c')
 
 OBJS		= 	$(SRCS:.c=.o)
 
-CC			= 	gcc -fsanitize=address -g
-#CC			= 	gcc
+#CC			= 	gcc -fsanitize=address -g
+CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell
 INCLUDES	= 	./headers
 
+#COLORS
+ccgreen	:=	$(shell echo -e "\033[0;32m")
+ccred	:=	$(shell echo -e "\033[0;31m")
+ccend	:=	$(shell echo -e "\033[0m")
+
 .c.o:
-	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
+	@echo "\033[0;32mOBJECT FILES COMPILED\033[0m"
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -lreadline $(OBJS) -o $(NAME)
+	@echo "\033[0;32mMINISHELL IS READY TO USE\033[0m"
 
 bonus: all
 
 clean:
 	@$(RM) $(OBJS)
+	@echo "\033[0;31mREMOVED OBJECT FILES\033[0m"
 
 fclean: clean
 	@$(RM) $(NAME)
+	@echo "\033[0;31mREMOVED MINISHELL EXECUTABLE\033[0m"
 
 re: fclean all
 
 norm :
-	norminette -R CheckForbiddenSourceHeader $(SRCS)
+	@norminette -R CheckForbiddenSourceHeader $(SRCS)
 
 m: fclean
 
