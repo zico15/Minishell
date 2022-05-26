@@ -6,7 +6,6 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 20:58:30 by edos-san         ###   ########.fr       */
 /*   Updated: 2022/05/26 22:32:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -41,17 +40,50 @@ char	*get_path(t_command	*c, char *arg, const char *path)
 
 int	next_command(t_command *previou, t_command *this)
 {
-	if (0 && previou)
-		previou->destroy(previou);
 	if (this && this->next && this->next->input)
-	{
 		this->next->input(this, this->next);
-		return (1);
 	if (previou)
 	{
 		/*close(previou->fd[0]);
 		close(previou->fd[1]);*/
 		previou->destroy(previou);
 	}
-	return (0);
+	return (1);
+}
+
+char	*read_all(int fd)
+{
+	char	buffer[BUFFER_SIZE];
+	char	*str;
+	char	*temp;
+	int		size;
+
+	temp = NULL;
+	str = NULL;
+	if (read(fd, buffer, 0) == -1 || fd == -1)
+		return (NULL);
+	while (1)
+	{
+		size = read(fd, buffer, BUFFER_SIZE);
+		if (size > 0)
+		{
+			buffer[size] = 0;
+			temp = str;
+			str = string().join(temp, buffer);
+			free_ob(temp);
+		}
+		else
+			break ;
+	}
+	return (str);
+}
+
+void	print_msg_error(t_command *this, char *msg, int args)
+{
+	if (!this || !this->commands || !*this->commands)
+		return ;
+	if (args == 2)
+		printf("bash: %s: %s: %s\n", this->commands[0], this->commands[1], msg);
+	if (args == 1)
+		printf("bash: %s: %s\n", this->commands[0], msg);
 }
