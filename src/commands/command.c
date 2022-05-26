@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:29:06 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 20:17:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 	pipe(this->fd);
 	if (this->path[0] && this->execute(this, previou->fd[0], this->fd[1]))
 	{
+		next_command(previou, this);
 		close(previou->fd[0]);
 		close(previou->fd[1]);
-		next_command(previou, this);
 	}
 	else if (this->commands)
 		printf("%s %s\n", __COMMAND_NOT_FOUND__, this->commands[0]);
