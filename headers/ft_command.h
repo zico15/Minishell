@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/25 20:16:33 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/26 20:58:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_command	t_command;
 typedef struct s_list_cmd	t_list_cmd;
 
-# define __COMMAND_NOT_FOUND__ "zsh: command not found:"
+# define __COMMAND_NOT_FOUND__ "bash: command not found:"
 # define __COMMAND_BEGING_ -2
 # define __COMMAND_END__ -2
 
