@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 17:56:49 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:08:32 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main2(int argc, char **argv, char **envp)
 	void *tokens;
 
 	tokens = new_array();
+	(void) tokens;
 
 	return (0);
 }
