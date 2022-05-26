@@ -4,9 +4,11 @@
 /*   ft_terminal.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
 /*   Updated: 2022/05/23 16:34:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:26:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +38,6 @@ t_command				*new_command(char *arg);
 t_command				*new_console(char *arg);
 t_command				*new_redirect_output(char *arg);
 t_command				*new_redirect_input(char *arg);
+t_command				*new_cd(char *arg);
+
 #endif

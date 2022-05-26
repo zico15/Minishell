@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
 /*   Updated: 2022/05/26 20:58:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:34:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +26,11 @@ typedef struct s_list_cmd	t_list_cmd;
 
 # define __COMMAND_NOT_FOUND__ "bash: command not found:"
 # define __COMMAND_BEGING_ -2
+# define __COMMAND_NOT_FOUND__ "command not found"
+# define __COMMAND_NOT_FILE__ "No such file or directory"
+# define __COMMAND_BEGING_ -1
 # define __COMMAND_END__ -2
+# define __PIPE_ERROR__ -1
 
 struct s_command
 {

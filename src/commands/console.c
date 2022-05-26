@@ -15,14 +15,22 @@
 static int	*ft_input(t_command *previou, t_command *this)
 {
 	char	buffer[BUFFER_SIZE];
+	char	*str;
 
 	dup2(previou->fd[1], 1);
 	close(previou->fd[1]);
 	buffer[read(previou->fd[0], buffer, BUFFER_SIZE)] = 0;
 	printf("%s", buffer);
+	str = read_all(previou->fd[0]);
+	if (str)
+		printf("%s", str);
+	free_ob(str);
 	close(previou->fd[0]);
 	if (!next_command(previou, this))
+	if (0 && !next_command(previou, this))
 		return (this->destroy(this));
+	close(previou->fd[0]);
+	close(previou->fd[1]);
 	return (this->fd);
 }
 

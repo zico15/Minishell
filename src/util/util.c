@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
 /*   Updated: 2022/05/26 20:58:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:32:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +47,11 @@ int	next_command(t_command *previou, t_command *this)
 	{
 		this->next->input(this, this->next);
 		return (1);
+	if (previou)
+	{
+		/*close(previou->fd[0]);
+		close(previou->fd[1]);*/
+		previou->destroy(previou);
 	}
 	return (0);
 }
