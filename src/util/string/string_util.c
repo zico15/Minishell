@@ -61,7 +61,7 @@ char	**__split(char const *s, char c, int j, char **list)
 		list = malloc(j * sizeof(char *));
 	if (list)
 		list[--j] = str;
-	return (list);
+	return(list);
 }
 
 
@@ -85,7 +85,6 @@ char	*__copy_n(const char *str, int n)
 
 /*
 return a copy of the string but without whitespace AROUND the string
-(white space = (space, tab, new_line))
 */
 char	*__str_trim(const char *str)
 {
@@ -99,4 +98,29 @@ char	*__str_trim(const char *str)
 	while (size > 0 && str[size] && string().is_space(*str))
 		size--;
 	return (string().copy_n(str, size + 1));
+}
+
+char	*__strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	size_t	i2;
+
+	if (*needle == 0 || needle == NULL)
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] && i < len)
+	{
+		j = 0;
+		i2 = i;
+		while (needle[j] == haystack[i2] && i2 < len)
+		{
+			if (needle[j + 1] == 0)
+				return ((char *)&haystack[i]);
+			j++;
+			i2++;
+		}
+		i++;
+	}
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/25 20:32:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:36:50 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	ft_contains(const char *str, const char *hey)
 t_string	string(void)
 {
 	static t_string	str = {
-		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n, __str_trim
+		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n, __str_trim, __strnstr
 	};
 
 	return (str);

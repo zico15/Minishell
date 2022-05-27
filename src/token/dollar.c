@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/27 14:39:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:37:50 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char    *ft_dollar(char *str)
 {
-    if (string().contains(str, "$"))
+    if (string().strnstr(str, "$", string().size(str)))
         printf("dollar index: %i\n", string().contains(str, "$"));
     return (str);
 }
