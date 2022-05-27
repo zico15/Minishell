@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 22:32:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:47:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*read_all(int fd)
 
 	temp = NULL;
 	str = NULL;
-	if (read(fd, buffer, 0) == -1 || fd == -1)
+	if (fd == -1 || read(fd, buffer, 0) == -1)
 		return (NULL);
 	while (1)
 	{

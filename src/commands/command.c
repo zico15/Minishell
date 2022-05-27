@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 22:34:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:48:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (pipe(this->fd) == __PIPE_ERROR__)
+	if (this->path[0] && pipe(this->fd) == __PIPE_ERROR__)
 		return (0);
 	if (!(this->path[0] && this->execute(this, previou->fd[0], this->fd[1])))
 	{

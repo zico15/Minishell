@@ -3,3 +3,6 @@
 vscode/*
 ./minishell
 .DS_Store
+.vscode/settings.json
+minishell
+teste.txt

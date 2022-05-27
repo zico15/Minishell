@@ -6,11 +6,15 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 /*   Updated: 2022/05/26 21:19:34 by edos-san         ###   ########.fr       */
 =======
 /*   Updated: 2022/05/27 15:44:37 by edos-san         ###   ########.fr       */
 >>>>>>> Stashed changes
+=======
+/*   Updated: 2022/05/27 13:38:15 by edos-san         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +68,6 @@ char	**__split(char const *s, char c, int j, char **list)
 	return(list);
 }
 
-
 /*
 copys n characters of string 
 */
@@ -100,6 +103,7 @@ char	*__str_trim(const char *str)
 	return (string().copy_n(str, size + 1));
 }
 
+<<<<<<< HEAD
 char	*__strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
@@ -123,4 +127,16 @@ char	*__strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
+=======
+int	__equals(const char *str1, const char *str2)
+{
+	int	i;
+
+	if (!str1 || !str2)
+		return (0);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i])
+		i++;
+	return (str1[i] == str2[i]);
+>>>>>>> main
 }
