@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/25 20:32:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:46:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_string
 	char		*(*join)(const char *str1, const char *str2);
 	char		*(*copy_n)(const char *str, int n);
 	char		*(*trim)(const char *str);
+	int			(*equals)(const char *str1, const char *str2);
 }	t_string;
 
 t_string	string(void);

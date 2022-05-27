@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 21:19:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:46:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	**__split(char const *s, char c, int j, char **list)
 	return (list);
 }
 
-
 /*
 copys n characters of string 
 */
@@ -96,4 +95,16 @@ char	*__str_trim(const char *str)
 	str[size] == '\t' || str[size] == '\n'))
 		size--;
 	return (string().copy_n(str, size + 1));
+}
+
+int	__equals(const char *str1, const char *str2)
+{
+	int	i;
+
+	if (!str1 || !str2)
+		return (0);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i])
+		i++;
+	return (str1[i] == str2[i]);
 }
