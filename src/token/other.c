@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/26 18:51:06 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:40:39 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,17 @@ int	ft_quotes(char	*letter)
 	else if (*letter == '\"' && d_quote)
 		d_quote = 0;
 	return (d_quote || s_quote);
+}
+
+char	**ft_lst_to_arr(void	*tokens)
+{
+	char	**arr;
+	int		i;
+
+	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
+	i = -1;
+	while (++i < (array(tokens)->size + 1))
+		arr[i] = string().trim(array(tokens)->get(i));
+	array(tokens)->destroy();
+	return (arr);
 }

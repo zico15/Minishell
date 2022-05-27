@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/26 20:12:00 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:51:27 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	**token(char *line)
 	int		j;
 	int		separator;
 	void	*tokens;
-	char	**arr;
 
 	if (!line)
 		return (ft_exit());
@@ -27,6 +26,7 @@ char	**token(char *line)
 	tokens = new_array();
 	i = 0;
 	separator = 0;
+	line = ft_dollar(line);
 	while (line[i])
 	{
 		j = i;
@@ -40,10 +40,5 @@ char	**token(char *line)
 		}
 		i = j;
 	}
-	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
-	i = -1;
-	while (++i < (array(tokens)->size + 1))
-		arr[i] = string().trim(array(tokens)->get(i));
-	array(tokens)->destroy();
-	return (arr);
+	return (ft_lst_to_arr(tokens));
 }
