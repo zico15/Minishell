@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 15:18:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:12:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static int	*ft_input(t_command *previou, t_command *this)
 	close(previou->fd[1]);
 	return (this->fd);
 }
-
-
 
 t_command	*new_env(char *arg)
 {	

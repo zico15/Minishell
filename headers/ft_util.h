@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 22:32:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:24:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_this
 	t_array			*array;
 	t_read			*read;
 	t_array			*array_main;
+	t_hasmap		*hasmap;
 
 }	t_this;
 
