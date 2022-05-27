@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/27 17:05:59 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:09:22 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int ft_read_dollar(char *str, int index)
     quote = string().strnstr(str, "\"", string().size(str));
     if (quote)
         d_quote = (string().strnstr(str, "\"", string().size(str)) - str);
-    return(str)
+    return(str);
     
     
 }
