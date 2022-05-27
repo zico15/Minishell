@@ -6,7 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2022/05/26 21:19:34 by edos-san         ###   ########.fr       */
+=======
+/*   Updated: 2022/05/27 15:44:37 by edos-san         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +93,10 @@ char	*__str_trim(const char *str)
 
 	if (!str)
 		return (NULL);
-	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
+	while (str && *str && string().is_space(*str))
 		str++;
 	size = string().size(str) - 1;
-	while (size > 0 && str[size] && (str[size] == ' ' || \
-	str[size] == '\t' || str[size] == '\n'))
+	while (size > 0 && str[size] && string().is_space(*str))
 		size--;
 	return (string().copy_n(str, size + 1));
 }
