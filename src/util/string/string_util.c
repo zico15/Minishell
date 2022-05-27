@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 18:55:54 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:19:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*__join(const char *str1, const char *str2)
 	str = malloc(string().size((char *) str1) \
 	+ string().size((char *) str2) + 1);
 	if (!str)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (str1 && *str1)
 		str[i++] = *str1++;
@@ -87,10 +87,13 @@ char	*__str_trim(const char *str)
 {
 	int		size;
 
+	if (!str)
+		return (NULL);
 	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\n'))
 		str++;
 	size = string().size(str) - 1;
-	while (size > 0 && str[size] && (str[size] == ' ' || str[size] == '\t' || str[size] == '\n'))
+	while (size > 0 && str[size] && (str[size] == ' ' || \
+	str[size] == '\t' || str[size] == '\n'))
 		size--;
 	return (string().copy_n(str, size + 1));
 }

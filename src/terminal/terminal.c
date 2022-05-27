@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 20:33:01 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:51:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static t_command	*cread_cmd(char *arg)
 		return (new_redirect_output(arg));
 	if (string().contains(arg, "<") == true)
 		return (new_redirect_input(arg));
+	if (string().contains(arg, "cd") == true)
+		return (new_cd(arg));
+	if (string().contains(arg, "echo") == true)
+		return (new_echo(arg));
 	return (new_command(arg));
 }
 
@@ -41,6 +45,7 @@ static void	execute(t_terminal	*t, char	*line)
 		i++;
 	}
 	c = new_command(NULL);
+	c->index = __COMMAND_BEGING_;
 	pipe(c->fd);
 	list(t->commands)->add(new_console(NULL));
 	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));

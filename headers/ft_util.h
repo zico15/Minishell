@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:32:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ typedef struct s_this
 
 t_this					*this(void);
 
+//						util
+char					*read_all(int fd);
+void					print_msg_error(t_command *this, char *msg, int args);
+
 //						memory
 int						free_ob(void *v);
 int						free_list(char **str);
+
 #endif
