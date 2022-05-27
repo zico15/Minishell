@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/05/26 22:10:43 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:59:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	*input(t_command *previou, t_command *this)
 		free_ob(str);
 		close(fd_open);
 	}
+	close(this->fd[1]);
 	next_command(previou, this);
 	close(previou->fd[0]);
 	close(previou->fd[1]);
