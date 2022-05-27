@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 21:49:42 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:50:10 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <ft_terminal.h>
 # include <ft_util.h>
 # include <ft_read_line.h>
+# include <ft_token.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 

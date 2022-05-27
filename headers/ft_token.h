@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   ft_token.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 18:08:32 by amaria-m         ###   ########.fr       */
+/*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/05/26 18:50:30 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef FT_TOKEN_H
+# define FT_TOKEN_H
+
 #include <ft_pipex.h>
 
+char	**ft_exit();
+int		ft_separator(char l);
+int		ft_quotes(char	*letter);
 
-// -fsanitize=address -g
-int	main2(int argc, char **argv, char **envp)
-{
-	(void) argc;
-	(void) argv;
-	(void) envp;
-	void *tokens;
-
-	tokens = new_array();
-	(void) tokens;
-
-	return (0);
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/24 16:27:03 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:55:54 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ char	*__copy_n(const char *str, int n)
 	return (copy);
 }
 
+/*
+return a copy of the string but without whitespace AROUND the string
+(white space = (space, tab, new_line))
+*/
 char	*__str_trim(const char *str)
 {
 	int		size;

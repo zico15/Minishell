@@ -10,36 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_BASE_ARRAY_H
-# define FT_BASE_ARRAY_H
+#ifndef FT_BASE_ARRAY_UTIL_H
+# define FT_BASE_ARRAY_UTIL_H
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <ft_base_array.h>
 
-typedef struct s_element
-{
-	void				*value;
-	struct s_element	*next;
-}	t_element;
-
-typedef struct s_array
-{
-	t_element			*begin;
-	t_element			*end;
-	t_element			*next;
-	int					size;
-	t_element			*(*add)(void	*value);
-	void				*(*get)(int	index);
-	t_element			*(*set)(int index, void *value);
-	t_element			*(*remove)(t_element	*e);
-	void				(*remove_index)(int index);
-	int					(*destroy)();
-	void				(*for_each)(void (*fun)(t_element *e));
-}	t_array;
-
-void					*new_array(void);
-t_array					*array(t_array *this);
+void				__base_for_each(void (*fun)(t_element *e));
+t_element			*__base_set_element(int index, void *value);
+void				__base_remove_element_index(int index);
+int					__base_free_element(void *value);
 
 #endif
-//# -fsanitize=address -g
-//valgrind --leak-check=full -s -v

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 18:23:49 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:56:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_base_array.h>
 #include <ft_util.h>
 
-static void	ft_for_each(void (*fun)(t_element *e))
+void	__base_for_each(void (*fun)(t_element *e))
 {
 	t_element	*temp;
 	t_element	*select;
@@ -29,7 +29,31 @@ static void	ft_for_each(void (*fun)(t_element *e))
 	}
 }
 
-static void	base_remove_element_index(int index)
+t_element	*__base_set_element(int index, void *value)
+{
+	int			i;
+	t_element	*e;
+
+	i = 0;
+	if (!this()->array)
+		return (NULL);
+	e = (this()->array)->begin;
+	while (e)
+	{
+		if (i == index)
+		{
+			if (e->value)
+				free(e->value);
+			e->value = value;
+			return (e);
+		}
+		e = e->next;
+		i++;
+	}
+	return (0);
+}
+
+void	__base_remove_element_index(int index)
 {
 	int			i;
 	t_element	*e;
@@ -50,22 +74,8 @@ static void	base_remove_element_index(int index)
 	}
 }
 
-static int	ft_free_element(void *value)
-{
-	if (value)
-		free(value);
-	return (1);
-}
-
 t_array	*array(t_array *a)
 {
 	this()->array = a;
-	if (a && !a->for_each)
-	{
-		a->for_each = ft_for_each;
-		a->remove_index = base_remove_element_index;
-		a->free_element = ft_free_element;
-	}
 	return (a);
 }
-
