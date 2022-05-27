@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_util.h                                      :+:      :+:    :+:   */
+/*   string_util2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 13:36:35 by edos-san         ###   ########.fr       */
+/*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
+/*   Updated: 2022/05/27 13:37:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRING_UTIL_H
-# define STRING_UTIL_H
+#include <ft_string.h>
 
-# include <stdlib.h>
+int	__equals_n(const char *str1, const char *str2, int n)
+{
+	int	i;
 
-char			*__join(const char *str1, const char *str2);
-char			**__split(char const *s, char c, int j, char **list);
-char			*__copy_n(const char *str, int n);
-char			*__str_trim(const char *str);
-int				__equals(const char *str1, const char *str2);
-int				__equals_n(const char *str1, const char *str2, int n);
-
-#endif
+	if (!str1 || !str2)
+		return (0);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i])
+	{
+		i++;
+		if (i == n)
+			return (1);
+	}
+	return (0);
+}

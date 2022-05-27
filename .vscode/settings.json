@@ -4,6 +4,7 @@
 		"util.h": "c",
 		"ft_util.h": "c",
 		"__functional_03": "c",
-		"functional": "c"
+		"functional": "c",
+		"sstream": "c"
 	}
 }
