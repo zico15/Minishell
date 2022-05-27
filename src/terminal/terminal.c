@@ -6,23 +6,27 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 22:51:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:15:36 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-static t_command	*cread_cmd(char *arg)
+static t_command	*cread_cmd(char *s)
 {
-	if (string().contains(arg, ">") == true)
-		return (new_redirect_output(arg));
-	if (string().contains(arg, "<") == true)
-		return (new_redirect_input(arg));
-	if (string().contains(arg, "cd") == true)
-		return (new_cd(arg));
-	if (string().contains(arg, "echo") == true)
-		return (new_echo(arg));
-	return (new_command(arg));
+	if (string().equals_n(s, ">", 1))
+		return (new_redirect_output(s));
+	if (string().equals_n(s, "<", 1))
+		return (new_redirect_input(s));
+	if (string().equals_n(s, "cd", 2 && (!s[2] || string().is_space(s[2]))))
+		return (new_cd(s));
+	if (string().equals_n(s, "echo", 4) && (!s[4] || string().is_space(s[4])))
+		return (new_echo(s));
+	if (string().equals_n(s, "pwd", 3) && (!s[3] || string().is_space(s[3])))
+		return (new_pwd(s));
+	if (string().equals_n(s, "env", 3) && (!s[3] || string().is_space(s[3])))
+		return (new_env(s));
+	return (new_command(s));
 }
 
 static void	execute(t_terminal	*t, char	*line)

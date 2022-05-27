@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 22:37:05 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:53:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
+	char	*str;
+
 	if (this->commands && *this->commands)
 	{
-		if (chdir(this->commands[1]) != 0)
+		str = this->commands[1];
+		if (str == NULL)
+			str = "/";
+		if (chdir(str) != 0)
 			print_msg_error(this, __COMMAND_NOT_FILE__, 2);
 	}
 	next_command(previou, this);
