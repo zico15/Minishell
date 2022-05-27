@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_util.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/27 16:35:04 by amaria-m         ###   ########.fr       */
-=======
-/*   Updated: 2022/05/27 14:29:52 by edos-san         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2022/05/27 16:49:25 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +19,9 @@ char			*__join(const char *str1, const char *str2);
 char			**__split(char const *s, char c, int j, char **list);
 char			*__copy_n(const char *str, int n);
 char			*__str_trim(const char *str);
-<<<<<<< HEAD
-char			*__strnstr(const char *haystack, const char *needle, size_t len);
-=======
 int				__equals(const char *str1, const char *str2);
 int				__equals_n(const char *str1, const char *str2, int n);
 int				__is_space(char c);
->>>>>>> main
+char			*__strnstr(const char *haystack, const char *needle, size_t len);
 
 #endif

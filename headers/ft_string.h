@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 16:45:26 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:48:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_string
 	int			(*equals)(const char *str1, const char *str2);
 	int			(*equals_n)(const char *str, const char *hey, int n);
 	int			(*is_space)(char c);
+	char		*(*strnstr)(const char *haystack, const char *needle, size_t len);
 }	t_string;
 
 t_string	string(void);

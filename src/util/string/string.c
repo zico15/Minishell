@@ -6,11 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/27 16:36:50 by amaria-m         ###   ########.fr       */
-=======
-/*   Updated: 2022/05/27 14:30:09 by edos-san         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2022/05/27 16:50:05 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +71,8 @@ static int	ft_contains(const char *str, const char *hey)
 t_string	string(void)
 {
 	static t_string	str = {
-<<<<<<< HEAD
-		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n, __str_trim, __strnstr
-=======
 		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n, __str_trim,
-		__equals, __equals_n, __is_space
->>>>>>> main
+		__equals, __equals_n, __is_space, __strnstr
 	};
 
 	return (str);
