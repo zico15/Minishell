@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 18:50:10 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:31:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		close_program(t_command *cmd, t_pipex	*p);
 void		out_input(t_command *cmd, t_pipex	*p, int id, int max);
 t_pipex		*data(void);
 char		*get_path(t_command	*c, char *arg, const char *path);
+t_terminal	*terminal(void);
 
 //			TESTE
 void		printf_cmd(t_command **c);

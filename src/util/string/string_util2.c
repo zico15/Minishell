@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 17:17:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:30:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ int	__equals(const char *str1, const char *str2)
 int	__is_space(char c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' || c == '\r' || c == ' ');
+}
+
+int	__size_list(char **list)
+{
+	int		i;
+
+	i = 0;
+	while (list && list[i])
+		i++;
+	return (i);
 }
