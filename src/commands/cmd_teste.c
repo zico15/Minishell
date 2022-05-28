@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 17:29:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:01:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
+	char	*str;
+
+	str = "*.cabcd  dsds";
 	printf("===========TESTE===========\n");
-	printf("wildcards: %s\n", terminal()->wildcards(this->commands[1]));
+	printf("contains: %i\n", string().contains(str, "*.c"));
+	printf("replace: %s\n", string().replace(str, "oi", "*.c"));
+	printf("wildcards: \n%s\n", terminal()->wildcards(this->commands[1]));
 	printf("===========================\n");
 	next_command(previou, this);
 	close(previou->fd[0]);

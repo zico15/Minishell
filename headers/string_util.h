@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 15:30:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:36:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int			__equals_n(const char *str1, const char *str2, int n);
 int			__is_space(char c);
 char		*__strnstr(const char *haystack, const char *needle, size_t len);
 int			__size_list(char **list);
+char		*__replace(const char *str1, const char *str2, const char *hey);
 
 #endif

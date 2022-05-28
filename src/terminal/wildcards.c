@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:00:10 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 17:20:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:46:19 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	equals_extension(const char *dir_name, const char *exts)
 {
 	int	size;
 
+	if (string().equals(exts, "*"))
+		return (1);
 	size = string().size(dir_name) - 1;
 	while (size >= 0 && dir_name[size] != '.')
 		size--;
@@ -66,7 +68,7 @@ char	*__wildcards(char *exts)
 	dir = opendir(".");
 	paths = NULL;
 	if (!dir || !ft_execute(dir, readdir(dir), exts, &paths))
-		paths = string().copy(exts);
+		paths = NULL;
 	closedir(dir);
 	return (paths);
 }

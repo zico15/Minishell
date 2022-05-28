@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 17:31:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:48:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ void	check_wildcards(t_command *this)
 	while (this->commands[i])
 	{
 		str = this->commands[i];
-		if (string().equals_n(str, "*.", 2))
+		if (string().equals_n(str, "*", 1))
 		{
 			paths = terminal()->wildcards(str + 1);
+			if (paths)
+			{
+				
+			}
 		}
 	}
 }
