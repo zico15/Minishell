@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dollar.c                                           :+:      :+:    :+:   */
+/*   command_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/28 17:36:00 by edos-san         ###   ########.fr       */
+/*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
+/*   Updated: 2022/05/28 17:48:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_token.h>
+#include <ft_pipex.h>
 
-int ft_read_dollar(char *str, int index)
+void	check_wildcards(t_command *this)
 {
-	(void) str;
-	(void) index;
-	return (0);
+	int			i;
+	char		*str;
+	char		*paths;
+
+	i = 1;
+	if (string().size_list(this->commands) < 2)
+		return ;
+	while (this->commands[i])
+	{
+		str = this->commands[i];
+		if (string().equals_n(str, "*", 1))
+		{
+			paths = terminal()->wildcards(str + 1);
+			if (paths)
+			{
+				
+			}
+		}
+	}
 }
 
-char    *ft_dollar(char *str)
+void	__check_args(t_command *this)
 {
-	char    *cpy;
-	char    *mem;
-
-	mem = string().strnstr(str, "$", string().size(str));
-	if (mem)
-	{
-		cpy = string().copy_n(str, mem - str);
-		//printf("%s\n", cpy);
-		free(cpy);
-	}
-	return (str);
+	check_wildcards(this);
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/27 17:17:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:56:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**__split(char const *s, char c, int j, char **list)
 		list = malloc(j * sizeof(char *));
 	if (list)
 		list[--j] = str;
-	return(list);
+	return (list);
 }
 
 /*

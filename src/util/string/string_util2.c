@@ -6,12 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 17:17:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:59:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_string.h>
 #include <stdio.h>
+#include <ft_util.h>
 
 int	__equals_n(const char *str1, const char *str2, int n)
 {
@@ -44,4 +45,39 @@ int	__equals(const char *str1, const char *str2)
 int	__is_space(char c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' || c == '\r' || c == ' ');
+}
+
+int	__size_list(char **list)
+{
+	int		i;
+
+	i = 0;
+	while (list && list[i])
+		i++;
+	return (i);
+}
+
+char	*__replace(const char *str1, const char *str2, const char *hey)
+{
+	int		i;
+	char	*r;
+	char	*temp;
+
+	i = string().contains(str1, hey);
+	r = NULL;
+	if (!i)
+		return ((char *) str1);
+	i--;
+	printf("STR1: (%s)\n", str1);
+	r = string().copy_n(str1, i);
+	printf("R1: (%s)\n", r);
+	str1 += (i + string().size(hey));
+	printf("STR1: (%s) (%i) + (%i)\n", str1, i, string().size(hey));
+	temp = r;
+	r = string().join(r, str2);
+	free_ob(temp);
+	temp = r;
+	r = string().join(r, str1);
+	free_ob(temp);
+	return (r);
 }

@@ -6,11 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 17:25:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:33:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
+#include <ft_command_util.h>
 
 static t_command	*cread_cmd(char *s)
 {
@@ -26,6 +27,8 @@ static t_command	*cread_cmd(char *s)
 		return (new_pwd(s));
 	if (string().equals_n(s, "env", 3) && (!s[3] || string().is_space(s[3])))
 		return (new_env(s));
+	if (string().equals_n(s, "teste", 5) && (!s[5] || string().is_space(s[5])))
+		return (new_teste(s));
 	return (new_command(s));
 }
 
@@ -83,6 +86,13 @@ t_terminal	*new_terminal(char *title)
 	t->input = ft_input;
 	t->title = title;
 	t->commands = new_list();
+	t->wildcards = __wildcards;
+	t->check_command_args = __check_args;
 	this()->terminal = t;
 	return (t);
+}
+
+t_terminal	*terminal(void)
+{
+	return (this()->terminal);
 }

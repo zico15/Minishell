@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 14:44:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:33:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ struct s_terminal
 	int					fd[2];
 	void				*commands;
 	void				(*input)(void);
+	char				*(*wildcards)(char *exts);
+	void				(*check_command_args)(t_command *this);
 	t_terminal			*next;
 };
 
@@ -40,5 +42,6 @@ t_command				*new_cd(char *arg);
 t_command				*new_echo(char *arg);
 t_command				*new_pwd(char *arg);
 t_command				*new_env(char *arg);
+t_command				*new_teste(char *arg);
 
 #endif
