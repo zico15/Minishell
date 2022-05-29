@@ -3,27 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/26 18:08:32 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:59:25 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ft_pipex.h>
 
-
 // -fsanitize=address -g
-int	main2(int argc, char **argv, char **envp)
+//open $HOMEBREW_TEMP
+//open $TMPDIR  
+///tmp/edos-san/Homebrew/Temp
+int	main2(void)
 {
-	(void) argc;
-	(void) argv;
-	(void) envp;
-	void *tokens;
+	static void	*h;
+	char		*key;
 
-	tokens = new_array();
-	(void) tokens;
-
+	key = "nome";
+	h = new_hashmap();
+	(hashmap(h))->put(string().copy("oi"), string().copy("HELLO WORD"));
+	(hashmap(h))->put(string().copy("casa"), string().copy("HOME"));
+	(hashmap(h))->put(string().copy("nome"), string().copy("NAME"));
+	printf("size: %i\n", hashmap(h)->size());
+	printf("key: %s value: %s\n", key, hashmap(h)->get_key(key)->value);
+	hashmap(h)->remove_key("casa");
+	printf("size: %i\n", hashmap(h)->size());
+	printf("key: %s value: %s\n", key, hashmap(h)->get_key(key)->value);
+	hashmap(h)->destroy();
 	return (0);
 }
+//system("leaks -- minishell");

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/27 11:32:13 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/05/29 11:57:05 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-#CC			= 	gcc -fsanitize=address -g
-CC			= 	gcc
+CC			= 	gcc -fsanitize=address -g
+#CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell

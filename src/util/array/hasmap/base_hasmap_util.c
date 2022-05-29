@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 16:53:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:17:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,56 @@
 #include <ft_util.h>
 #include <ft_string.h>
 
-static t_element	*__put(char *key, void	*value)
+t_element	*__put_hasmap(char *key, void	*value)
 {
-	t_element_hasmap	*v;
+	t_element	*v;
 
-	v = malloc(sizeof(t_element_hasmap));
+	v = array(this()->array)->add(value);
 	if (!v)
 		return (0);
 	v->key = key;
-	v->value = value;
-	return (array(this()->hasmap->list)->add(v));
+	return (v);
 }
 
-static void	*__get_index(int index)
+t_element	*__get_index_hasmap(int index)
 {
-	t_element_hasmap	*e;
+	t_element	*e;
 
-	e = (t_element_hasmap *) array(this()->hasmap->list)->get(index);
+	e = array(this()->array)->get(index);
 	if (e)
-		return (e->value);
+		return (e);
 	return (NULL);
 }
 
-static void	*__get_key(char *key)
+t_element	*__get_key_hasmap(char *key)
 {
-	t_element_hasmap	*e;
-	int					size;
-	int					i;
+	int			i;
+	t_element	*e;
 
-	size = array(this()->hasmap->list)->size;
-	i = -1;
-	while (++i < size)
+	i = 0;
+	if (!this()->array)
+		return (NULL);
+	e = (this()->array)->begin;
+	while (e)
 	{
-		e = (t_element_hasmap *) array(this()->hasmap->list)->get(i);
-		if (!e)
-			return (0);
-		if (string().equals(e->key, key))
-			return (e->value);
+		if (string().equals(key, e->key))
+			return (e);
+		e = e->next;
+		i++;
 	}
 	return (NULL);
 }
 
-void	*new_hasmap(void)
+void	__remove_element_hasmap(char	*key)
 {
-	t_hasmap	*a;
+	if (!key || !this()->hashmap)
+		return ;
+	array(this()->array)->remove(__get_key_hasmap(key));
+}
 
-	a = malloc(sizeof(t_hasmap));
-	if (a)
-	{
-		a->list = new_array();
-		a->put = __put;
-		a->get_index = __get_index;
-		a->get_key = __get_key;
-		hasmap(a);
-	}
-	return (a);
+void	__remove_index_hasmap(int index)
+{
+	if (index < 0 || !this()->hashmap)
+		return ;
+	array(this()->array)->remove_index(index);
 }

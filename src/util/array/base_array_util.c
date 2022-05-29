@@ -23,6 +23,7 @@ static t_element	*base_add_element(void *value)
 	e = malloc(sizeof(t_element));
 	if (!e)
 		return (NULL);
+	e->key = NULL;
 	e->value = value;
 	e->next = NULL;
 	if (!(this()->array)->begin)
@@ -70,9 +71,8 @@ static t_element	*base_remove_element(t_element	*e)
 				(this()->array)->begin = b->next;
 			else
 				t->next = b->next;
-			if (b->value)
-				free(b->value);
-			free(b);
+			free_ob(b->value);
+			free_ob(b);
 			if ((this()->array)->size-- >= 0 && !(this()->array)->size)
 				(this()->array)->end = 0;
 			return (0);
@@ -97,12 +97,12 @@ static int	base_destroy(void)
 		b = b->next;
 		if (e)
 		{
-			if (e->value)
-				free(e->value);
-			free(e);
+			free_ob(e->key);
+			free_ob(e->value);
+			free_ob(e);
 		}
 	}
-	free(this()->array);
+	free_ob(this()->array);
 	this()->array = NULL;
 	return (1);
 }

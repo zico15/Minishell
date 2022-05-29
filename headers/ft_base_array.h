@@ -18,15 +18,10 @@
 
 typedef struct s_element
 {
+	char				*key;
 	void				*value;
 	struct s_element	*next;
 }	t_element;
-
-typedef struct s_element_hasmap
-{
-	char				*key;
-	void				*value;
-}	t_element_hasmap;
 
 typedef struct s_array
 {
@@ -46,20 +41,20 @@ typedef struct s_array
 typedef struct s_hasmap
 {
 	t_array				*list;
-	int					size;
+	int					(*size)(void);
 	t_element			*(*put)(char *key, void	*value);
-	void				*(*get_index)(int	index);
-	void				*(*get_key)(char *key);
-	t_element			*(*set)(char *key, void *value);
+	t_element			*(*get_index)(int	index);
+	t_element			*(*get_key)(char *key);
+	void				(*remove_index)(int	index);
 	void				(*remove_key)(char *key);
 	int					(*destroy)();
 	void				(*for_each)(void (*fun)(t_element *e));
-}	t_hasmap;
+}	t_hashmap;
 
 void					*new_array(void);
 t_array					*array(t_array *this);
-void					*new_hasmap(void);
-t_hasmap				*hasmap(t_hasmap *this);
+void					*new_hashmap(void);
+t_hashmap				*hashmap(t_hashmap *this);
 
 #endif
 //# -fsanitize=address -g
