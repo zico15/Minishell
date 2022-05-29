@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 14:26:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:59:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	execute(t_terminal	*t, char	*line)
 	c->index = __COMMAND_BEGING_;
 	pipe(c->fd);
 	list(t->commands)->add(new_console(NULL));
+	terminal()->check_command_args(list(t->commands)->get(0));
 	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));
 	list(t->commands)->beging = NULL;
 	c->destroy(c);
@@ -88,6 +89,8 @@ t_terminal	*new_terminal(char *title)
 	t->wildcards = __wildcards;
 	t->check_command_args = __check_args;
 	t->get_exts = __get_exts;
+	t->is_erro_cmd = 0;
+	t->pid = getpid();
 	this()->terminal = t;
 	return (t);
 }

@@ -24,6 +24,7 @@
 		"type_traits": "c",
 		"vector": "c",
 		"__hash_table": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"cstring": "c"
 	}
 }

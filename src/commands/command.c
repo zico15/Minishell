@@ -6,17 +6,18 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:00:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 19:17:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
+#include <stdio.h>
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (this->path[0] && pipe(this->fd) == __PIPE_ERROR__)
+	if (pipe(this->fd) == __PIPE_ERROR__)
 		return (0);
-	if (!(this->path[0] && this->execute(this, previou->fd[0], this->fd[1])))
+	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
 		if (this->commands)
 			print_msg_error(this, __COMMAND_NOT_FOUND__, 1);
@@ -30,6 +31,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 static int	execute(t_command *this, int input, int out)
 {
 	pid_t	pit;
+	int		status;
 
 	pit = fork();
 	if (!pit)
@@ -38,9 +40,12 @@ static int	execute(t_command *this, int input, int out)
 		close(input) || close(out))
 			exit(0);
 		execve(this->path, this->commands, data()->envp);
+		kill(terminal()->pid, SIGUSR1);
+		write(2, "execve\n", 8);
 		exit(0);
 	}
-	waitpid(pit, NULL, 0);
+	waitpid(pit, &status, 0);
+	printf("status: %i\n", status);
 	close(input);
 	close(out);
 	return (1);
@@ -55,7 +60,6 @@ static int	init(t_command *this, char *arg, char **envp)
 	path = NULL;
 	while (envp[++i] && !string().contains(path, "PATH="))
 		path = envp[i];
-	this->commands = string().split(arg, " ");
 	get_path(this, arg, path);
 	return (1);
 }
