@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 18:57:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:47:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_size(const char *s)
  * ***/
 static char	**ft_split(const char *s, char c)
 {
-	return (__split(s, c, 0, 0));
+	return (__split(s, _str(c), 0, 0));
 }
 
 char	*ft_copy(const char *str)
@@ -78,7 +78,8 @@ t_string	string(void)
 {
 	static t_string	str = {
 		ft_contains, ft_split, ft_size, ft_copy, __join, __copy_n, __str_trim,
-		__equals, __equals_n, __is_space, __strnstr, __size_list, __replace
+		__equals, __equals_n, __is_space, __strnstr, __size_list, __replace,
+		__isalnum, __split_spacer
 	};
 
 	return (str);

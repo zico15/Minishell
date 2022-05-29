@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 17:33:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 14:26:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	execute(t_terminal	*t, char	*line)
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
-		//printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);
@@ -88,6 +87,7 @@ t_terminal	*new_terminal(char *title)
 	t->commands = new_list();
 	t->wildcards = __wildcards;
 	t->check_command_args = __check_args;
+	t->get_exts = __get_exts;
 	this()->terminal = t;
 	return (t);
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:00:10 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 17:46:19 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 13:38:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,26 @@ static int	ft_execute(DIR *dir, struct dirent *entiy, char *exts, char	**paths)
 	return (is_contains);
 }
 
-char	*__wildcards(char *exts)
+char	*__get_exts(const char *str)
+{
+	int		i;
+	char	*v;
+
+	i = string().contains(str, "*");
+	v = NULL;
+	printf("teste1: (%i)\n", i);
+	if (!str && i <= 0)
+		return (NULL);
+	str += i;
+	i = 0;
+	printf("teste2: (%s)\n", str);
+	while (str[i] && (string().isalnum(str[i]) || str[i] == '_'))
+		i++;
+	v = string().copy_n(str, i);
+	return (v);
+}
+
+char	*__wildcards(const char *exts)
 {
 	DIR					*dir;
 	char				*paths;
@@ -67,7 +86,7 @@ char	*__wildcards(char *exts)
 		return (NULL);
 	dir = opendir(".");
 	paths = NULL;
-	if (!dir || !ft_execute(dir, readdir(dir), exts, &paths))
+	if (!dir || !ft_execute(dir, readdir(dir), (char *)exts, &paths))
 		paths = NULL;
 	closedir(dir);
 	return (paths);

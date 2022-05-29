@@ -23,6 +23,7 @@
 		"tuple": "c",
 		"type_traits": "c",
 		"vector": "c",
-		"__hash_table": "c"
+		"__hash_table": "c",
+		"stdio.h": "c"
 	}
 }

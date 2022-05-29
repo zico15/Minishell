@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 15:29:10 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:38:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,10 @@ void	print_msg_error(t_command *this, char *msg, int args)
 		printf("bash: %s: %s\n", this->commands[0], msg);
 }
 
+char	*_str(const char c)
+{
+	static char	str[2];
+
+	str[0] = c;
+	return (str);
+}

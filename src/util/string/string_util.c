@@ -6,11 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/28 17:56:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:47:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_string.h>
+#include <string_util.h>
+#include <stdio.h>
 
 char	*__join(const char *str1, const char *str2)
 {
@@ -33,30 +35,30 @@ char	*__join(const char *str1, const char *str2)
 /***
  * separador c or \n
  * ***/
-char	**__split(char const *s, char c, int j, char **list)
+char	**__split(char const *s, char *c, int j, char **list)
 {
-	char	*str;
+	char	*t;
 	int		i;
 
 	i = 0;
-	str = 0;
-	while (s && (*s == c || *s == '\n') && *s)
+	t = 0;
+	while (s && (string().contains(c, _str(*s)) || *s == '\n') && *s)
 		s++;
-	while (s && (*s != c && *s != '\n') && s[i])
+	while (s && (!string().contains(c, _str(s[i])) && s[i] != '\n') && s[i])
 		i++;
 	if (i > 0)
-		str = malloc((i + 1) * sizeof(char));
+		t = malloc((i + 1) * sizeof(char));
 	if (i > 0)
-		str[i] = 0;
+		t[i] = 0;
 	i = 0;
-	while (s && str && s && (*s != c && *s != '\n') && *s)
-		str[i++] = *s++;
+	while (s && t && s && (!string().contains(c, _str(*s)) && *s != '\n') && *s)
+		t[i++] = *s++;
 	if (++j >= 0 && i)
 		list = __split(s, c, j, list);
 	else if (!list)
 		list = malloc(j * sizeof(char *));
 	if (list)
-		list[--j] = str;
+		list[--j] = t;
 	return (list);
 }
 

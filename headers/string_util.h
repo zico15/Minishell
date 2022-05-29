@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 18:36:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:38:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 
 char		*__join(const char *str1, const char *str2);
-char		**__split(char const *s, char c, int j, char **list);
+char		**__split(char const *s, char *c, int j, char **list);
 char		*__copy_n(const char *str, int n);
 char		*__str_trim(const char *str);
 int			__equals(const char *str1, const char *str2);
@@ -25,5 +25,8 @@ int			__is_space(char c);
 char		*__strnstr(const char *haystack, const char *needle, size_t len);
 int			__size_list(char **list);
 char		*__replace(const char *str1, const char *str2, const char *hey);
+int			__isalnum(char c);
+char		**__split_spacer(char const *s, char *spacer);
+char		*_str(const char c);
 
 #endif

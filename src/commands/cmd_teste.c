@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 10:41:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 14:23:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	char		*str;
+	char		*str1;
 	char		*str2;
 
-	str = "$PWDabcd  dsds";
-	str2 = this->commands[1];
+	if (string().size_list(this->commands) < 3)
+		return (this->fd);
+	str1 = this->commands[1];
+	str2 = this->commands[2];
 	printf("===========TESTE===========\n");
-	printf("quotes: (%s) (%i)\n", str2, ft_quotes(str2));
-	printf("contains: %i\n", string().contains(str, "*.c"));
-	printf("replace: %s\n", string().replace(str, "KKKK", "$PWD"));
-	printf("wildcards: \n%s\n", terminal()->wildcards(this->commands[1]));
+	printf("str1: %s str2: %s\n", str1, str2);
+	printf("contains: %i\n", string().contains(str1, str2));
+	printf("replace: %s\n", string().replace(str1, "(KKKK)", str2));
+	printf("get_exts: %s\n", terminal()->get_exts(str1));
+	printf("wildcards: \n%s\n", terminal()->wildcards(str2));
 	printf("===========================\n");
 	next_command(previou, this);
 	close(previou->fd[0]);

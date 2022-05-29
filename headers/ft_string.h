@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 18:36:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:47:49 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_string
 	char	*(*strnstr)(const char *haystack, const char *needle, size_t len);
 	int		(*size_list)(char **list);
 	char	*(*replace)(const char *str1, const char *str2, const char *hey);
+	int		(*isalnum)(char c);
+	char	**(*splits)(char const *s, char *spacer);
 }	t_string;
 
 t_string	string(void);
