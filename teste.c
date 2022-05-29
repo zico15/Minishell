@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 15:53:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 16:00:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(void)
 	printf("key: %s value: %s\n", key, hashmap(h)->get_key(key)->value);
 	hashmap(h)->destroy();*/
 	printf("================================\n");
-	char **temp = string().splits("teoste ds .c", " o");
+	char **temp = string().split("teoste ds .c", " ");
 	i = 0;
 	while (temp && temp[i])
 	{

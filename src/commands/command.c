@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 14:46:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 16:00:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	init(t_command *this, char *arg, char **envp)
 	path = NULL;
 	while (envp[++i] && !string().contains(path, "PATH="))
 		path = envp[i];
-	this->commands = string().split(arg, ' ');
+	this->commands = string().split(arg, " ");
 	get_path(this, arg, path);
 	return (1);
 }
