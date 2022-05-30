@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 19:21:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:54:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ void	__check_args(t_command *this)
 
 	i = -1;
 	if (!this)
-		check_wildcards(this);
+		return ;
+	check_wildcards(this);
 	this->commands = string().split(this->arg, " ");
 	i = -1;
 	if (!this->path[0] && !access(this->commands[0], F_OK) && this->commands)
 	{
-		/*while (this->commands[0] && this->commands[0][++i])
+		while (this->commands[0] && this->commands[0][++i])
 			this->path[i] = this->commands[0][i];
-		this->path[i] = 0;*/
-		this->path[0] = '.';
-		this->path[1] = 0; 
+		this->path[i] = 0;
 	}
 }
