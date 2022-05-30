@@ -7,24 +7,6 @@
 		"functional": "c",
 		"sstream": "c",
 		"ft_string.h": "c",
-		"__bit_reference": "c",
-		"__functional_base": "c",
-		"__node_handle": "c",
-		"algorithm": "c",
-		"bitset": "c",
-		"chrono": "c",
-		"__memory": "c",
-		"iterator": "c",
-		"limits": "c",
-		"memory": "c",
-		"optional": "c",
-		"ratio": "c",
-		"system_error": "c",
-		"tuple": "c",
-		"type_traits": "c",
-		"vector": "c",
-		"__hash_table": "c",
-		"stdio.h": "c",
-		"cstring": "c"
+		"ft_token.h": "c"
 	}
 }
