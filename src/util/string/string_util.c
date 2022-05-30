@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 18:08:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:47:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ char	*__join(const char *str1, const char *str2)
 	str[i] = 0;
 	return (str);
 }
-
-
 
 /***
  * separador c or \n
