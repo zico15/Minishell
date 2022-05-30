@@ -6,6 +6,7 @@
 		"__functional_03": "c",
 		"functional": "c",
 		"sstream": "c",
-		"ft_string.h": "c"
+		"ft_string.h": "c",
+		"ft_token.h": "c"
 	}
 }
