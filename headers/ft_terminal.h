@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 17:59:10 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 13:37:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ struct s_terminal
 {
 	char				*title;
 	int					fd[2];
-	pid_t				pid;
-	int					is_erro_cmd;
 	void				*commands;
 	void				(*input)(void);
 	char				*(*wildcards)(const char *exts);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 19:21:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 10:05:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,30 @@
 
 void	check_wildcards(t_command *this)
 {
+	int			i;
 	char		*str;
 	char		*paths;
-	char		*exts;
+	char		*temp;
 
-	str = this->arg;
-	if (string().size(str) > 1 && string().contains(str, "*"))
+	i = 1;
+	if (string().size_list(this->commands) < 2)
+		return ;
+	while (this->commands[i])
 	{
-		paths = terminal()->wildcards(str);
-		if (paths)
+		str = this->commands[i];
+		if (string().contains(str, "*"))
 		{
-			exts = terminal()->get_exts(str);
-			this->arg = string().replace(str, paths, exts);
-			free_ob(str);
+			paths = terminal()->wildcards(str + 1);
+			if (paths)
+			{
+				temp = str;
+				this->commands[i] = string().replace(temp, paths, "*.c");
+			}
 		}
 	}
 }
 
 void	__check_args(t_command *this)
 {
-	int	i;
-
-	i = -1;
-	if (!this)
-		check_wildcards(this);
-	this->commands = string().split(this->arg, " ");
-	i = -1;
-	if (!this->path[0] && !access(this->commands[0], F_OK) && this->commands)
-	{
-		/*while (this->commands[0] && this->commands[0][++i])
-			this->path[i] = this->commands[0][i];
-		this->path[i] = 0;*/
-		this->path[0] = '.';
-		this->path[1] = 0; 
-	}
+	check_wildcards(this);
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:02:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 16:00:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //open $HOMEBREW_TEMP
 //open $TMPDIR  
 ///tmp/edos-san/Homebrew/Temp
-int	main2(void)
+int	main(void)
 {
 	int			i;
 	/*static void	*h;

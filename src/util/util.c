@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 19:07:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:38:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ char	*get_path(t_command	*c, char *arg, const char *path)
 int	next_command(t_command *previou, t_command *this)
 {
 	if (this && this->next && this->next->input)
-	{
-		terminal()->check_command_args(this->next);
 		this->next->input(this, this->next);
-	}
 	if (previou)
 	{
 		/*close(previou->fd[0]);
@@ -89,7 +86,6 @@ void	print_msg_error(t_command *this, char *msg, int args)
 		printf("bash: %s: %s: %s\n", this->commands[0], this->commands[1], msg);
 	if (args == 1)
 		printf("bash: %s: %s\n", this->commands[0], msg);
-	terminal()->is_erro_cmd = 1;
 }
 
 char	*_str(const char c)

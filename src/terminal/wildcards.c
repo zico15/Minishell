@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:00:10 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 17:25:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/29 13:38:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	equals_extension(const char *dir_name, const char *exts)
 
 	if (string().equals(exts, "*"))
 		return (1);
-	if (*exts == '*')
-		exts++;
 	size = string().size(dir_name) - 1;
 	while (size >= 0 && dir_name[size] != '.')
 		size--;
@@ -60,36 +58,30 @@ static int	ft_execute(DIR *dir, struct dirent *entiy, char *exts, char	**paths)
 	return (is_contains);
 }
 
-/***
- * return uma string sem malloc
- * ***/
 char	*__get_exts(const char *str)
 {
-	int			i;
-	static char	v[BUFFER_SIZE];
+	int		i;
+	char	*v;
 
 	i = string().contains(str, "*");
-	v[0] = 0;
+	v = NULL;
+	printf("teste1: (%i)\n", i);
 	if (!str && i <= 0)
 		return (NULL);
-	str += i - 1;
+	str += i;
 	i = 0;
-	while (str[i] && !string().is_space(str[i]))
-	{
-		v[i] = str[i];
+	printf("teste2: (%s)\n", str);
+	while (str[i] && (string().isalnum(str[i]) || str[i] == '_'))
 		i++;
-	}
-	v[i] = 0;
+	v = string().copy_n(str, i);
 	return (v);
 }
 
-char	*__wildcards(const char *str)
+char	*__wildcards(const char *exts)
 {
 	DIR					*dir;
 	char				*paths;
-	char				*exts;
 
-	exts = __get_exts(str);
 	if (!exts)
 		return (NULL);
 	dir = opendir(".");

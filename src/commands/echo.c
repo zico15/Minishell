@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 17:34:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:11:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	print_echo(char *str)
 			is_barra_end = 1;
 		//}
 	}
-	printf("%c", ' ');
 }
 
 static int	*ft_input(t_command *previou, t_command *this)

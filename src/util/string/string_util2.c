@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:03:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:35:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ char	*__replace(const char *str1, const char *str2, const char *hey)
 	if (!i)
 		return ((char *) str1);
 	i--;
+	printf("STR1: (%s)\n", str1);
 	r = string().copy_n(str1, i);
+	printf("R1: (%s)\n", r);
 	str1 += (i + string().size(hey));
+	printf("STR1: (%s) (%i) + (%i)\n", str1, i, string().size(hey));
 	temp = r;
 	r = string().join(r, str2);
 	free_ob(temp);
