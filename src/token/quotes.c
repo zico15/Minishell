@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 17:18:35 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:13:37 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
-// 									^
 
 int	*ft_count_quotes(char *str, int index, int *arr)
 {
@@ -55,23 +54,13 @@ removes all quotes from each argument of the list
 if the argument doesnt have a dollar sign in it
 */
 
-void	ft_handle_quotes(void *tokens)
+int	ft_handle_quotes(char *str, int index)
 {
-	int		i;
+	int	arr[4];
 
-	i = -1;
-	while (++i < array(tokens)->size)
-	{
-		if (!string().contains(array(tokens)->get(i), "$"))
-		{
-			while (string().contains(array(tokens)->get(i), "\""))
-				(array(tokens))->set(i, \
-				string().replace(array(tokens)->get(i), "", "\""));
-			while (string().contains(array(tokens)->get(i), "\'"))
-				(array(tokens))->set(i, \
-				string().replace(array(tokens)->get(i), "", "\'"));
-		}
-	}
+	ft_count_quotes(str, index, arr);
+	return (0);
+	
 }
 
 // echo "bla bla '$TERM' bla bla ''$TERM''"

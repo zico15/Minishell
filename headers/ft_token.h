@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 17:14:22 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:15:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@ int		ft_quotes(char	*letter);
 char	**ft_lst_to_arr(void	*tokens);
 
 // QUOTES HANDELING WHITHOUT $ SIGN
-void	ft_handle_quotes(void *tokens);
+int		ft_handle_quotes(char *str, int index);
 int		*ft_count_quotes(char *str, int index, int *arr);
 
 // TOKEN FUCNTION (returns arr of commands)
 char	**token(char *line);
+
+// typedef enum td
+// {
+// 	IS_PRINT,
+// 	NOT_PRINT,
+// 	IS_COMMAND,
+// 	NOT_COMMAND,
+// 	IS_REMOVE,
+// 	NOT_REMOVE
+// };
 
 #endif
