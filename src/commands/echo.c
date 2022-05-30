@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/27 19:33:42 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:34:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void	print_echo(char *str)
 {
 	int	i;
-	//int	is_barra;
-	//int	is_barra_end;
+	int	is_barra;
+	int	is_barra_end;
 
 	i = -1;
-	//is_barra = 0;
-	//is_barra_end = 1;
+	is_barra = 0;
+	is_barra_end = 1;
 	while (str && str[++i])
 	{
 		/*if (!is_barra && str[i] == '\\')
@@ -33,10 +33,11 @@ static void	print_echo(char *str)
 		if (str[i] != '\\')
 		{*/
 			printf("%c", str[i]);
-			//is_barra = 0;
-			//is_barra_end = 1;
+			is_barra = 0;
+			is_barra_end = 1;
 		//}
 	}
+	printf("%c", ' ');
 }
 
 static int	*ft_input(t_command *previou, t_command *this)

@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 18:47:32 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:19:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ char	*__join(const char *str1, const char *str2)
 	str[i] = 0;
 	return (str);
 }
-
-
 
 /***
  * separador c or \n

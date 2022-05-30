@@ -6,12 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 19:17:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:54:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
@@ -19,8 +21,10 @@ static int	*ft_input(t_command *previou, t_command *this)
 		return (0);
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
+		printf("asdasd");
 		if (this->commands)
 			print_msg_error(this, __COMMAND_NOT_FOUND__, 1);
+		close(this->fd[1]);
 	}
 	next_command(previou, this);
 	close(previou->fd[0]);
@@ -41,11 +45,12 @@ static int	execute(t_command *this, int input, int out)
 			exit(0);
 		execve(this->path, this->commands, data()->envp);
 		kill(terminal()->pid, SIGUSR1);
-		write(2, "execve\n", 8);
+		write(2, "errro\n", 8);
 		exit(0);
 	}
 	waitpid(pit, &status, 0);
-	printf("status: %i\n", status);
+	/*if (status)
+		print_msg_error(this, NULL, );*/
 	close(input);
 	close(out);
 	return (1);
