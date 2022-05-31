@@ -61,7 +61,6 @@ int check_quotes(char *str, int i, char c)
 	int is_beging = 0;
 	int is_end = 0;
 	int size = string().size(str);
-	double v;
 	if (str[i] == c)
 		return (-1);
 	while (++index < i)
@@ -82,9 +81,9 @@ int check_quotes(char *str, int i, char c)
 int	main3(void)
 {
 	int i = -1;
-	char *str = "echo\"'\"\"\"\"|oi\"\"'\"\"\"\" \"casa\"\" ";
+	char *str = "echo \"'\"\'$TERM\'\"'\"";
 	str = remove_quotes_duplo(str, '"');
-	str = remove_quotes_duplo_all(str, '"');
+	//str = remove_quotes_duplo_all(str, '"');
 	int size = string().size(str);
 	printf("================================\n");
 	printf("str: %s\n", str);

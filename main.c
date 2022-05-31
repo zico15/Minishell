@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 16:03:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:59:01 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	printf_cmd(t_command **c)
 
 // -fsanitize=address -g
 
-int	main(int argc, char **argv, char **envp)
+int	main2(int argc, char **argv, char **envp)
 {
 	t_terminal	*t;
 

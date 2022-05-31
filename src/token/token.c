@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:10:04 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:24:30 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**token(char *line)
 	void	*tokens;
 
 	if (!line)
-		return (ft_exit());
+		return (ft_send_exit());
 	if (!(*line))
 		return (NULL);
 	tokens = new_array();

@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:09:24 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:30:42 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ ft_inside_quotes,
 return 0 -> not quoted ()
 return 1 -> double quoted ("")
 return 2 -> single quoted ('')
-return 4 -> both quoted ("" '') (this is not possible i think)
+return 3 -> both quoted ("" '') (this is not possible i think)
 */
 
 int	ft_inside_quotes(char *str, int index)
@@ -74,3 +74,54 @@ int	ft_inside_quotes(char *str, int index)
 		return (BOTH_QUOTED);
 	return (NOT_QUOTED);
 }
+
+int	ft_count_cmd(char *str)
+{
+	int	i;
+	int	str_count;
+
+	if (!str || !*str)
+		return (0);
+	str_count = 0;
+	i = -1;
+	while (str[++i])
+	{
+		if (ft_inside_quotes(str, i) > 0)
+			str_count++;
+		while (str[i] && ft_inside_quotes(str, i) > 0)
+			i++;
+		if (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
+			str_count++;
+		while (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
+			i++;
+	}
+	return (str_count);
+}
+
+// char	**ft_divide_cmd(char *str, int n)
+// {
+// 	char	**cmds;
+// 	int		i;
+// 	//int		j;
+
+// 	if (!n || !str || !*str)
+// 		return (NULL);
+// 	cmds = malloc(sizeof(char*) * (n + 1));
+// 	cmds[n] = NULL;
+// 	i = -1;
+// 	// while (++i < n)
+// 	// {
+// 	// 	j = -1;
+// 	// 	// while (str[++j])
+// 	// 	// {
+// 	// 	// 	if (ft_inside_quotes(str, j) > 0)
+// 	// 	// 		str_count++;
+// 	// 	// 	while (str[j] && ft_inside_quotes(str, j) > 0)
+// 	// 	// 		i++;
+// 	// 	// 	if (str[j] && str[j] != '\"' && str[j] != '\'' && !string().is_space(str[j]) && ft_inside_quotes(str, j) == 0)
+// 	// 	// 		str_count++;
+// 	// 	// 	while (str[j] && str[j] != '\"' && str[j] != '\'' && !string().is_space(str[j]) && ft_inside_quotes(str, j) == 0)
+// 	// 	// 		j++;
+// 	// 	// }
+// 	// }
+// }

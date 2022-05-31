@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:09:10 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:28:12 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ enum quotes {
 };
 
 // TOKEN UTILS
-char	**ft_exit(void);
+char	**ft_send_exit(void);
 int		ft_separator(char l);
 int		ft_quotes(char	*letter);
 char	**ft_lst_to_arr(void	*tokens);
@@ -38,18 +38,14 @@ char	**ft_lst_to_arr(void	*tokens);
 // QUOTES HANDELING
 int		*ft_count_quotes(char *str, int index, int *arr);
 int		ft_inside_quotes(char *str, int index);
+int		ft_count_cmds(char *str);
 
 // TOKEN FUCNTION (returns arr of commands)
 char	**token(char *line);
 
-// typedef enum td
-// {
-// 	IS_PRINT,
-// 	NOT_PRINT,
-// 	IS_COMMAND,
-// 	NOT_COMMAND,
-// 	IS_REMOVE,
-// 	NOT_REMOVE
-// };
+typedef struct s_token
+{
+	char **cmds;
+}		t_token;
 
 #endif
