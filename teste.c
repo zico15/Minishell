@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 15:58:20 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:03:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //open $HOMEBREW_TEMP
 //open $TMPDIR  
 ///tmp/edos-san/Homebrew/Temp
-int	main(void)
+int	main2(void)
 {
 	char	str[1000];
 	scanf("%[^\n]", str);

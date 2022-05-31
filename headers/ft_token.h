@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 15:03:20 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:09:10 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		ft_quotes(char	*letter);
 char	**ft_lst_to_arr(void	*tokens);
 
 // QUOTES HANDELING
-int		ft_handle_quotes(char *str, int index);
 int		*ft_count_quotes(char *str, int index, int *arr);
 int		ft_inside_quotes(char *str, int index);
 

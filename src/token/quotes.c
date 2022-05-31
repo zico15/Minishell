@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:01:14 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:09:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,4 @@ int	ft_inside_quotes(char *str, int index)
 	else if (d_quoted && s_quoted)
 		return (BOTH_QUOTED);
 	return (NOT_QUOTED);
-	
 }
-
-int	ft_handle_quotes(char *str, int index);
-
-// echo "bla bla '$TERM' bla bla ''$TERM''"
-// "'$TERM'"

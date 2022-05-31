@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 13:56:19 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:10:04 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ char	**token(char *line)
 		}
 		i = j;
 	}
-	//ft_handle_quotes(tokens);
 	return (ft_lst_to_arr(tokens));
 }
