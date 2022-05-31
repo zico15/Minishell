@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 21:15:53 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:03:20 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,30 @@
 
 # include <ft_pipex.h>
 
+// ft_inside_quotes,
+// return 0 -> not quoted ()
+// return 1 -> double quoted ("")
+// return 2 -> single quoted ('')
+// return 4 -> both quoted ("" '') (this is not possible i think)
+
+// FOR ft_inside_quotes FUNCTION
+enum quotes {
+	NOT_QUOTED,
+	DOUBLE_QUOTED,
+	SINGLE_QUOTED,
+	BOTH_QUOTED,
+};
+
 // TOKEN UTILS
 char	**ft_exit(void);
 int		ft_separator(char l);
 int		ft_quotes(char	*letter);
 char	**ft_lst_to_arr(void	*tokens);
 
-// QUOTES HANDELING WHITHOUT $ SIGN
+// QUOTES HANDELING
 int		ft_handle_quotes(char *str, int index);
 int		*ft_count_quotes(char *str, int index, int *arr);
+int		ft_inside_quotes(char *str, int index);
 
 // TOKEN FUCNTION (returns arr of commands)
 char	**token(char *line);

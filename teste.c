@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:02:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:00:59 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,12 @@
 //open $HOMEBREW_TEMP
 //open $TMPDIR  
 ///tmp/edos-san/Homebrew/Temp
-int	main2(void)
+int	main(void)
 {
-	int			i;
-	/*static void	*h;
-	char		*key;
-
-	key = "nome";
-	h = new_hashmap();
-	(hashmap(h))->put(string().copy("oi"), string().copy("HELLO WORD"));
-	(hashmap(h))->put(string().copy("casa"), string().copy("HOME"));
-	(hashmap(h))->put(string().copy("nome"), string().copy("NAME"));
-	printf("size: %i\n", hashmap(h)->size());
-	printf("key: %s value: %s\n", key, hashmap(h)->get_key(key)->value);
-	hashmap(h)->remove_key("casa");
-	printf("size: %i\n", hashmap(h)->size());
-	printf("key: %s value: %s\n", key, hashmap(h)->get_key(key)->value);
-	hashmap(h)->destroy();*/
-	printf("================================\n");
-	char **temp = string().split("teoste ds .c", " ");
-	i = 0;
-	while (temp && temp[i])
-	{
-		printf("T: (%s)\n", temp[i]);
-		i++;
-	}
-	free_list(temp);
+	char	str[1000];
+	scanf("%[^\n]", str);
+	printf("%i\n", ft_inside_quotes(str, 5));
 	return (0);
 }
 //system("leaks -- minishell");
+// "'"'$TERM'"'"

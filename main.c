@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:02:29 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:00:56 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	printf_cmd(t_command **c)
 
 // -fsanitize=address -g
 
-int	main(int argc, char **argv, char **envp)
+int	main2(int argc, char **argv, char **envp)
 {
 	t_terminal	*t;
 
