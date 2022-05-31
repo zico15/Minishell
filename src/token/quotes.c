@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 15:03:17 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:01:14 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int	*ft_count_quotes(char *str, int index, int *arr)
 	i = -1;
 	while (str[++i] && i < index)
 	{
-		arr[0] += (str[i] == '\"' && (arr[1] + arr[2]) % 2 == 0);
-		arr[1] += (str[i] == '\'' && (arr[0] + arr[3]) % 2 == 0);
+		arr[0] += (str[i] == '\"' && arr[1] % 2 == 0);
+		arr[1] += (str[i] == '\'' && arr[0] % 2 == 0);
 	}
+	arr[0] += (str[index] == '\"' && arr[1] % 2 == 0 && arr[0] % 2 != 0);
+	arr[1] += (str[index] == '\'' && arr[0] % 2 == 0 && arr[1] % 2 != 0);
 	i = index;
 	while (str[++i])
 	{
@@ -62,8 +64,8 @@ int	ft_inside_quotes(char *str, int index)
 	int	arr[4];
 
 	ft_count_quotes(str, index, arr);
-	d_quoted =  (arr[0] % 2 != 0 && arr[3] % 2 != 0);
-	s_quoted =  (arr[1] % 2 != 0 && arr[2] % 2 != 0);
+	d_quoted = (arr[0] % 2 != 0 && arr[3] % 2 != 0);
+	s_quoted = (arr[1] % 2 != 0 && arr[2] % 2 != 0);
 	if (d_quoted && !s_quoted)
 		return (DOUBLE_QUOTED);
 	else if (!d_quoted && s_quoted)

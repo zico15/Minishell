@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 15:00:59 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:58:20 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(void)
 {
 	char	str[1000];
 	scanf("%[^\n]", str);
-	printf("%i\n", ft_inside_quotes(str, 5));
+	int	i = -1;
+	while (str[++i])
+		printf("str %i: %i\n", i, ft_inside_quotes(str, i));
 	return (0);
 }
 //system("leaks -- minishell");
