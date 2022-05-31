@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 18:06:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:08:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	server_list(int signo, siginfo_t *i, void *context)
 	}
 	if (signo == SIGINT)
 	{
-		printf("\r");
+		printf("getpid: %i\n", getpid());
 		exit(0);
 	}
 	if (SIGUSR1 == signo)

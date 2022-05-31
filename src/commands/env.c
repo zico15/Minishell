@@ -6,51 +6,28 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 17:35:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 23:05:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-
-static int	write_env(char	*env, int fd)
+void	fun(t_element *e, void *v)
 {
-	char	*str;
+	t_command	*this;
 
-	str = getenv(env);
-	write(fd, env, string().size(env));
-	write(fd, "=", 1);
-	write(fd, str, string().size(str));
-	return (write(fd, "\n", 1));
-}
-
-static void	write_list_env(int fd)
-{
-	int			i;
-	static char	*list[26] = {
-		"TERM_PROGRAM", "TERM", "HOMEBREW_TEMP", "SHELL", "TMPDIR",
-		"TERM_PROGRAM_VERSION", "ORIGINAL_XDG_CURRENT_DESKTOP",
-		"USER", "SSH_AUTH_SOCK", "__CF_USER_TEXT_ENCODING",
-		"HOMEBREW_CACHE", "PATH", "_", "PWD", "LANG",
-		"XPC_FLAGS", "XPC_SERVICE_NAME", "SHLVL",
-		"HOME", "VSCODE_GIT_ASKPASS_MAIN", "LOGNAME",
-		"VSCODE_GIT_IPC_HANDLE", "VSCODE_GIT_ASKPASS_NODE",
-		"GIT_ASKPASS", "COLORTERM", NULL
-	};
-
-	i = 0;
-	while (fd != -1 && list[i])
-	{
-		write_env(list[i++], fd);
-	}
-	close(fd);
+	this = v;
+	write(this->fd[1], e->key, string().size(e->key));
+	write(this->fd[1], "=", 1);
+	write(this->fd[1], e->value, string().size(e->value));
+	write(this->fd[1], "\n", 1);
 }
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (pipe(this->fd) == __PIPE_ERROR__)
-		return (0);
-	write_list_env(this->fd[1]);
+
+	(hashmap(terminal()->envp))->for_each(fun, this);
+	close(this->fd[1]);
 	next_command(previou, this);
 	close(previou->fd[0]);
 	close(previou->fd[1]);

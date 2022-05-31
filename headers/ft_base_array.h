@@ -25,30 +25,30 @@ typedef struct s_element
 
 typedef struct s_array
 {
-	t_element			*begin;
-	t_element			*end;
-	t_element			*next;
-	int					size;
-	t_element			*(*add)(void	*value);
-	void				*(*get)(int	index);
-	t_element			*(*set)(int index, void *value);
-	t_element			*(*remove)(t_element	*e);
-	void				(*remove_index)(int index);
-	int					(*destroy)();
-	void				(*for_each)(void (*fun)(t_element *e));
+	t_element		*begin;
+	t_element		*end;
+	t_element		*next;
+	int				size;
+	t_element		*(*add)(void	*value);
+	void			*(*get)(int	index);
+	t_element		*(*set)(int index, void *value);
+	t_element		*(*remove)(t_element	*e);
+	void			(*remove_index)(int index);
+	int				(*destroy)();
+	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
 }	t_array;
 
 typedef struct s_hasmap
 {
-	t_array				*list;
-	int					(*size)(void);
-	t_element			*(*put)(char *key, void	*value);
-	t_element			*(*get_index)(int	index);
-	t_element			*(*get_key)(char *key);
-	void				(*remove_index)(int	index);
-	void				(*remove_key)(char *key);
-	int					(*destroy)();
-	void				(*for_each)(void (*fun)(t_element *e));
+	t_array			*list;
+	int				(*size)(void);
+	t_element		*(*put)(char *key, void	*value);
+	t_element		*(*get_index)(int	index);
+	t_element		*(*get_key)(char *key);
+	void			(*remove_index)(int	index);
+	void			(*remove_key)(char *key);
+	int				(*destroy)();
+	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
 }	t_hashmap;
 
 void					*new_array(void);

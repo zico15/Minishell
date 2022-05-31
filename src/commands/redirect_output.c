@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/05/29 17:35:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:32:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	*input(t_command *previou, t_command *this)
 
 	dup2(previou->fd[1], 1);
 	close(previou->fd[1]);
-	if (pipe(this->fd) == __PIPE_ERROR__)
-		return (0);
 	if (previou->index != __COMMAND_BEGING_)
 	{
 		str = read_all(previou->fd[0]);

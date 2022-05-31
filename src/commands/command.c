@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 21:07:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:30:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (pipe(this->fd) == __PIPE_ERROR__)
-		return (0);
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
 		printf("asdasd");
@@ -40,9 +38,12 @@ static int	execute(t_command *this, int input, int out)
 	pit = fork();
 	if (!pit)
 	{
-		if (dup2(input, 0) < 0 || dup2(out, 1) < 0 || \
-		close(input) || close(out))
-			exit(0);
+		if (!string().equals(this->path, this->commands[0]))
+		{
+			if (dup2(input, 0) < 0 || dup2(out, 1) < 0 || \
+			close(input) || close(out))
+				exit(0);
+		}
 		execve(this->path, this->commands, data()->envp);
 		kill(terminal()->pid, SIGUSR1);
 		write(2, "errro\n", 8);
@@ -66,6 +67,8 @@ static int	init(t_command *this, char *arg, char **envp)
 	while (envp[++i] && !string().contains(path, "PATH="))
 		path = envp[i];
 	get_path(this, arg, path);
+	if (pipe(this->fd) == __PIPE_ERROR__)
+		return (0);
 	return (1);
 }
 

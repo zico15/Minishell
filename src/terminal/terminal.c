@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/30 21:19:10 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:43:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static t_command	*cread_cmd(char *s)
 		return (new_env(s));
 	if (string().equals_n(s, "teste", 5) && (!s[5] || string().is_space(s[5])))
 		return (new_teste(s));
+	if (string().equals_n(s, "export", 6) && (!s[6] || string().is_space(s[6])))
+		return (new_export(s));
 	return (new_command(s));
 }
 
@@ -65,10 +67,19 @@ static void	ft_input(void)
 {
 	t_terminal	*t;
 	char		*line;
+	int			i;
+	char		**str;
 
 	t = this()->terminal;
 	if (!t)
 		return ;
+	i = -1;
+	while (data()->envp && data()->envp[++i])
+	{
+		str = string().split(data()->envp[i], "=");
+		if (string().size_list(str) > 1)
+			(hashmap(t->envp))->put(str[0], str[1]);
+	}
 	while (1)
 	{
 		line = readline(t->title);
@@ -92,6 +103,7 @@ t_terminal	*new_terminal(char *title)
 	t->get_exts = __get_exts;
 	t->is_erro_cmd = 0;
 	t->pid = getpid();
+	t->envp = new_hashmap();
 	this()->terminal = t;
 	return (t);
 }

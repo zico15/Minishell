@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 17:35:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:32:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static int	*ft_input(t_command *previou, t_command *this)
 	char	buff[BUFFER_SIZE];
 	char	*str;
 
-	if (pipe(this->fd) == __PIPE_ERROR__)
-		return (0);
 	str = getcwd(buff, BUFFER_SIZE);
 	write(this->fd[1], str, string().size(str));
 	write(this->fd[1], "\n", 1);
