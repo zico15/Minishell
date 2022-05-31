@@ -25,6 +25,7 @@
 		"vector": "c",
 		"__hash_table": "c",
 		"stdio.h": "c",
-		"cstring": "c"
+		"cstring": "c",
+		"ostream": "c"
 	}
 }
