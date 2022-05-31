@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/30 17:18:35 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:09:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@
 // arr[1] :  "number of times SINGEL QUOTE appears at the LEFT of index"
 // arr[2] :  "number of times SINGEL QUOTE appears at the RIGHT of index"
 // arr[3] :  "number of times DOUBLE QUOTE appears at the RIGHT of index"
-
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
-// 									^
 
 int	*ft_count_quotes(char *str, int index, int *arr)
 {
@@ -34,44 +32,45 @@ int	*ft_count_quotes(char *str, int index, int *arr)
 	i = 0;
 	while (i < 4)
 		arr[i++] = 0;
-	i = index;
-	while (str[--i] && i >= 0)
+	i = -1;
+	while (str[++i] && i < index)
 	{
-		arr[0] += (str[i] == '\"');
-		arr[1] += (str[i] == '\'');
+		arr[0] += (str[i] == '\"' && arr[1] % 2 == 0);
+		arr[1] += (str[i] == '\'' && arr[0] % 2 == 0);
 	}
+	arr[0] += (str[index] == '\"' && arr[1] % 2 == 0 && arr[0] % 2 != 0);
+	arr[1] += (str[index] == '\'' && arr[0] % 2 == 0 && arr[1] % 2 != 0);
 	i = index;
 	while (str[++i])
 	{
-		arr[2] += (str[i] == '\'');
-		arr[3] += (str[i] == '\"');
+		arr[2] += (str[i] == '\'' && (arr[0] + arr[3]) % 2 == 0);
+		arr[3] += (str[i] == '\"' && (arr[1] + arr[2]) % 2 == 0);
 	}
 	return (arr);
 }
 
 /*
-ft_handle_quotes, 
-removes all quotes from each argument of the list 
-if the argument doesnt have a dollar sign in it
+ft_inside_quotes,
+return 0 -> not quoted ()
+return 1 -> double quoted ("")
+return 2 -> single quoted ('')
+return 4 -> both quoted ("" '') (this is not possible i think)
 */
 
-void	ft_handle_quotes(void *tokens)
+int	ft_inside_quotes(char *str, int index)
 {
-	int		i;
+	int	d_quoted;
+	int	s_quoted;
+	int	arr[4];
 
-	i = -1;
-	while (++i < array(tokens)->size)
-	{
-		if (!string().contains(array(tokens)->get(i), "$"))
-		{
-			while (string().contains(array(tokens)->get(i), "\""))
-				(array(tokens))->set(i, \
-				string().replace(array(tokens)->get(i), "", "\""));
-			while (string().contains(array(tokens)->get(i), "\'"))
-				(array(tokens))->set(i, \
-				string().replace(array(tokens)->get(i), "", "\'"));
-		}
-	}
+	ft_count_quotes(str, index, arr);
+	d_quoted = (arr[0] % 2 != 0 && arr[3] % 2 != 0);
+	s_quoted = (arr[1] % 2 != 0 && arr[2] % 2 != 0);
+	if (d_quoted && !s_quoted)
+		return (DOUBLE_QUOTED);
+	else if (!d_quoted && s_quoted)
+		return (SINGLE_QUOTED);
+	else if (d_quoted && s_quoted)
+		return (BOTH_QUOTED);
+	return (NOT_QUOTED);
 }
-
-// echo "bla bla '$TERM' bla bla ''$TERM''"
