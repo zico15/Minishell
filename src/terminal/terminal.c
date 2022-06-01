@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 22:43:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:42:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	ft_input(void)
 		if (string().size_list(str) > 1)
 			(hashmap(t->envp))->put(str[0], str[1]);
 	}
+	(hashmap(t->envp))->put(__MINISHELL_PID__, string().itoa(getpid()));
+	data()->envp = hashmap(terminal()->envp)->to_str();
 	while (1)
 	{
 		line = readline(t->title);

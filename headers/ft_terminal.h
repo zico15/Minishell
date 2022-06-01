@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 22:43:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:53:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <ft_command.h>
+
+# define __MINISHELL_PID__ "__MINISHELL__PID__"
 
 typedef struct s_terminal	t_terminal;
 

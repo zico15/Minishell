@@ -124,6 +124,7 @@ void	*new_array(void)
 		a->for_each = __base_for_each;
 		a->set = __base_set_element;
 		a->remove_index = __base_remove_element_index;
+		a->to_str = __to_str;
 		array(a);
 	}
 	return (a);

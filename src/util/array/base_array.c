@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 22:58:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:29:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,28 @@ void	__base_remove_element_index(int index)
 		e = e->next;
 		i++;
 	}
+}
+
+char	**__to_str(void)
+{
+	t_element	*temp;
+	char		**list;
+	int			i;
+
+	if (!this()->array)
+		return (NULL);
+	list = malloc(sizeof(char *) * ((this()->array)->size + 1));
+	if (!list)
+		return (NULL);
+	i = 0;
+	temp = (this()->array)->begin;
+	while (temp)
+	{
+		list[i++] = temp->value;
+		temp = temp->next;
+	}
+	list[i] = NULL;
+	return (list);
 }
 
 t_array	*array(t_array *a)

@@ -36,6 +36,7 @@ typedef struct s_array
 	void			(*remove_index)(int index);
 	int				(*destroy)();
 	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
+	char			**(*to_str)(void);
 }	t_array;
 
 typedef struct s_hasmap
@@ -49,6 +50,7 @@ typedef struct s_hasmap
 	void			(*remove_key)(char *key);
 	int				(*destroy)();
 	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
+	char			**(*to_str)(void);
 }	t_hashmap;
 
 void					*new_array(void);

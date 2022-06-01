@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 23:05:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:07:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	fun(t_element *e, void *v)
 	t_command	*this;
 
 	this = v;
+	if (string().equals(e->key, __MINISHELL_PID__))
+		return ;
 	write(this->fd[1], e->key, string().size(e->key));
 	write(this->fd[1], "=", 1);
 	write(this->fd[1], e->value, string().size(e->value));
@@ -25,7 +27,6 @@ void	fun(t_element *e, void *v)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-
 	(hashmap(terminal()->envp))->for_each(fun, this);
 	close(this->fd[1]);
 	next_command(previou, this);

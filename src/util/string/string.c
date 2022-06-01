@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:01:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:03:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_string	string(void)
 	static t_string	str = {
 		ft_contains, ft_size, ft_copy, __join, __copy_n, __str_trim,
 		__equals, __equals_n, __is_space, __strnstr, __size_list, __replace,
-		__isalnum, __split_spacer
+		__isalnum, __split_spacer, __itoa
 	};
 
 	return (str);
