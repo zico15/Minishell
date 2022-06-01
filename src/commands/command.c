@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 18:54:16 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 20:03:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,24 @@ static int	execute(t_command *this, int input, int out)
 	int		status;
 
 	pit = fork();
+	status = 0;
 	if (!pit)
 	{
-		if (!string().equals(this->path, this->commands[0]))
+		if (!string().equals(this->path, this->commands[0]) && \
+		!string().equals_n(this->commands[0], "top", 3))
 		{
 			if (dup2(input, 0) < 0 || dup2(out, 1) < 0 || \
 			close(input) || close(out))
 				exit(0);
 		}
-		execve(this->path, this->commands, data()->envp);
+		status = execve(this->path, this->commands, data()->envp);
 		kill(terminal()->pid, SIGUSR1);
 		write(2, "errro\n", 8);
-		exit(0);
+		exit(status);
 	}
 	waitpid(pit, &status, 0);
-	/*if (status)
-		print_msg_error(this, NULL, );*/
+	///printf("dsd: %s\n", strerror(128));
+	//print_msg_error(this, NULL, status);
 	close(input);
 	close(out);
 	return (1);

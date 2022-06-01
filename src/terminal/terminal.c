@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 18:41:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:29:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	ft_input(void)
 	{
 		line = readline(t->title);
 		add_history(line);
-		execute(t, line);
+		execute(t, check_dolar(t->envp, line, 0, string().size(line)));
 	}
 }
 
