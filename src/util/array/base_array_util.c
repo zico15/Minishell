@@ -54,32 +54,33 @@ static void	*base_get_element(int index)
 	return (0);
 }
 
-static t_element	*base_remove_element(t_element	*e)
+static void	base_remove_element(t_element	*e)
 {
-	t_element	*b;
-	t_element	*t;
+	t_element	*prev;
+	t_element	*atual;
 
 	if (!this()->array || !e)
-		return (NULL);
-	b = (this()->array)->begin;
-	while (b)
+		return ;
+	atual = (this()->array)->begin;
+	prev = NULL;
+	while (atual)
 	{
-		t = b;
-		if (b == e)
+		if (atual == e)
 		{
-			if (t == b)
-				(this()->array)->begin = b->next;
+			if ((this()->array)->end == e)
+				(this()->array)->end = prev;
+			if (prev)
+				prev->next = atual->next;
 			else
-				t->next = b->next;
-			free_ob(b->value);
-			free_ob(b);
-			if ((this()->array)->size-- >= 0 && !(this()->array)->size)
-				(this()->array)->end = 0;
-			return (0);
+				(this()->array)->begin = atual->next;
+			free_ob(e->key);
+			free_ob(e->value);
+			free_ob(e);
+			(this()->array)->size--;
 		}
-		b = b->next;
+		prev = atual;
+		atual = atual->next;
 	}
-	return (e);
 }
 
 static int	base_destroy(void)

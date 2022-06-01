@@ -32,7 +32,7 @@ typedef struct s_array
 	t_element		*(*add)(void	*value);
 	void			*(*get)(int	index);
 	t_element		*(*set)(int index, void *value);
-	t_element		*(*remove)(t_element	*e);
+	void			(*remove)(t_element	*e);
 	void			(*remove_index)(int index);
 	int				(*destroy)();
 	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);

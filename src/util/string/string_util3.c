@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 11:05:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:10:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,22 @@ char	*__itoa(int n)
 	buff[0] = '-';
 	convert_base(buff + (n < 0), n, "0123456789", 10);
 	return (string().copy(buff));
+}
+
+int	__atoi(const char *v)
+{
+	int			i;
+	long int	n;
+
+	n = 0;
+	if (!v)
+		return (0);
+	i = (v[0] != '-') - (v[0] == '-');
+	while (*v)
+	{
+		if (*v != '-' && *v != '+')
+			n = (n * 10) + (*v - '0');
+		v++;
+	}
+	return (n * i);
 }

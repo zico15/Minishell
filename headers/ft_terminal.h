@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 10:53:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:09:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct s_terminal
 	char				*title;
 	int					fd[2];
 	pid_t				pid;
+	pid_t				pid_parent;
 	int					is_erro_cmd;
 	void				*commands;
 	void				*envp;
@@ -33,6 +34,7 @@ struct s_terminal
 	char				*(*wildcards)(const char *exts);
 	char				*(*get_exts)(const char *str);
 	void				(*check_command_args)(t_command *this);
+	void				(*sigaction)(char *str);
 	t_terminal			*next;
 };
 
@@ -50,5 +52,7 @@ t_command				*new_pwd(char *arg);
 t_command				*new_env(char *arg);
 t_command				*new_teste(char *arg);
 t_command				*new_export(char *arg);
+t_command				*new_minishell(char *arg);
+t_command				*new_unset(char *arg);
 
 #endif

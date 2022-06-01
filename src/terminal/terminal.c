@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 11:42:16 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:10:08 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static t_command	*cread_cmd(char *s)
 		return (new_teste(s));
 	if (string().equals_n(s, "export", 6) && (!s[6] || string().is_space(s[6])))
 		return (new_export(s));
+	if (string().equals(s, "minishell"))
+		return (new_minishell(s));
+	if (string().equals_n(s, "unset", 5) && (!s[5] || string().is_space(s[5])))
+		return (new_unset(s));
 	return (new_command(s));
 }
 
@@ -47,7 +51,6 @@ static void	execute(t_terminal	*t, char	*line)
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
-		//printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);
@@ -67,21 +70,10 @@ static void	ft_input(void)
 {
 	t_terminal	*t;
 	char		*line;
-	int			i;
-	char		**str;
 
 	t = this()->terminal;
 	if (!t)
 		return ;
-	i = -1;
-	while (data()->envp && data()->envp[++i])
-	{
-		str = string().split(data()->envp[i], "=");
-		if (string().size_list(str) > 1)
-			(hashmap(t->envp))->put(str[0], str[1]);
-	}
-	(hashmap(t->envp))->put(__MINISHELL_PID__, string().itoa(getpid()));
-	data()->envp = hashmap(terminal()->envp)->to_str();
 	while (1)
 	{
 		line = readline(t->title);
@@ -105,8 +97,11 @@ t_terminal	*new_terminal(char *title)
 	t->get_exts = __get_exts;
 	t->is_erro_cmd = 0;
 	t->pid = getpid();
+	t->pid_parent = -1;
+	t->sigaction = __sigaction;
 	t->envp = new_hashmap();
 	this()->terminal = t;
+	init_env(t);
 	return (t);
 }
 
