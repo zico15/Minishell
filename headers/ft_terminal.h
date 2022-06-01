@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 16:09:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:41:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct s_terminal
 	char				*(*get_exts)(const char *str);
 	void				(*check_command_args)(t_command *this);
 	void				(*sigaction)(char *str);
+	void				(*update_env)(void);
 	t_terminal			*next;
 };
 

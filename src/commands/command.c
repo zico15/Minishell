@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 11:39:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:54:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ static int	*ft_input(t_command *previou, t_command *this)
 {
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
-		printf("asdasd");
 		if (this->commands)
 			print_msg_error(this, __COMMAND_NOT_FOUND__, 1);
 		close(this->fd[1]);
 	}
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 

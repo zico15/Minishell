@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 16:22:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:54:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ static int	*ft_input(t_command *previou, t_command *this)
 		}
 	}
 	close(this->fd[1]);
-	data()->envp = hashmap(terminal()->envp)->to_str();
+	terminal()->update_env();
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 
@@ -61,6 +59,7 @@ void	unset_remove(t_terminal	*t, char *str)
 	{
 		(hashmap(t->envp))->remove_key(list[1]);
 	}
-		
+	terminal()->update_env();
+	ft_send_msg(terminal()->pid_parent, str);
 	free_ob(list);
 }

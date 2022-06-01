@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/31 22:32:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:55:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static int	*ft_input(t_command *previou, t_command *this)
 		write(this->fd[1], "\n", 1);
 	close(this->fd[1]);
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 

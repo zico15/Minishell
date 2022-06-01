@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/05/31 22:32:33 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:55:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ static int	*input(t_command *previou, t_command *this)
 	}
 	else if (fd_open < 0 && this->commands && *this->commands)
 		print_msg_error(this, __COMMAND_NOT_FILE__, 2);
-	//printf("teste: %s\n", str);
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 

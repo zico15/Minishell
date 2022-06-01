@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 17:54:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:53:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	*ft_input(t_command *previou, t_command *this)
 	char	**str;
 	char	*temp;
 
-	if (string().size_list(this->commands) > 1)
+	if (string().size_list(this->commands) > 1 && \
+	string().contains(this->commands[1], "="))
 	{
 		temp = this->commands[1];
 		str = string().split(temp, "=");
@@ -48,10 +49,8 @@ static int	*ft_input(t_command *previou, t_command *this)
 	else
 		(hashmap(terminal()->envp))->for_each(print_declare, this);
 	close(this->fd[1]);
-	data()->envp = hashmap(terminal()->envp)->to_str();
+	terminal()->update_env();
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 
@@ -80,5 +79,7 @@ void	export_add(t_terminal	*t, char *str)
 	}
 	if (string().size_list(list) > 1)
 		(hashmap(t->envp))->put(list[1], list[2]);
+	terminal()->update_env();
+	ft_send_msg(terminal()->pid_parent, str);
 	free_ob(list);
 }

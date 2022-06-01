@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 16:10:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:41:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_terminal	*new_terminal(char *title)
 	t->pid_parent = -1;
 	t->sigaction = __sigaction;
 	t->envp = new_hashmap();
+	t->update_env = __update_env;
 	this()->terminal = t;
 	init_env(t);
 	return (t);
