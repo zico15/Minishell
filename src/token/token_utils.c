@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/02 18:31:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:21:30 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ int	ft_quotes(char	*letter)
 char	**ft_lst_to_arr(void	*tokens)
 {
 	char	**arr;
+	int		i;
 
+	i = -1;
+	while (++i < array(tokens)->size)
+		array(tokens)->set(i, string().trim(array(tokens)->get(i)));
 	arr = array(tokens)->to_str();
 	array(tokens)->destroy();
-	printf("arr: %s\n", arr[0]);
 	return (arr);
 }
