@@ -6,12 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 11:29:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:31:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_base_array.h>
 #include <ft_util.h>
+#include <ft_string.h>
 
 void	__base_for_each(void (*fun)(t_element *e, void *v), void *o)
 {
@@ -89,7 +90,7 @@ char	**__to_str(void)
 	temp = (this()->array)->begin;
 	while (temp)
 	{
-		list[i++] = temp->value;
+		list[i++] = string().copy(temp->value);
 		temp = temp->next;
 	}
 	list[i] = NULL;
