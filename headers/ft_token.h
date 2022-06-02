@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 18:28:12 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:27:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	**ft_lst_to_arr(void	*tokens);
 // QUOTES HANDELING
 int		*ft_count_quotes(char *str, int index, int *arr);
 int		ft_inside_quotes(char *str, int index);
-int		ft_count_cmds(char *str);
+int		ft_count_cmds(char *str, int *arr);
+//char	**ft_divide_cmd(char *str);
 
 // TOKEN FUCNTION (returns arr of commands)
 char	**token(char *line);

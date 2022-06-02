@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 18:30:42 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:25:55 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,53 +75,51 @@ int	ft_inside_quotes(char *str, int index)
 	return (NOT_QUOTED);
 }
 
-int	ft_count_cmd(char *str)
+int	ft_count_cmds(char *str, int *arr)
 {
 	int	i;
-	int	str_count;
+	int	j;
 
 	if (!str || !*str)
 		return (0);
-	str_count = 0;
 	i = -1;
+	j = 0;
 	while (str[++i])
 	{
 		if (ft_inside_quotes(str, i) > 0)
-			str_count++;
+			arr[j++] = i;
 		while (str[i] && ft_inside_quotes(str, i) > 0)
 			i++;
 		if (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
-			str_count++;
+			arr[j++] = i;
 		while (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
 			i++;
 	}
-	return (str_count);
+	return (j);
 }
 
-// char	**ft_divide_cmd(char *str, int n)
+// char	**ft_divide_cmd(char *str)
 // {
 // 	char	**cmds;
+// 	int		mem[BUFFER_SIZE];
+// 	int		size;
 // 	int		i;
-// 	//int		j;
+// 	int		j;
 
-// 	if (!n || !str || !*str)
-// 		return (NULL);
-// 	cmds = malloc(sizeof(char*) * (n + 1));
-// 	cmds[n] = NULL;
+// 	size = ft_count_cmds(str, mem);
+// 	cmds = malloc(sizeof(char) * (size + 1));
+// 	cmds[size] = NULL;
 // 	i = -1;
-// 	// while (++i < n)
-// 	// {
-// 	// 	j = -1;
-// 	// 	// while (str[++j])
-// 	// 	// {
-// 	// 	// 	if (ft_inside_quotes(str, j) > 0)
-// 	// 	// 		str_count++;
-// 	// 	// 	while (str[j] && ft_inside_quotes(str, j) > 0)
-// 	// 	// 		i++;
-// 	// 	// 	if (str[j] && str[j] != '\"' && str[j] != '\'' && !string().is_space(str[j]) && ft_inside_quotes(str, j) == 0)
-// 	// 	// 		str_count++;
-// 	// 	// 	while (str[j] && str[j] != '\"' && str[j] != '\'' && !string().is_space(str[j]) && ft_inside_quotes(str, j) == 0)
-// 	// 	// 		j++;
-// 	// 	// }
-// 	// }
+// 	while (++i < size)
+// 	{
+// 		j = mem[i];
+// 		while (str[j] && ((str[j] != '\"' && str[j] != '\'') || !ft_inside_quotes(str, j)) && (str[j] != ' ' || !ft_inside_quotes(str, j)))
+// 			j++;
+// 		cmds[i] = string().copy_n(str + mem[i], j - mem[i]);
+// 	}
+// 	i = -1;
+// 	while (cmds[++i])
+// 		printf("%s\n", cmds[i]);
+// 	free_list(cmds);
+// 	return (NULL);
 // }

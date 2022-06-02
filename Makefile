@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/05/31 17:59:38 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/02 15:27:58 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			= 	/bin/rm -f
 NAME		= 	minishell
 INCLUDES	= 	./headers
 
-SRCS		= 	teste2.c main.c teste.c $(shell find src/ -name '*.c')
+SRCS		= 	teste3.c teste2.c main.c teste.c $(shell find src/ -name '*.c')
 OBJS		= 	$(SRCS:.c=.o)
 
 .c.o:

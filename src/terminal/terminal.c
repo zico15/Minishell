@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 22:29:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:27:09 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	execute(t_terminal	*t, char	*line)
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
+		printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);

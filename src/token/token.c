@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:24:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:25:28 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_move_j(char *line, int i, int j, int *separator)
 {
 	j = i;
-	while (line[j] && (ft_quotes(&line[j]) || *separator \
+	while (line[j] && (ft_inside_quotes(line, j) || *separator \
 	|| ft_separator(line[j])))
 	{
 		if (ft_separator(line[j++]))

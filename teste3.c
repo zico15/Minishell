@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ft_pipex.h>
+#include <ft_base_array.h>
 
-int main(void)
+int main1(void)
 {
-	int i = 0;
-	
-	while (i < 10000)
-	{
-			printf("T: %i\n", i++);
-	}
-	printf("FIMM: %i\n", i++);
-	exit(0);
+	char str[BUFFER_SIZE];
+	scanf("%[^\n]", str);
+	//int	i = -1;
+	//ft_divide_cmd(str);
+	return (0);
 }
