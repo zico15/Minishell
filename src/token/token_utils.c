@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils.c                                      :+:      :+:    :+:   */
+/*   other.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 18:28:52 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:50:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
 
-char	**ft_send_exit(void)
+char	**ft_exit(void)
 {
 	char	**arr;
 
@@ -20,6 +20,8 @@ char	**ft_send_exit(void)
 	arr = malloc(sizeof(char *) * 2);
 	*arr = string().copy("exit");
 	arr[1] = NULL;
+	printf("exit\n");
+	exit(0);
 	return (arr);
 }
 

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_command_util.h                                  :+:      :+:    :+:   */
+/*   terminal_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 18:41:21 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/01 18:57:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_COMMAND_UTIL_H
-# define FT_COMMAND_UTIL_H
+#include <ft_pipex.h>
+#include <ft_string.h>
 
-# include <ft_command.h>
+void	__sigaction(char *str)
+{
+	t_terminal	*t;
 
-char	*__wildcards(const char *exts);
-void	__check_args(t_command *t);
-char	*__get_exts(const char *str);
-void	__sigaction(char *str);
-void	__update_env(void);
+	t = terminal();
+	if (!t || !str || !*str)
+		return ;
+	if (string().contains(str, "export"))
+		export_add(t, str);
+	if (string().contains(str, "unset"))
+		unset_remove(t, str);
+}
 
-#endif
+void	__update_env(void)
+{
+	free_list(data()->envp);
+	data()->envp = hashmap(terminal()->envp)->to_str();
+}

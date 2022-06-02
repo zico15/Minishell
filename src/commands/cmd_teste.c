@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 16:27:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:55:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	*ft_input(t_command *previou, t_command *this)
 	printf("wildcards: \n%s\n", terminal()->wildcards(str1));
 	printf("===========================\n");
 	next_command(previou, this);
-	close(previou->fd[0]);
-	close(previou->fd[1]);
 	return (this->fd);
 }
 

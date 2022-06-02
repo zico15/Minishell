@@ -6,13 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/30 19:54:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:33:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-void	check_wildcards(t_command *this)
+static void	check_wildcards(t_command *this)
 {
 	char		*str;
 	char		*paths;
@@ -29,6 +29,47 @@ void	check_wildcards(t_command *this)
 			free_ob(str);
 		}
 	}
+}
+
+static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
+{
+	char		*value;
+	char		*new;
+	t_element	*e;
+
+	value = "";
+	e = hashmap(env)->get_key(key);
+	if (e)
+		value = e->value;
+	new = string().replace(str, value, dollar);
+	free_ob(str);
+	return (new);
+}
+
+char	*check_dolar(void *env, const char *line, int i, int size)
+{
+	char	buff[BUFFER_SIZE];
+	char	*new;
+	int		j;
+
+	j = -1;
+	new = string().copy(line);
+	while (line && i <= size)
+	{
+		if (j >= 0 && (string().is_space(line[i]) || \
+		line[i] == '$' || !line[i]))
+		{
+			buff[j] = 0;
+			j = -1;
+			new = replace_dolar(new, env, buff, &buff[1]);
+		}
+		else if (j >= 0)
+			buff[j++] = line[i];
+		if (j == -1 && line[i] == '$' && ++j > -1)
+			buff[j++] = line[i];
+		i++;
+	}
+	return (new);
 }
 
 void	__check_args(t_command *this)

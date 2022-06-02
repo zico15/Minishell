@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/30 21:19:10 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:29:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ static t_command	*cread_cmd(char *s)
 		return (new_env(s));
 	if (string().equals_n(s, "teste", 5) && (!s[5] || string().is_space(s[5])))
 		return (new_teste(s));
+	if (string().equals_n(s, "export", 6) && (!s[6] || string().is_space(s[6])))
+		return (new_export(s));
+	if (string().equals(s, "minishell"))
+		return (new_minishell(s));
+	if (string().equals_n(s, "unset", 5) && (!s[5] || string().is_space(s[5])))
+		return (new_unset(s));
 	return (new_command(s));
 }
 
@@ -45,7 +51,6 @@ static void	execute(t_terminal	*t, char	*line)
 	c = 0;
 	while (argv && argv[i] && t->commands)
 	{
-		//printf("%s\n", argv[i]);
 		c = cread_cmd(argv[i]);
 		if (c && c->init(c, argv[i], data()->envp))
 			list(t->commands)->add(c);
@@ -73,7 +78,7 @@ static void	ft_input(void)
 	{
 		line = readline(t->title);
 		add_history(line);
-		execute(t, line);
+		execute(t, check_dolar(t->envp, line, 0, string().size(line)));
 	}
 }
 
@@ -92,7 +97,12 @@ t_terminal	*new_terminal(char *title)
 	t->get_exts = __get_exts;
 	t->is_erro_cmd = 0;
 	t->pid = getpid();
+	t->pid_parent = -1;
+	t->sigaction = __sigaction;
+	t->envp = new_hashmap();
+	t->update_env = __update_env;
 	this()->terminal = t;
+	init_env(t);
 	return (t);
 }
 

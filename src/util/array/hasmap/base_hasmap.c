@@ -6,14 +6,39 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/29 11:24:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:41:49 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_base_array.h>
 #include <ft_base_array_util.h>
 #include <ft_util.h>
+#include <ft_string.h>
 
+char	**__to_str_hashmpa(void)
+{
+	t_element	*temp;
+	char		**list;
+	int			i;
+	char		*str_temp;
+
+	if (!this()->array)
+		return (NULL);
+	list = malloc(sizeof(char *) * ((this()->array)->size + 1));
+	if (!list)
+		return (NULL);
+	i = 0;
+	temp = (this()->array)->begin;
+	while (temp)
+	{
+		str_temp = string().join(temp->key, "=");
+		list[i++] = string().join(str_temp, temp->value);
+		free_ob(str_temp);
+		temp = temp->next;
+	}
+	list[i] = NULL;
+	return (list);
+}
 
 static int	base_destroy_hashmap(void)
 {
@@ -56,6 +81,7 @@ void	*new_hashmap(void)
 		a->destroy = base_destroy_hashmap;
 		a->for_each = __base_for_each;
 		a->size = base_size_hashmap;
+		a->to_str = __to_str_hashmpa;
 		hashmap(a);
 	}
 	return (a);
