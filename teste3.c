@@ -1,13 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ft_pipex.h>
-#include <ft_base_array.h>
 
-int main1(void)
+/*else
+		waitpid(g_sig.pid, &ret, 0);
+	if (g_sig.sigint == 1 || g_sig.sigquit == 1)
+		return (g_sig.exit_status);
+	ret = (ret == 32256 || ret == 32512) ? ret / 256 : !!ret;*/
+
+int main(void)
 {
-	char str[BUFFER_SIZE];
-	scanf("%[^\n]", str);
-	//int	i = -1;
-	//ft_divide_cmd(str);
-	return (0);
+	int i = 0;
+	
+	while (i < 10000)
+	{
+			printf("T: %i\n", i++);
+	}
+	printf("FIMM: %i\n", i++);
+	exit(0);
 }
