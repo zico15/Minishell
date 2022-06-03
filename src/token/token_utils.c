@@ -6,11 +6,12 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/02 19:21:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:48:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
+#include <string_util.h>
 
 char	**ft_send_exit(void)
 {
@@ -25,11 +26,18 @@ char	**ft_send_exit(void)
 	return (arr);
 }
 
-int	ft_separator(char l)
+int	ft_separator(char *str)
 {
-	if (l == '|' || l == '>' || l == '<')
-		return (0);
-	return (1);
+	int i;
+
+	i = 0;
+	while (str && *str)
+	{
+		if (string().contains(SEPARADOES, _str(*str++)))
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }
 
 int	ft_quotes(char	*letter)

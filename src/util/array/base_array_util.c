@@ -18,7 +18,7 @@ static t_element	*base_add_element(void *value)
 {
 	t_element	*e;
 
-	if (!this()->array)
+	if (!this()->array || !value)
 		return (NULL);
 	e = malloc(sizeof(t_element));
 	if (!e)

@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/02 19:24:22 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:18:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
 
-int	*ft_count_quotes(char *str, int index, int *arr)
+static int	*ft_count_quotes(char *str, int index, int *arr)
 {
 	int	i;
 
@@ -50,14 +50,14 @@ int	*ft_count_quotes(char *str, int index, int *arr)
 }
 
 /*
-ft_inside_quotes,
+is_quotes,
 return 0 -> not quoted ()
 return 1 -> double quoted ("")
 return 2 -> single quoted ('')
 return 3 -> both quoted ("" '') (this is not possible i think)
 */
 
-int	ft_inside_quotes(char *str, int index)
+int	is_quotes(char *str, int index)
 {
 	int	d_quoted;
 	int	s_quoted;
@@ -75,51 +75,59 @@ int	ft_inside_quotes(char *str, int index)
 	return (NOT_QUOTED);
 }
 
-int	ft_count_cmds(char *str, int *arr)
+void	*ft_divide_quotes(char *str)
 {
-	int	i;
-	int	j;
+	void	*cmds;
+	int		i;
 
-	if (!str || !*str)
-		return (0);
+	
+	cmds = new_array();
 	i = -1;
-	j = 0;
 	while (str[++i])
 	{
-		if (ft_inside_quotes(str, i) > 0)
-			arr[j++] = i;
-		while (str[i] && ft_inside_quotes(str, i) > 0)
-			i++;
-		if (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
-			arr[j++] = i;
-		while (str[i] && str[i] != '\"' && str[i] != '\'' && !string().is_space(str[i]) && ft_inside_quotes(str, i) == 0)
-			i++;
+		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) && !is_quotes(str, i))
+		{
+			array(cmds)->add(string().copy_n(str, i));
+			str += i + !(i == (ft_separator(str) - 1));
+			i = 0;
+			if (!(ft_separator(str) - 1))
+			{
+				while (ft_separator(str + i) - 1 == i)
+					i++;
+				array(cmds)->add(string().copy_n(str, i));
+				str += i;
+				i = 0;
+			}
+		}
 	}
-	return (j);
+	array(cmds)->add(string().copy_n(str, i));
+	return (cmds);
 }
 
-// char	**ft_divide_cmd(char *str)
-// {
-// 	char	**cmds;
-// 	int		mem[BUFFER_SIZE];
-// 	int		size;
-// 	int		i;
-// 	int		j;
+void	*ft_divide_cmds(void *list)
+{
+	void	*cmds;
+	void	*token;
+	char	*str;
+	int		i;
 
-// 	size = ft_count_cmds(str, mem);
-// 	cmds = malloc(sizeof(char) * (size + 1));
-// 	cmds[size] = NULL;
-// 	i = -1;
-// 	while (++i < size)
-// 	{
-// 		j = mem[i];
-// 		while (str[j] && ((str[j] != '\"' && str[j] != '\'') || !ft_inside_quotes(str, j)) && (str[j] != ' ' || !ft_inside_quotes(str, j)))
-// 			j++;
-// 		cmds[i] = string().copy_n(str + mem[i], j - mem[i]);
-// 	}
-// 	i = -1;
-// 	while (cmds[++i])
-// 		printf("%s\n", cmds[i]);
-// 	free_list(cmds);
-// 	return (NULL);
-// }
+	i = -1;
+	cmds = new_array();
+	token = new_array();
+	while (++i < array(list)->size)
+	{
+		str = array(list)->get(i);
+		if (ft_separator(str))
+		{
+			array(token)->add(cmds);
+			cmds = new_array();
+			if (!string().equals(str, "|"))
+				array(cmds)->add(string().trim(str));
+		}
+		else
+			array(cmds)->add(string().trim(str));
+	}
+	array(token)->add(cmds);
+	array(list)->destroy();
+	return (token);
+}

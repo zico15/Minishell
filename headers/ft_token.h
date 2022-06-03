@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/02 18:27:24 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:22:06 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 # include <ft_pipex.h>
 
-// ft_inside_quotes,
+#define SEPARADOES "|<>"
+
+// is_quotes,
 // return 0 -> not quoted ()
 // return 1 -> double quoted ("")
 // return 2 -> single quoted ('')
 // return 4 -> both quoted ("" '') (this is not possible i think)
 
-// FOR ft_inside_quotes FUNCTION
+// FOR is_quotes FUNCTION
 enum quotes {
 	NOT_QUOTED,
 	DOUBLE_QUOTED,
@@ -31,22 +33,22 @@ enum quotes {
 
 // TOKEN UTILS
 char	**ft_send_exit(void);
-int		ft_separator(char l);
+int		ft_separator(char *str);
 int		ft_quotes(char	*letter);
 char	**ft_lst_to_arr(void	*tokens);
 
 // QUOTES HANDELING
-int		*ft_count_quotes(char *str, int index, int *arr);
-int		ft_inside_quotes(char *str, int index);
-int		ft_count_cmds(char *str, int *arr);
-//char	**ft_divide_cmd(char *str);
+int		is_quotes(char *str, int index);
+//int		ft_count_cmds(char *str, int *arr);
+void	*ft_divide_quotes(char *str);
+void	*ft_divide_cmds(void *list);
 
 // TOKEN FUCNTION (returns arr of commands)
-char	**token(char *line);
+void	*token(char *line);
 
 typedef struct s_token
 {
-	char **cmds;
+	void *list;
 }		t_token;
 
 #endif
