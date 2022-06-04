@@ -1,1 +1,0 @@
-main.c teste.c teste2.c teste3.c

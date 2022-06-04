@@ -22,6 +22,7 @@ t_element		*__base_set_element(int index, void *value);
 void			__base_remove_element_index(int index);
 int				__base_free_element(void *value);
 char			**__to_str(void);
+void			__destroy_element(t_element	*e);
 
 //				hashmap
 t_element		*__put_hasmap(char *key, void	*value);

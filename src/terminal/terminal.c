@@ -6,14 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 22:29:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 10:08:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 #include <ft_command_util.h>
 
-static t_command	*cread_cmd(char *s)
+static t_command	*get_cmd(char *s)
 {
 	if (string().equals_n(s, ">", 1))
 		return (new_redirect_output(s));
@@ -38,13 +38,35 @@ static t_command	*cread_cmd(char *s)
 	return (new_command(s));
 }
 
+static void	cread_cmd(t_element *e, void *tokens)
+{
+	t_command	*cmd;
+	char		**list;
+	void		*token;
+	void		*fun;
+
+	token = e->value;
+	if (!token)
+		return ;
+	fun = e->destroy;
+	e->destroy = NULL;
+	list = array(token)->to_str();
+	if (!list)
+		return ;
+	cmd = get_cmd(*list);
+	if (cmd && cmd->init(cmd, list))
+		(array(tokens))->set(e->index, cmd);
+	e->destroy = fun;
+	array(token)->destroy();
+}
+
 static void	execute(t_terminal	*t, char	*line)
 {
-	char		**argv;
+	void		*tokens;
 	t_command	*c;
 	int			i;
 
-	argv = token(line);
+	tokens = token(line);
 	if (!argv)
 		return ;
 	i = 0;
@@ -106,7 +128,3 @@ t_terminal	*new_terminal(char *title)
 	return (t);
 }
 
-t_terminal	*terminal(void)
-{
-	return (this()->terminal);
-}

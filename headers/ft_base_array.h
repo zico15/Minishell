@@ -20,6 +20,8 @@ typedef struct s_element
 {
 	char				*key;
 	void				*value;
+	int					index;
+	void				(*destroy)(t_element	*e);
 	struct s_element	*next;
 }	t_element;
 

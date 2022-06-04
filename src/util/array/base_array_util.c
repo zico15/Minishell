@@ -26,6 +26,7 @@ static t_element	*base_add_element(void *value)
 	e->key = NULL;
 	e->value = value;
 	e->next = NULL;
+	e->destroy = __destroy_element;
 	if (!(this()->array)->begin)
 		(this()->array)->begin = e;
 	else
@@ -73,9 +74,8 @@ static void	base_remove_element(t_element	*e)
 				prev->next = atual->next;
 			else
 				(this()->array)->begin = atual->next;
-			free_ob(e->key);
-			free_ob(e->value);
-			free_ob(e);
+			if (e->destroy)
+				e->destroy(e);
 			(this()->array)->size--;
 		}
 		prev = atual;
@@ -96,12 +96,8 @@ static int	base_destroy(void)
 	{
 		e = b;
 		b = b->next;
-		if (e)
-		{
-			free_ob(e->key);
-			free_ob(e->value);
-			free_ob(e);
-		}
+		if (e && e->destroy)
+			e->destroy(e);
 	}
 	free_ob(this()->array);
 	this()->array = NULL;

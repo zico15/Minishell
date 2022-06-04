@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 20:03:44 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 09:41:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,27 @@ static int	execute(t_command *this, int input, int out)
 		status = execve(this->path, this->commands, data()->envp);
 		kill(terminal()->pid, SIGUSR1);
 		write(2, "errro\n", 8);
-		exit(status);
+		exit(errno);
 	}
 	waitpid(pit, &status, 0);
-	///printf("dsd: %s\n", strerror(128));
-	//print_msg_error(this, NULL, status);
+	if (0 && WIFEXITED(status))
+	{
+		printf("dsd: %s\n", strerror(errno));
+	}
 	close(input);
 	close(out);
 	return (1);
 }
 
-static int	init(t_command *this, char *arg, char **envp)
+static int	init(t_command *this, char **args)
 {
 	char		*path;
 	int			i;
 
 	i = -1;
-	path = NULL;
-	while (envp[++i] && !string().contains(path, "PATH="))
-		path = envp[i];
-	get_path(this, arg, path);
+	path = hashmap(terminal()->envp)->get_key("PATH");
+	this->commands = args;
+	get_path(this, *args, path);
 	if (pipe(this->fd) == __PIPE_ERROR__)
 		return (0);
 	return (1);

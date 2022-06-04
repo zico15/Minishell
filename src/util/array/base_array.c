@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/02 18:31:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 10:03:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	__base_for_each(void (*fun)(t_element *e, void *v), void *o)
 {
 	t_element	*temp;
 	t_element	*select;
+	int			index;
 
 	if (!this()->array)
 		return ;
 	temp = (this()->array)->begin;
+	index = 0;
 	while (temp)
 	{
 		select = temp;
+		select->index = index++;
 		temp = temp->next;
 		fun(select, o);
 	}
@@ -43,8 +46,8 @@ t_element	*__base_set_element(int index, void *value)
 	{
 		if (i == index)
 		{
-			if (e->value)
-				free(e->value);
+			if (e->destroy)
+				free_ob(e->value);
 			e->value = value;
 			return (e);
 		}
@@ -97,8 +100,9 @@ char	**__to_str(void)
 	return (list);
 }
 
-t_array	*array(t_array *a)
+void	__destroy_element(t_element	*e)
 {
-	this()->array = a;
-	return (a);
+	free_ob(e->key);
+	free_ob(e->value);
+	free_ob(e);
 }
