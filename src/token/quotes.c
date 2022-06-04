@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:09:24 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:18:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
 
-int	*ft_count_quotes(char *str, int index, int *arr)
+static int	*ft_count_quotes(char *str, int index, int *arr)
 {
 	int	i;
 
@@ -50,14 +50,14 @@ int	*ft_count_quotes(char *str, int index, int *arr)
 }
 
 /*
-ft_inside_quotes,
+is_quotes,
 return 0 -> not quoted ()
 return 1 -> double quoted ("")
 return 2 -> single quoted ('')
-return 4 -> both quoted ("" '') (this is not possible i think)
+return 3 -> both quoted ("" '') (this is not possible i think)
 */
 
-int	ft_inside_quotes(char *str, int index)
+int	is_quotes(char *str, int index)
 {
 	int	d_quoted;
 	int	s_quoted;
@@ -73,4 +73,61 @@ int	ft_inside_quotes(char *str, int index)
 	else if (d_quoted && s_quoted)
 		return (BOTH_QUOTED);
 	return (NOT_QUOTED);
+}
+
+void	*ft_divide_quotes(char *str)
+{
+	void	*cmds;
+	int		i;
+
+	
+	cmds = new_array();
+	i = -1;
+	while (str[++i])
+	{
+		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) && !is_quotes(str, i))
+		{
+			array(cmds)->add(string().copy_n(str, i));
+			str += i + !(i == (ft_separator(str) - 1));
+			i = 0;
+			if (!(ft_separator(str) - 1))
+			{
+				while (ft_separator(str + i) - 1 == i)
+					i++;
+				array(cmds)->add(string().copy_n(str, i));
+				str += i;
+				i = 0;
+			}
+		}
+	}
+	array(cmds)->add(string().copy_n(str, i));
+	return (cmds);
+}
+
+void	*ft_divide_cmds(void *list)
+{
+	void	*cmds;
+	void	*token;
+	char	*str;
+	int		i;
+
+	i = -1;
+	cmds = new_array();
+	token = new_array();
+	while (++i < array(list)->size)
+	{
+		str = array(list)->get(i);
+		if (ft_separator(str))
+		{
+			array(token)->add(cmds);
+			cmds = new_array();
+			if (!string().equals(str, "|"))
+				array(cmds)->add(string().trim(str));
+		}
+		else
+			array(cmds)->add(string().trim(str));
+	}
+	array(token)->add(cmds);
+	array(list)->destroy();
+	return (token);
 }

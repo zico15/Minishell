@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/05/31 16:10:04 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:22:09 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,36 @@
 static int	ft_move_j(char *line, int i, int j, int *separator)
 {
 	j = i;
-	while (line[j] && (ft_quotes(&line[j]) || *separator \
-	|| ft_separator(line[j])))
+	while (line[j])
 	{
-		if (ft_separator(line[j++]))
+		if (line[j++])
 			*separator = 0;
 	}
 	return (j);
 }
 
-char	**token(char *line)
+static void print_e(t_element *e, void *o)
 {
-	int		i;
-	int		j;
-	int		separator;
-	void	*tokens;
+		(void) o;
+	printf("T: (%s)\n", e->value);
+}
 
-	if (!line)
-		return (ft_exit());
-	if (!(*line))
-		return (NULL);
-	tokens = new_array();
-	i = 0;
-	separator = 0;
-	while (line[i])
-	{
-		j = ft_move_j(line, i, j, &separator);
-		if (j > i)
-		{
-			separator = 1;
-			(array(tokens))->add(string().copy_n(line + i + \
-			(line[i] == '|'), j - i - (line[i] == '|')));
-		}
-		i = j;
-	}
-	return (ft_lst_to_arr(tokens));
+static void print_l(t_element *e, void *o)
+{
+	void *l;
+
+	l = e->value;
+	printf("================\n");
+	array(l)->for_each(print_e, o);
+}
+
+void	*token(char *line)
+{
+	void	*token;
+	void	*list;
+
+	list = ft_divide_quotes(line);
+	token = ft_divide_cmds(list);
+
+	return (token);
 }

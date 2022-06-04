@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   other.c                                            :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/01 14:50:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:48:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
+#include <string_util.h>
 
-char	**ft_exit(void)
+char	**ft_send_exit(void)
 {
 	char	**arr;
 
@@ -25,11 +26,18 @@ char	**ft_exit(void)
 	return (arr);
 }
 
-int	ft_separator(char l)
+int	ft_separator(char *str)
 {
-	if (l == '|' || l == '>' || l == '<')
-		return (0);
-	return (1);
+	int i;
+
+	i = 0;
+	while (str && *str)
+	{
+		if (string().contains(SEPARADOES, _str(*str++)))
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }
 
 int	ft_quotes(char	*letter)
@@ -53,10 +61,10 @@ char	**ft_lst_to_arr(void	*tokens)
 	char	**arr;
 	int		i;
 
-	arr = malloc(sizeof(char *) * (array(tokens)->size + 1));
 	i = -1;
-	while (++i < (array(tokens)->size + 1))
-		arr[i] = string().trim(array(tokens)->get(i));
+	while (++i < array(tokens)->size)
+		array(tokens)->set(i, string().trim(array(tokens)->get(i)));
+	arr = array(tokens)->to_str();
 	array(tokens)->destroy();
 	return (arr);
 }
