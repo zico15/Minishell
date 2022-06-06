@@ -23,7 +23,7 @@ void print_l(t_element *e, void *o)
 	printf("================\n");
 	array(l)->for_each(print_e, o);
 }
-int main(void)
+int main3(void)
 {
 	char str[BUFFER_SIZE];
 	scanf("%[^\n]", str);

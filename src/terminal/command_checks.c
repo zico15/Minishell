@@ -6,26 +6,27 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/02 18:01:03 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:12:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-static void	check_wildcards(t_command *this)
+void	check_wildcards(t_command *this)
 {
 	char		*str;
 	char		*paths;
 	char		*exts;
 
-	str = this->arg;
+	str = NULL;
+	(void) this;
 	if (string().size(str) > 1 && string().contains(str, "*"))
 	{
 		paths = terminal()->wildcards(str);
 		if (paths)
 		{
 			exts = terminal()->get_exts(str);
-			this->arg = string().replace(str, paths, exts);
+			//NULL = string().replace(str, paths, exts);
 			free_ob(str);
 		}
 	}
@@ -53,11 +54,11 @@ char	*check_dolar(void *env, const char *line, int i, int size)
 	int		j;
 
 	j = -1;
-	new = string().copy(line);
+	new = string().trim(line);
 	while (line && i <= size)
 	{
 		if (j >= 0 && (string().is_space(line[i]) || \
-		line[i] == '$' || !line[i]))
+		line[i] == '$' || !line[i] || !string().isalnum(line[i])))
 		{
 			buff[j] = 0;
 			j = -1;
@@ -65,7 +66,8 @@ char	*check_dolar(void *env, const char *line, int i, int size)
 		}
 		else if (j >= 0)
 			buff[j++] = line[i];
-		if (j == -1 && line[i] == '$' && ++j > -1)
+		if (j == -1 && line[i] == '$' && is_quotes(line, i) != SINGLE_QUOTED \
+		&& ++j > -1)
 			buff[j++] = line[i];
 		i++;
 	}
@@ -79,8 +81,8 @@ void	__check_args(t_command *this)
 	i = -1;
 	if (!this)
 		return ;
-	check_wildcards(this);
-	this->commands = string().split(this->arg, " ");
+	/*check_wildcards(this);
+	this->commands = string().split(this->arg, " ");*/
 	i = -1;
 	if (!this->path[0] && !access(this->commands[0], F_OK) && this->commands)
 	{

@@ -78,7 +78,7 @@ int check_quotes(char *str, int i, char c)
 	return (is_beging * is_end);
 }
 
-int	main3(void)
+int	main2(void)
 {
 	int i = -1;
 	char *str = "echo \"'\"\'$TERM\'\"'\"";

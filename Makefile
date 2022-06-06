@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/02 15:27:58 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/04 10:17:25 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			= 	/bin/rm -f
 NAME		= 	minishell
 INCLUDES	= 	./headers
 
-SRCS		= 	teste3.c teste2.c main.c teste.c $(shell find src/ -name '*.c')
+SRCS		= 	teste1.c teste2.c teste3.c main.c $(shell find src/ -name '*.c')
 OBJS		= 	$(SRCS:.c=.o)
 
 .c.o:

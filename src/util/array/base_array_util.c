@@ -42,7 +42,7 @@ static void	*base_get_element(int index)
 	t_element	*e;
 
 	i = 0;
-	if (!this()->array)
+	if (!this()->array || index < 0 || index >= this()->array->size)
 		return (NULL);
 	e = (this()->array)->begin;
 	while (e)

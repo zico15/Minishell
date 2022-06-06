@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/06/01 18:55:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:58:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static int	*input(t_command *previou, t_command *this)
 
 	dup2(previou->fd[1], 1);
 	close(previou->fd[1]);
-	if (previou->index != __COMMAND_BEGING_)
+	if (string().size_list(this->commands) <= 1)
+		printf("bash: syntax error near unexpected token `newline'\n");
+	if (previou->index != __COMMAND_BEGING_ && \
+	string().size_list(this->commands) > 1)
 	{
 		str = read_all(previou->fd[0]);
 		close(previou->fd[0]);
@@ -36,11 +39,11 @@ static int	*input(t_command *previou, t_command *this)
 	return (this->fd);
 }
 
-t_command	*new_redirect_output(char *arg)
+t_command	*new_redirect_output(void)
 {	
 	t_command	*c;
 
-	c = new_command(arg);
+	c = new_command();
 	if (!c)
 		return (0);
 	c->input = input;

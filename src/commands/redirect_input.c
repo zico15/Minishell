@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/06/01 18:55:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 14:49:49 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	*input(t_command *previou, t_command *this)
 	{
 		str = read_all(fd_open);
 		write(this->fd[1], str, string().size(str));
+		close(this->fd[1]);
 		close(fd_open);
 	}
 	else if (fd_open < 0 && this->commands && *this->commands)
@@ -32,11 +33,11 @@ static int	*input(t_command *previou, t_command *this)
 	return (this->fd);
 }
 
-t_command	*new_redirect_input(char *arg)
+t_command	*new_redirect_input()
 {	
 	t_command	*c;
 
-	c = new_command(arg);
+	c = new_command();
 	if (!c)
 		return (0);
 	c->input = input;

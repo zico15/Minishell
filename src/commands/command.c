@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 09:41:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/05 18:46:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,20 @@ static int	*ft_input(t_command *previou, t_command *this)
 
 static int	execute(t_command *this, int input, int out)
 {
-	pid_t	pit;
 	int		status;
 
-	pit = fork();
+	this->pid = fork();
 	status = 0;
-	if (!pit)
+	if (!this->pid)
 	{
-		if (!string().equals(this->path, this->commands[0]) && \
-		!string().equals_n(this->commands[0], "top", 3))
-		{
-			if (dup2(input, 0) < 0 || dup2(out, 1) < 0 || \
-			close(input) || close(out))
-				exit(0);
-		}
+		if (!this->is_print && this->next && (dup2(out, 1) < 0 || close(out)))
+			exit(0);
+		if (dup2(input, 0) < 0 || close(input))
+			exit(0);
 		status = execve(this->path, this->commands, data()->envp);
-		kill(terminal()->pid, SIGUSR1);
-		write(2, "errro\n", 8);
 		exit(errno);
 	}
-	waitpid(pit, &status, 0);
-	if (0 && WIFEXITED(status))
-	{
-		printf("dsd: %s\n", strerror(errno));
-	}
+	//waitpid(pit, &status, 0);
 	close(input);
 	close(out);
 	return (1);
@@ -60,11 +50,14 @@ static int	execute(t_command *this, int input, int out)
 
 static int	init(t_command *this, char **args)
 {
+	t_element	*e;
 	char		*path;
 	int			i;
 
 	i = -1;
-	path = hashmap(terminal()->envp)->get_key("PATH");
+	e = hashmap(terminal()->envp)->get_key("PATH");
+	if (e)
+		path = e->value;
 	this->commands = args;
 	get_path(this, *args, path);
 	if (pipe(this->fd) == __PIPE_ERROR__)
@@ -80,13 +73,12 @@ static int	*ft_destroy(t_command *this)
 	{
 		close(this->fd[0]);
 		close(this->fd[1]);
-		free_ob(this->arg);
 		free_list(this->commands);
 	}
 	return (fd);
 }
 
-t_command	*new_command(char *arg)
+t_command	*new_command(void)
 {
 	t_command	*c;
 
@@ -100,13 +92,13 @@ t_command	*new_command(char *arg)
 	c->init = init;
 	c->execute = execute;
 	c->destroy = ft_destroy;
-	c->arg = arg;
 	c->fd[0] = -1;
 	c->fd[1] = -1;
+	c->pid = 0;
 	c->index = -1;
 	c->next = NULL;
 	c->path[0] = 0;
+	c->is_print = 0;
 	c->commands = NULL;
-	c->pid = data()->pid_base++;
 	return (c);
 }

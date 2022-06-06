@@ -3,29 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/03 21:22:09 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:08:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
 
-static int	ft_move_j(char *line, int i, int j, int *separator)
+/*static void print_e(t_element *e, void *o)
 {
-	j = i;
-	while (line[j])
-	{
-		if (line[j++])
-			*separator = 0;
-	}
-	return (j);
-}
-
-static void print_e(t_element *e, void *o)
-{
-		(void) o;
+	(void) o;
 	printf("T: (%s)\n", e->value);
 }
 
@@ -37,7 +26,7 @@ static void print_l(t_element *e, void *o)
 	printf("================\n");
 	array(l)->for_each(print_e, o);
 }
-
+*/
 void	*token(char *line)
 {
 	void	*token;
@@ -45,6 +34,5 @@ void	*token(char *line)
 
 	list = ft_divide_quotes(line);
 	token = ft_divide_cmds(list);
-
 	return (token);
 }

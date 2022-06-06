@@ -16,14 +16,16 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_element
+typedef struct s_element t_element;
+
+struct s_element
 {
 	char				*key;
 	void				*value;
 	int					index;
 	void				(*destroy)(t_element	*e);
 	struct s_element	*next;
-}	t_element;
+};
 
 typedef struct s_array
 {

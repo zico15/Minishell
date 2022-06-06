@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/03 20:48:53 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:06:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ char	**ft_send_exit(void)
 	return (arr);
 }
 
-int	ft_separator(char *str)
+int	ft_separator(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && *str)
@@ -40,7 +40,7 @@ int	ft_separator(char *str)
 	return (0);
 }
 
-int	ft_quotes(char	*letter)
+int	ft_quotes(const char	*letter)
 {
 	static int	d_quote;
 	static int	s_quote;
@@ -63,7 +63,7 @@ char	**ft_lst_to_arr(void	*tokens)
 
 	i = -1;
 	while (++i < array(tokens)->size)
-		array(tokens)->set(i, string().trim(array(tokens)->get(i)));
+		(array(tokens))->set(i, string().trim(array(tokens)->get(i)));
 	arr = array(tokens)->to_str();
 	array(tokens)->destroy();
 	return (arr);

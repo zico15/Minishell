@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/28 18:12:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 10:14:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,5 @@ t_terminal	*terminal(void);
 //			TESTE
 void		printf_cmd(t_command **c);
 void		init_keys(void);
-
-//			TOKEN
-char		**token(char *line);
 
 #endif

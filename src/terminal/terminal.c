@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 10:09:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/05 18:45:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,77 +15,89 @@
 
 static t_command	*get_cmd(char *s)
 {
-	if (string().equals_n(s, ">", 1))
-		return (new_redirect_output(s));
-	if (string().equals_n(s, "<", 1))
-		return (new_redirect_input(s));
-	if (string().equals_n(s, "cd", 2 && (!s[2] || string().is_space(s[2]))))
-		return (new_cd(s));
-	if (string().equals_n(s, "echo", 4) && (!s[4] || string().is_space(s[4])))
-		return (new_echo(s));
-	if (string().equals_n(s, "pwd", 3) && (!s[3] || string().is_space(s[3])))
-		return (new_pwd(s));
-	if (string().equals_n(s, "env", 3) && (!s[3] || string().is_space(s[3])))
-		return (new_env(s));
-	if (string().equals_n(s, "teste", 5) && (!s[5] || string().is_space(s[5])))
-		return (new_teste(s));
-	if (string().equals_n(s, "export", 6) && (!s[6] || string().is_space(s[6])))
-		return (new_export(s));
+	if (string().equals(s, ">"))
+		return (new_redirect_output());
+	if (string().equals(s, "<"))
+		return (new_redirect_input());
+	if (string().equals(s, "cd"))
+		return (new_cd());
+	if (string().equals(s, "echo"))
+		return (new_echo());
+	if (string().equals(s, "pwd"))
+		return (new_pwd());
+	if (string().equals(s, "env"))
+		return (new_env());
+	if (string().equals(s, "teste"))
+		return (new_teste());
+	if (string().equals(s, "export"))
+		return (new_export());
 	if (string().equals(s, "minishell"))
-		return (new_minishell(s));
-	if (string().equals_n(s, "unset", 5) && (!s[5] || string().is_space(s[5])))
-		return (new_unset(s));
-	return (new_command(s));
+		return (new_minishell());
+	if (string().equals(s, "unset"))
+		return (new_unset());
+	return (new_command());
 }
 
-static void	cread_cmd(t_element *e, void *tokens)
+static void	cread_cmd(t_element *e, void *cmds)
 {
 	t_command	*cmd;
+	t_command	*previou;
 	char		**list;
 	void		*token;
-	void		*fun;
 
 	token = e->value;
 	if (!token)
 		return ;
-	fun = e->destroy;
 	e->destroy = NULL;
 	list = array(token)->to_str();
 	if (!list)
 		return ;
 	cmd = get_cmd(*list);
 	if (cmd && cmd->init(cmd, list))
-		(array(tokens))->set(e->index, cmd);
-	e->destroy = fun;
+	{
+		cmd->index = array(cmds)->size;
+		previou = array(cmds)->get(array(cmds)->size - 1);
+		if (previou)
+			previou->next = cmd;
+		array(cmds)->add(cmd);
+	}
 	array(token)->destroy();
 }
 
+/*
+static void	print_cmd(t_element *e, void *o)
+{
+	int i = 0;
+	(void) o;
+	t_command *c;
+	c = e->value;
+	printf("================\n");
+	printf("CMD:");
+	while (c && c->commands && c->commands[i])
+		printf(" %s", c->commands[i++]);
+	printf("\n");
+}*/
 static void	execute(t_terminal	*t, char	*line)
 {
 	void		*tokens;
 	t_command	*c;
-	int			i;
+	t_command	*run;
 
 	tokens = token(line);
-	if (!argv)
+	if (!tokens)
 		return ;
-	i = 0;
-	c = 0;
-	while (argv && argv[i] && t->commands)
-	{
-		c = cread_cmd(argv[i]);
-		if (c && c->init(c, argv[i], data()->envp))
-			list(t->commands)->add(c);
-		i++;
-	}
-	c = new_command(NULL);
+	c = new_command();
 	c->index = __COMMAND_BEGING_;
 	pipe(c->fd);
-	list(t->commands)->add(new_console(NULL));
-	terminal()->check_command_args(list(t->commands)->get(0));
-	(list(t->commands)->get(0))->input(c, list(t->commands)->get(0));
-	list(t->commands)->beging = NULL;
+	(array(tokens))->for_each(cread_cmd, t->cmds);
+	array(tokens)->destroy();
+	run = array(t->cmds)->get(0);
+	terminal()->check_command_args(run);
+	run->input(c, run);
 	c->destroy(c);
+	(array(t->cmds))->for_each(waitpid_all, 0);
+	array(t->cmds)->destroy();
+	t->cmds = new_array();
 }
 
 static void	ft_input(void)
@@ -113,7 +125,7 @@ t_terminal	*new_terminal(char *title)
 		return (0);
 	t->input = ft_input;
 	t->title = title;
-	t->commands = new_list();
+	t->cmds = new_array();
 	t->wildcards = __wildcards;
 	t->check_command_args = __check_args;
 	t->get_exts = __get_exts;
@@ -127,4 +139,3 @@ t_terminal	*new_terminal(char *title)
 	init_env(t);
 	return (t);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/03 21:18:24 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:09:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 // arr[3] :  "number of times DOUBLE QUOTE appears at the RIGHT of index"
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
-
-static int	*ft_count_quotes(char *str, int index, int *arr)
+static int	*ft_count_quotes(const char *str, int index, int *arr)
 {
 	int	i;
 
@@ -56,8 +55,7 @@ return 1 -> double quoted ("")
 return 2 -> single quoted ('')
 return 3 -> both quoted ("" '') (this is not possible i think)
 */
-
-int	is_quotes(char *str, int index)
+int	is_quotes(const char *str, int index)
 {
 	int	d_quoted;
 	int	s_quoted;
@@ -75,32 +73,32 @@ int	is_quotes(char *str, int index)
 	return (NOT_QUOTED);
 }
 
-void	*ft_divide_quotes(char *str)
+void	*ft_divide_quotes(const char *str)
 {
 	void	*cmds;
 	int		i;
 
-	
 	cmds = new_array();
 	i = -1;
 	while (str[++i])
 	{
-		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) && !is_quotes(str, i))
+		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) \
+		&& !is_quotes(str, i))
 		{
-			array(cmds)->add(string().copy_n(str, i));
+			(array(cmds))->add(string().copy_n(str, i));
 			str += i + !(i == (ft_separator(str) - 1));
 			i = 0;
 			if (!(ft_separator(str) - 1))
 			{
 				while (ft_separator(str + i) - 1 == i)
 					i++;
-				array(cmds)->add(string().copy_n(str, i));
+				(array(cmds))->add(string().copy_n(str, i));
 				str += i;
 				i = 0;
 			}
 		}
 	}
-	array(cmds)->add(string().copy_n(str, i));
+	(array(cmds))->add(string().copy_n(str, i));
 	return (cmds);
 }
 

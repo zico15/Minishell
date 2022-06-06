@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 09:42:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/05 18:37:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ struct s_command
 {
 	pid_t				pid;
 	int					index;
-	char				path[100];
-	char				*arg;
+	char				path[1000];
 	int					fd[2];
+	id_t				is_print;
 	char				**commands;
 	int					*(*input)(t_command *previou, t_command *this);
 	int					(*init)(t_command *this, char **args);

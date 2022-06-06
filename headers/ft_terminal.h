@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 18:41:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 11:36:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ struct s_terminal
 	pid_t				pid;
 	pid_t				pid_parent;
 	int					is_erro_cmd;
-	void				*commands;
+	void				*cmds;
 	void				*envp;
 	void				(*input)(void);
 	char				*(*wildcards)(const char *exts);
@@ -40,20 +40,19 @@ struct s_terminal
 };
 
 t_terminal				*new_terminal(char *title);
-char					**token(char *line);
 
 //						commadas
-t_command				*new_command(char *arg);
-t_command				*new_console(char *arg);
-t_command				*new_redirect_output(char *arg);
-t_command				*new_redirect_input(char *arg);
-t_command				*new_cd(char *arg);
-t_command				*new_echo(char *arg);
-t_command				*new_pwd(char *arg);
-t_command				*new_env(char *arg);
-t_command				*new_teste(char *arg);
-t_command				*new_export(char *arg);
-t_command				*new_minishell(char *arg);
-t_command				*new_unset(char *arg);
+t_command				*new_command(void);
+t_command				*new_console(void);
+t_command				*new_redirect_output(void);
+t_command				*new_redirect_input(void);
+t_command				*new_cd(void);
+t_command				*new_echo(void);
+t_command				*new_pwd(void);
+t_command				*new_env(void);
+t_command				*new_teste(void);
+t_command				*new_export(void);
+t_command				*new_minishell(void);
+t_command				*new_unset(void);
 
 #endif

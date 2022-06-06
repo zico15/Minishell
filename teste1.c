@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   teste1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 16:52:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/04 10:17:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	p(t_element *e, void *o)
 //open $HOMEBREW_TEMP
 //open $TMPDIR  
 ///tmp/edos-san/Homebrew/Temp
-int	main2(void)
+int	main1(void)
 {
 	void	*t;
 
