@@ -86,19 +86,28 @@ static void	base_remove_element(t_element	*e)
 static int	base_destroy(void)
 {
 	t_element	*b;
-	t_element	*e;
+	t_element	*temp;
 
 	if (!this()->array)
 		return (0);
 	b = (this()->array)->begin;
+	(this()->array)->begin = NULL;
 	this()->array->size = 0;
 	while (b)
 	{
-		e = b;
+		temp = b;
 		b = b->next;
-		if (e && e->destroy)
-			e->destroy(e);
+		if (0 && temp && temp->destroy)
+			temp->destroy(temp);
+		else
+		{
+			free_ob(temp->key);
+			free_ob(temp->value);
+			free_ob(temp);
+		}
+		//printf("temp: %s\n", temp->key);
 	}
+	(this()->array)->end = NULL;
 	free_ob(this()->array);
 	this()->array = NULL;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/05 18:46:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:49:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	execute(t_command *this, int input, int out)
 			exit(0);
 		if (dup2(input, 0) < 0 || close(input))
 			exit(0);
-		status = execve(this->path, this->commands, data()->envp);
+		status = execve(this->path, this->commands, terminal()->envp_to_str);
 		exit(errno);
 	}
 	//waitpid(pit, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/05 18:45:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 21:34:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,26 +116,25 @@ static void	ft_input(void)
 	}
 }
 
-t_terminal	*new_terminal(char *title)
+t_terminal	*new_terminal(char *title, char **env_to_str)
 {
-	t_terminal	*t;
+	static t_terminal	t;
 
-	t = malloc(sizeof(t_terminal));
-	if (!t)
-		return (0);
-	t->input = ft_input;
-	t->title = title;
-	t->cmds = new_array();
-	t->wildcards = __wildcards;
-	t->check_command_args = __check_args;
-	t->get_exts = __get_exts;
-	t->is_erro_cmd = 0;
-	t->pid = getpid();
-	t->pid_parent = -1;
-	t->sigaction = __sigaction;
-	t->envp = new_hashmap();
-	t->update_env = __update_env;
-	this()->terminal = t;
-	init_env(t);
-	return (t);
+	t.input = ft_input;
+	t.title = title;
+	t.cmds = new_array();
+	t.wildcards = __wildcards;
+	t.check_command_args = __check_args;
+	t.get_exts = __get_exts;
+	t.is_erro_cmd = 0;
+	t.pid = getpid();
+	t.pid_parent = -1;
+	t.sigaction = __sigaction;
+	t.envp = new_hashmap();
+	t.update_env = __update_env;
+	t.destroy = __destroy_terminal;
+	t.envp_to_str = env_to_str;
+	this()->terminal = &t;
+	init_env(&t);
+	return (&t);
 }
