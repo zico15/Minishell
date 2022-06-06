@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/05 18:46:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:23:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void	waitpid_all(t_element *e, void *o)
 	c = e->value;
 	if (c)
 		waitpid(c->pid, &status, 0);
+}
+
+void	__destroy_terminal(char *msg)
+{
+	
 }

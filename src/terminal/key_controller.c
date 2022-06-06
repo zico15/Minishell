@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 20:32:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:16:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	server_list(int signo, siginfo_t *i, void *context)
 	(void) i;
 	if (SIGQUIT == signo)
 	{
-		//rl_replace_line();
+		printf("SIGQUIT\n");
 	}
 	if (signo == SIGINT)
 	{
-		
+		printf("SIGINT\n");
 		//exit(0);
 	}
 }
