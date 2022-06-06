@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/04 12:06:44 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:22:23 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
 #include <string_util.h>
 
-char	**ft_send_exit(void)
+void	*ft_send_exit(void)
 {
-	char	**arr;
+	void	*lst;
+	void	*cmd;
 
-	write(1, "\r", 1);
-	arr = malloc(sizeof(char *) * 2);
-	*arr = string().copy("exit");
-	arr[1] = NULL;
-	printf("exit\n");
-	exit(0);
-	return (arr);
+	lst = new_array();
+	cmd = new_array();
+	array(cmd)->add(string().copy("exit"));
+	array(lst)->add(cmd);
+	return (lst);
 }
 
 int	ft_separator(const char *str)
@@ -40,31 +39,27 @@ int	ft_separator(const char *str)
 	return (0);
 }
 
-int	ft_quotes(const char	*letter)
+char	*ft_rmv_quotes(char *str)
 {
-	static int	d_quote;
-	static int	s_quote;
-
-	if (*letter == '\'' && !s_quote)
-		s_quote = 1;
-	else if (*letter == '\'' && s_quote)
-		s_quote = 0;
-	else if (*letter == '\"' && !d_quote)
-		d_quote = 1;
-	else if (*letter == '\"' && d_quote)
-		d_quote = 0;
-	return (d_quote || s_quote);
-}
-
-char	**ft_lst_to_arr(void	*tokens)
-{
-	char	**arr;
 	int		i;
+	int		j;
+	int		size;
+	char	*mem;
 
+	if(!str || !*str)
+		return (NULL);
 	i = -1;
-	while (++i < array(tokens)->size)
-		(array(tokens))->set(i, string().trim(array(tokens)->get(i)));
-	arr = array(tokens)->to_str();
-	array(tokens)->destroy();
-	return (arr);
+	size = 0;
+	while (str[++i])
+		if (!(!is_quotes(str, i) && (str[i] == '\"' || str[i] == '\'')))
+			size++;
+	mem = malloc(sizeof(char) * (size + 1));
+	mem[size] = 0;
+	i = -1;
+	j = 0;
+	while (str[++i])
+		if (!(!is_quotes(str, i) && (str[i] == '\"' || str[i] == '\'')))
+			mem[j++] = str[i];
+	free_ob(str);
+	return (mem);
 }
