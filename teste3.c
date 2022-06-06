@@ -26,18 +26,18 @@ void print_l(t_element *e, void *o)
 int main3(void)
 {
 	char str[BUFFER_SIZE];
-	scanf("%[^\n]", str);
-	// printf("===================================================\n");
-	// printf("%s\n", str);
-	// int	i = -1;
-	// while (str[++i])
-	// 	printf("%i", is_quotes(str, i));
-	// printf("\n");
-	// printf("===================================================\n");
-	// ft_divide_cmd(str);
-	void *tk;
-	tk = ft_divide_cmds(ft_divide_quotes(str));
-	printf("size: %i\n",array(tk)->size);
-	array(tk)->for_each(print_l, 0);
+	char *t;
+	//char a[1];
+	while (1)
+	{
+		//scanf("%[^\n]", str);
+		str[read(0, str, BUFFER_SIZE)] = 0;
+		t = string().copy(str);
+		printf("===================================================\n");
+		t = ft_rmv_quotes(t);
+		printf("%s\n", t);
+		free_ob(t);
+		str[0] = 0;
+	}
 	return (0);
 }

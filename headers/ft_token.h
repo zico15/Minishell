@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/04 12:13:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 19:54:15 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,14 @@ enum e_quotes {
 };
 
 // TOKEN UTILS
-char	**ft_send_exit(void);
+void	*ft_send_exit(void);
 int		ft_separator(const char *str);
-int		ft_quotes(const char	*letter);
-char	**ft_lst_to_arr(void	*tokens);
+void	*ft_divide_cmds(void *list);
 
 // QUOTES HANDELING
 int		is_quotes(const char *str, int index);
-//int		ft_count_cmds(char *str, int *arr);
+char	*ft_rmv_quotes(char *str);
 void	*ft_divide_quotes(const char *str);
-void	*ft_divide_cmds(void *list);
 
 // TOKEN FUCNTION (returns arr of commands)
 void	*token(char *line);
