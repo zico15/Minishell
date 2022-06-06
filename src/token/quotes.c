@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/06 18:28:26 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 21:02:23 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ void	*ft_divide_quotes(const char *str)
 			i = 0;
 			if (!(ft_separator(str) - 1))
 			{
-				while (ft_separator(str + i) - 1 == i)
-					i++;
+				i += ft_sep_move(str);
 				(array(cmds))->add(string().copy_n(str, i));
 				str += i;
 				i = 0;
