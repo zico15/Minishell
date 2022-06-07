@@ -23,21 +23,29 @@ void print_l(t_element *e, void *o)
 	printf("================\n");
 	array(l)->for_each(print_e, o);
 }
+
+//scanf("%[^\n]", str);
+
+// !!! NAO APAGUES ESTE MAIN !!!
 int main3(void)
 {
 	char str[BUFFER_SIZE];
-	char *t;
-	//char a[1];
-	while (1)
+	void	*lst;
+	void	*cmd;
+	scanf("%[^\n]", str);
+	printf("===================================================\n");
+	lst = token(str);
+	int	i = -1;
+	while (++i < array(lst)->size)
 	{
-		//scanf("%[^\n]", str);
-		str[read(0, str, BUFFER_SIZE)] = 0;
-		t = string().copy(str);
-		printf("===================================================\n");
-		t = ft_rmv_quotes(t);
-		printf("%s\n", t);
-		free_ob(t);
-		str[0] = 0;
+		cmd = array(lst)->get(i);
+		int j = -1;
+		while (++j < array(cmd)->size)
+		{
+			printf("(%s)\n", array(cmd)->get(j));
+		}
+		printf("===============\n");
 	}
 	return (0);
 }
+// ls | wc > t.txt || < t.txt wc
