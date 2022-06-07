@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 10:14:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:11:00 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef struct s_item
 	char		*path;
 	char		**item;
 }	t_item;
+
+void rl_replace_line (const char *text, int clear_undo);
+int rl_crlf (void);
 
 void		instance_fork(t_command *cmd, int id, int fork_max, t_pipex	*p);
 

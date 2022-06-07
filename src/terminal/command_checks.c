@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 18:43:43 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:25:01 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ char	*check_dolar(void *env, const char *line, int i, int size)
 	char	*new;
 	int		j;
 
+	if (!line)
+		return (NULL);
+	if (!*line)
+		return (string().copy(line));
 	j = -1;
 	new = string().trim(line);
 	while (line && i <= size)

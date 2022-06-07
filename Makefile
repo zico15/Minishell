@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/07 17:12:06 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/07 19:36:15 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			= 	/bin/rm -f
 NAME		= 	minishell
 INCLUDES	= 	./headers
 
-SRCS		= 	teste1.c teste2.c teste3.c teste4.c main.c $(shell find src/ -name '*.c')
+SRCS		= 	teste1.c teste2.c teste3.c main.c $(shell find src/ -name '*.c')
 OBJS		= 	$(SRCS:.c=.o)
 
 .c.o:
@@ -28,7 +28,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "\033[0;32mOBJECT FILES COMPILED\033[0m"
-	@$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJS) -lreadline -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 	@echo "\033[0;32mMINISHELL IS READY TO USE\033[0m"
 
 bonus: all

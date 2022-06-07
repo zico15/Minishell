@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ft_pipex.h>
-#include <ft_base_array.h>
-#include <ft_token.h>
 
-int main4()
+int main()
 {
+    int i =0;
+    while (1)
+    {
+        i++;
+    }
     
     return(0);
 }
