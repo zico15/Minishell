@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 20:34:38 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:35:37 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	waitpid_all(t_element *e, void *o)
 
 void	__destroy_terminal(char *msg)
 {
-	printf("\n%s\n", msg);
+	write(0, msg, string().size(msg));
 	exit(0);
 }

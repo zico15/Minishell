@@ -6,13 +6,13 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/06 21:02:23 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:24:21 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
 
-// ft_count_quotes
+// ft_count_quotes,
 // receives the string that contains the commands (str),
 // receives the index of the character that is possibly 
 // surrounded by quotes (index)
@@ -48,13 +48,11 @@ static int	*ft_count_quotes(const char *str, int index, int *arr)
 	return (arr);
 }
 
-/*
-is_quotes,
-return 0 -> not quoted ()
-return 1 -> double quoted ("")
-return 2 -> single quoted ('')
-return 3 -> both quoted ("" '') (this is not possible i think)
-*/
+// is_quotes,
+// return 0 -> not quoted ()
+// return 1 -> double quoted ("")
+// return 2 -> single quoted ('')
+// return 3 -> both quoted ("" '') (this is not possible i think)
 int	is_quotes(const char *str, int index)
 {
 	int	d_quoted;
