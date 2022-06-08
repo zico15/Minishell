@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/07 20:39:57 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:08:51 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	*token(char *line)
 
 	if (!line)
 	{
-		terminal()->destroy("\b\bexit\n");
+		//terminal()->destroy("exit\n");
+		write(0, "1", 1);
+		exit(0);
 		return (NULL);
 	}
 	if (!*line)

@@ -6,12 +6,13 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/07 20:40:51 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:07:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 #include <ft_command_util.h>
+#include <termios.h>
 
 static t_command	*get_cmd(char *s)
 {
@@ -103,16 +104,28 @@ static void	execute(t_terminal	*t, char	*line)
 static void	ft_input(void)
 {
 	t_terminal	*t;
+	char		*str;
 	char		*line;
 
+	struct termios a;
+    tcgetattr(0, &a);
+    a.c_lflag &= ~ECHOCTL;
+    tcsetattr(0, TCSANOW, &a);
 	t = this()->terminal;
 	if (!t)
 		return ;
 	while (1)
 	{
+		str = NULL;
 		line = readline(t->title);
-		add_history(line);
-		execute(t, check_dolar(t->envp, line, 0, string().size(line)));
+		if (line && *line)
+		{
+			add_history(line);
+			str = check_dolar(t->envp, line, 0, string().size(line));
+			free(line);
+			line = str;
+		}
+		execute(t, line);
 	}
 }
 
