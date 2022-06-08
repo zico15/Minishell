@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 21:34:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:34:38 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	__sigaction(char *str)
 
 void	__update_env(void)
 {
-	free_list(terminal()->envp_to_str);
-	terminal()->envp_to_str = hashmap(terminal()->envp)->to_str();
+	free_list(data()->envp);
+	data()->envp = hashmap(terminal()->envp)->to_str();
 }
 
 void	waitpid_all(t_element *e, void *o)
@@ -45,12 +45,6 @@ void	waitpid_all(t_element *e, void *o)
 
 void	__destroy_terminal(char *msg)
 {
-	t_terminal	*t;
-
-	t = terminal();
-	free_list(t->envp_to_str);
-	hashmap(t->envp)->destroy();
-	clear_history();
 	printf("\n%s\n", msg);
 	exit(0);
 }

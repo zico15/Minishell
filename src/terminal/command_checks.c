@@ -6,30 +6,30 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 12:12:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:43:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-void	check_wildcards(t_command *this)
+char	*check_wildcards(char *str)
 {
-	char		*str;
 	char		*paths;
 	char		*exts;
+	char		*result;
 
-	str = NULL;
-	(void) this;
+	result = str;
 	if (string().size(str) > 1 && string().contains(str, "*"))
 	{
 		paths = terminal()->wildcards(str);
 		if (paths)
 		{
 			exts = terminal()->get_exts(str);
-			//NULL = string().replace(str, paths, exts);
+			result = string().replace(str, paths, exts);
 			free_ob(str);
 		}
 	}
+	return (result);
 }
 
 static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
@@ -78,11 +78,11 @@ void	__check_args(t_command *this)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!this)
 		return ;
-	/*check_wildcards(this);
-	this->commands = string().split(this->arg, " ");*/
+	while (this->commands[++i])
+		this->commands[i] = check_wildcards(this->commands[i]);
 	i = -1;
 	if (!this->path[0] && !access(this->commands[0], F_OK) && this->commands)
 	{
