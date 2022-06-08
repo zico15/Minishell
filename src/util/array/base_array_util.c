@@ -20,7 +20,7 @@ static t_element	*base_add_element(void *value)
 
 	if (!this()->array || !value)
 		return (NULL);
-	e = malloc(sizeof(t_element));
+	e = malloc_ob(sizeof(t_element));
 	if (!e)
 		return (NULL);
 	e->key = NULL;
@@ -86,19 +86,21 @@ static void	base_remove_element(t_element	*e)
 static int	base_destroy(void)
 {
 	t_element	*b;
-	t_element	*e;
+	t_element	*temp;
 
 	if (!this()->array)
 		return (0);
 	b = (this()->array)->begin;
+	(this()->array)->begin = NULL;
 	this()->array->size = 0;
 	while (b)
 	{
-		e = b;
+		temp = b;
 		b = b->next;
-		if (e && e->destroy)
-			e->destroy(e);
+		if (temp && temp->destroy)
+			temp->destroy(temp);
 	}
+	(this()->array)->end = NULL;
 	free_ob(this()->array);
 	this()->array = NULL;
 	return (1);
@@ -108,7 +110,7 @@ void	*new_array(void)
 {
 	t_array	*a;
 
-	a = malloc(sizeof(t_array));
+	a = malloc_ob(sizeof(t_array));
 	if (a)
 	{
 		a->size = 0;

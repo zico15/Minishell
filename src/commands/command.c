@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/05 18:46:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ static int	execute(t_command *this, int input, int out)
 			exit(0);
 		if (dup2(input, 0) < 0 || close(input))
 			exit(0);
-		status = execve(this->path, this->commands, data()->envp);
+		status = execve(this->path, this->commands, terminal()->envp_to_str);
 		exit(errno);
 	}
-	//waitpid(pit, &status, 0);
 	close(input);
 	close(out);
 	return (1);
@@ -55,11 +54,14 @@ static int	init(t_command *this, char **args)
 	int			i;
 
 	i = -1;
+	this->path[0] = 0;
 	e = hashmap(terminal()->envp)->get_key("PATH");
 	if (e)
+	{
 		path = e->value;
+		get_path(this, *args, path);
+	}
 	this->commands = args;
-	get_path(this, *args, path);
 	if (pipe(this->fd) == __PIPE_ERROR__)
 		return (0);
 	return (1);
@@ -82,10 +84,10 @@ t_command	*new_command(void)
 {
 	t_command	*c;
 
-	c = malloc(sizeof(t_command));
+	c = malloc_ob(sizeof(t_command));
 	if (!c)
 	{
-		printf("err: %s\n", "malloc");
+		printf("err: %s\n", "malloc_ob");
 		return (0);
 	}
 	c->input = ft_input;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_controller.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 19:52:41 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:43:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	server_list(int signo)
 {
 	if (signo == SIGINT)
 	{
-		array(terminal()->cmds)->for_each(kill_all, NULL);
+		//array(terminal()->cmds)->for_each(kill_all, NULL);
 		write(0, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -44,7 +44,7 @@ static void	server_list(int signo)
 
 void	init_keys(void)
 {
-	signal(SIGQUIT, server_list);
+	//signal(SIGQUIT, server_list);
 	signal(SIGINT, server_list);
 	signal(SIGUSR1, ft_read_signal);
 	signal(SIGUSR2, ft_read_signal);

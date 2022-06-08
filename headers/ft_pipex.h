@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/07 20:11:00 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:48:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,19 @@ enum e_boolean
 	true
 };
 
-typedef struct s_pipex
+typedef struct s_memory
 {
-	char				out_input[BUFFER_SIZE];
-	int					fd_read_original;
-	int					fd_write_original;
-	int					fd[2];
-	int					size_read;
-	char				**envp;
-	char				*path;
-	int					i;
-	pid_t				pid;
-	pid_t				pid_base;
-	t_command			*lis[10];
-	int					teste;
-}	t_pipex;
+	int			malloc_size;
+	int			free_size;
+}	t_memory;
 
-typedef struct s_item
-{
-	char		*path;
-	char		**item;
-}	t_item;
-
-void rl_replace_line (const char *text, int clear_undo);
-int rl_crlf (void);
-
-void		instance_fork(t_command *cmd, int id, int fork_max, t_pipex	*p);
+void		rl_replace_line(const char *text, int clear_undo);
+int			rl_crlf(void);
 
 //			UTIL
-void		close_program(t_command *cmd, t_pipex	*p);
-void		out_input(t_command *cmd, t_pipex	*p, int id, int max);
-t_pipex		*data(void);
 char		*get_path(t_command	*c, char *arg, const char *path);
 t_terminal	*terminal(void);
+t_memory	*memory(void);
 
 //			TESTE
 void		printf_cmd(t_command **c);

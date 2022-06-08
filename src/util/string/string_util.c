@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/03 20:08:55 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:47:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*__join(const char *str1, const char *str2)
 	char	*str;
 	int		i;
 
-	str = malloc(string().size((char *) str1) \
+	str = malloc_ob(string().size((char *) str1) \
 	+ string().size((char *) str2) + 1);
 	if (!str)
 		return (NULL);
@@ -47,7 +47,7 @@ char	**__split(char const *s, char *c, int j, char **list)
 	while (s && (!string().contains(c, _str(s[i])) && s[i] != '\n') && s[i])
 		i++;
 	if (i > 0)
-		t = malloc((i + 1) * sizeof(char));
+		t = malloc_ob((i + 1) * sizeof(char));
 	if (i > 0)
 		t[i] = 0;
 	i = 0;
@@ -56,7 +56,7 @@ char	**__split(char const *s, char *c, int j, char **list)
 	if (++j >= 0 && i)
 		list = __split(s, c, j, list);
 	else if (!list)
-		list = malloc(j * sizeof(char *));
+		list = malloc_ob(j * sizeof(char *));
 	if (list)
 		list[--j] = t;
 	return (list);
@@ -73,7 +73,9 @@ char	*__copy_n(const char *str, int n)
 	if (!str && n <= 0)
 		return (NULL);
 	i = -1;
-	copy = malloc(n + 1);
+	copy = malloc_ob(n + 1);
+	if (!copy)
+		return (NULL);
 	while (copy && str[++i] && i < n)
 		copy[i] = str[i];
 	copy[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 10:03:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	**__to_str(void)
 
 	if (!this()->array)
 		return (NULL);
-	list = malloc(sizeof(char *) * ((this()->array)->size + 1));
+	list = malloc_ob(sizeof(char *) * ((this()->array)->size + 1));
 	if (!list)
 		return (NULL);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/06 21:01:40 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ char	*ft_rmv_quotes(char *str)
 	int		size;
 	char	*mem;
 
-	if(!str || !*str)
+	if (!str || !*str)
 		return (NULL);
 	i = -1;
 	size = 0;
 	while (str[++i])
 		if (!(!is_quotes(str, i) && (str[i] == '\"' || str[i] == '\'')))
 			size++;
-	mem = malloc(sizeof(char) * (size + 1));
+	mem = malloc_ob(sizeof(char) * (size + 1));
 	mem[size] = 0;
 	i = -1;
 	j = 0;
