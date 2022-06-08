@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 21:30:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ void	init_env(t_terminal *t)
 {
 	int			i;
 	char		**str;
+	char		*key_pid;
 	t_element	*e;
 
 	i = -1;
+	key_pid = string().copy(__MINISHELL_PID__);
 	while (terminal()->envp_to_str && terminal()->envp_to_str[++i])
 	{
 		str = string().split(terminal()->envp_to_str[i], "=");
@@ -71,9 +73,9 @@ void	init_env(t_terminal *t)
 		}
 		free_list(str);
 	}
-	e = hashmap(t->envp)->get_key(__MINISHELL_PID__);
+	e = hashmap(t->envp)->get_key(key_pid);
 	if (e)
 		t->pid_parent = string().atoi(e->value);
-	(hashmap(t->envp))->put(__MINISHELL_PID__, string().itoa(getpid()));
+	(hashmap(t->envp))->put(key_pid, string().itoa(getpid()));
 	terminal()->envp_to_str = hashmap(terminal()->envp)->to_str();
 }

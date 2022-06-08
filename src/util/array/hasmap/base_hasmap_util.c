@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 18:47:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ t_element	*__put_hasmap(char *key, void	*value)
 	if (!v)
 		v = array(this()->array)->add(value);
 	else
+	{
+		free_ob(v->key);
+		v->key = key;
 		v->value = value;
+	}
 	if (!v)
 		return (0);
 	v->key = key;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 23:44:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:30:44 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:47:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	*new_list(void)
 {
 	t_list_cmd	*list;
 
-	list = malloc(sizeof(t_list_cmd) * 1);
+	list = malloc_ob(sizeof(t_list_cmd) * 1);
 	if (!list)
 	{
-		printf("err: %s\n", "malloc");
+		printf("err: %s\n", "malloc_ob");
 		return (0);
 	}
 	list->forEach = ft_for_each;

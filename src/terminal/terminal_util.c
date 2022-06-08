@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 20:03:00 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:54:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ void	waitpid_all(t_element *e, void *o)
 
 void	__destroy_terminal(char *msg)
 {
+	if (terminal()->cmds)
+		array(terminal()->cmds)->destroy();
+	if (terminal()->envp)
+		hashmap(terminal()->envp)->destroy();
+	free_list(terminal()->envp_to_str);
+	printf("memory-> malloc: %i free: %i\n", memory()->malloc_size, memory()->free_size);
 	printf("%s", msg);
 	exit(0);
 }

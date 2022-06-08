@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:00:10 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/30 18:35:09 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	ft_execute(DIR *dir, struct dirent *entiy, char *exts, char	**paths)
 }
 
 /***
- * return uma string sem malloc
+ * return uma string sem malloc_ob
  * ***/
 char	*__get_exts(const char *str)
 {

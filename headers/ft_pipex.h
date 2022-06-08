@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 19:18:49 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:48:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ enum e_boolean
 	true
 };
 
-typedef struct s_item
+typedef struct s_memory
 {
-	char		*path;
-	char		**item;
-}	t_item;
+	int			malloc_size;
+	int			free_size;
+}	t_memory;
 
 void		rl_replace_line(const char *text, int clear_undo);
 int			rl_crlf(void);
@@ -53,6 +53,7 @@ int			rl_crlf(void);
 //			UTIL
 char		*get_path(t_command	*c, char *arg, const char *path);
 t_terminal	*terminal(void);
+t_memory	*memory(void);
 
 //			TESTE
 void		printf_cmd(t_command **c);

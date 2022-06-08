@@ -20,7 +20,7 @@ static t_element	*base_add_element(void *value)
 
 	if (!this()->array || !value)
 		return (NULL);
-	e = malloc(sizeof(t_element));
+	e = malloc_ob(sizeof(t_element));
 	if (!e)
 		return (NULL);
 	e->key = NULL;
@@ -110,7 +110,7 @@ void	*new_array(void)
 {
 	t_array	*a;
 
-	a = malloc(sizeof(t_array));
+	a = malloc_ob(sizeof(t_array));
 	if (a)
 	{
 		a->size = 0;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 20:04:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	cread_cmd(t_element *e, void *cmds)
 {
 	t_command	*cmd;
 	t_command	*previou;
+	t_element	*c;
 	char		**list;
 	void		*token;
 
@@ -59,8 +60,12 @@ static void	cread_cmd(t_element *e, void *cmds)
 		previou = array(cmds)->get(array(cmds)->size - 1);
 		if (previou)
 			previou->next = cmd;
-		array(cmds)->add(cmd);
+		c = array(cmds)->add(cmd);
+		if (c)
+			c->destroy = command_destroy_element;
 	}
+	else
+		free_list(list);
 }
 
 /*
@@ -83,19 +88,19 @@ static void	execute(t_terminal	*t, void *token)
 
 	if (!token)
 		return ;
+	t->cmds = new_array();
 	c = new_command();
 	c->index = __COMMAND_BEGING_;
 	pipe(c->fd);
 	(array(token))->for_each(cread_cmd, t->cmds);
 	array(token)->destroy();
-	printf("execute: %i\n", array(t->cmds)->size);
 	run = array(t->cmds)->get(0);
 	terminal()->check_command_args(run);
 	run->input(c, run);
 	c->destroy(c);
 	(array(t->cmds))->for_each(waitpid_all, 0);
 	array(t->cmds)->destroy();
-	t->cmds = new_array();
+	t->cmds = NULL;
 }
 
 static void	ft_init(void)
@@ -126,23 +131,24 @@ static void	ft_init(void)
 	}
 }
 
-t_terminal	*new_terminal(char *title)
+t_terminal	*new_terminal(char *title, char **env)
 {
 	static t_terminal	t;
 
 	t.init = ft_init;
 	t.title = title;
-	t.cmds = new_array();
 	t.wildcards = __wildcards;
 	t.check_command_args = __check_args;
 	t.get_exts = __get_exts;
 	t.is_erro_cmd = 0;
 	t.pid = getpid();
+	t.cmds = NULL;
 	t.pid_parent = -1;
 	t.sigaction = __sigaction;
 	t.envp = new_hashmap();
 	t.update_env = __update_env;
 	t.destroy = __destroy_terminal;
+	t.envp_to_str = env;
 	this()->terminal = &t;
 	init_env(this()->terminal);
 	return (this()->terminal);

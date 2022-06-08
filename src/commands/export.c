@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/04 11:12:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ static int	*ft_input(t_command *previou, t_command *this)
 	{
 		temp = this->commands[1];
 		str = string().split(temp, "=");
-		if (string().size_list(str) > 1)
+		if (string().size_list(str))
+		{
 			(hashmap(terminal()->envp))->put(str[0], str[1]);
-		free_ob(str);
+			free_ob(str);
+		}
+		else
+			free_list(str);
 		if (temp && terminal()->pid_parent != -1)
 		{
 			temp = string().join("export ", temp);

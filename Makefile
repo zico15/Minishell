@@ -6,13 +6,13 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/08 19:56:49 by edos-san         ###   ########.fr        #
+#    Updated: 2022/06/08 21:49:17 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-CC			= 	gcc -fsanitize=address -g
-#CC			= 	gcc
+#CC			= 	gcc -fsanitize=address -g
+CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell
@@ -49,7 +49,7 @@ norm :
 m: fclean
 
 v:
-	@make re && make clean && clear && valgrind ./minishell
+	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./minishell
 r:
 	@make re && make clean && clear && ./minishell
 

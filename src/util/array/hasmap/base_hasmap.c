@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 21:12:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**__to_str_hashmpa(void)
 
 	if (!this()->array)
 		return (NULL);
-	list = malloc(sizeof(char *) * ((this()->array)->size + 1));
+	list = malloc_ob(sizeof(char *) * ((this()->array)->size + 1));
 	if (!list)
 		return (NULL);
 	i = 0;
@@ -73,7 +73,7 @@ void	*new_hashmap(void)
 {
 	t_hashmap	*a;
 
-	a = malloc(sizeof(t_hashmap));
+	a = malloc_ob(sizeof(t_hashmap));
 	if (a)
 	{
 		a->list = new_array();

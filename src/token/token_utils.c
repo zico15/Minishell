@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 19:33:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_rmv_quotes(char *str)
 	while (str[++i])
 		if (!(!is_quotes(str, i) && (str[i] == '\"' || str[i] == '\'')))
 			size++;
-	mem = malloc(sizeof(char) * (size + 1));
+	mem = malloc_ob(sizeof(char) * (size + 1));
 	mem[size] = 0;
 	i = -1;
 	j = 0;

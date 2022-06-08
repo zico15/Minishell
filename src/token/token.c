@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 19:44:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,26 @@
 // 	printf("================\n");
 // 	array(l)->for_each(print_e, o);
 // }
+void	command_destroy_element(t_element	*e)
+{
+	t_command	*c;
+
+	printf("command_destroy_element\n");
+	c = e->value;
+	if (c)
+		c->destroy(c);
+	free_ob(e->value);
+	free_ob(e->key);
+	free_ob(e);
+}
+
 void	token_destroy_element(t_element	*e)
 {
 	void	*list;
 
 	list = e->value;
-	array(list)->destroy();
+	if (list)
+		array(list)->destroy();
 	e->value = NULL;
 	free_ob(e->key);
 	free_ob(e);
@@ -43,12 +57,7 @@ void	*token(char *line)
 	void	*list;
 
 	if (!line)
-	{
-		//terminal()->destroy("exit\n");
-		write(0, "1", 1);
-		exit(0);
-		return (NULL);
-	}
+		terminal()->destroy("exit");
 	if (!*line)
 		return (NULL);
 	list = ft_divide_quotes(line);

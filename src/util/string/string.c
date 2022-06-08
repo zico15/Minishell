@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 14:00:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 22:49:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_copy(const char *str)
 	if (!str)
 		return (NULL);
 	i = -1;
-	copy = malloc(ft_size(str) + 1);
+	copy = malloc_ob(ft_size(str) + 1);
 	while (copy && str[++i])
 		copy[i] = str[i];
 	copy[i] = 0;
