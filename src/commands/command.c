@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 20:49:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:04:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
+	printf("ft_input: \n");
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
 		if (this->commands)
@@ -42,7 +43,6 @@ static int	execute(t_command *this, int input, int out)
 		status = execve(this->path, this->commands, terminal()->envp_to_str);
 		exit(errno);
 	}
-	//waitpid(pit, &status, 0);
 	close(input);
 	close(out);
 	return (1);

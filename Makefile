@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/07 19:36:15 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/08 19:56:49 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ norm :
 
 m: fclean
 
+v:
+	@make re && make clean && clear && valgrind ./minishell
 r:
 	@make re && make clean && clear && ./minishell
 

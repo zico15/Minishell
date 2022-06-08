@@ -97,15 +97,8 @@ static int	base_destroy(void)
 	{
 		temp = b;
 		b = b->next;
-		if (0 && temp && temp->destroy)
+		if (temp && temp->destroy)
 			temp->destroy(temp);
-		else
-		{
-			free_ob(temp->key);
-			free_ob(temp->value);
-			free_ob(temp);
-		}
-		//printf("temp: %s\n", temp->key);
 	}
 	(this()->array)->end = NULL;
 	free_ob(this()->array);

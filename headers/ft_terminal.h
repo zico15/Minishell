@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/06 20:23:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:28:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ struct s_terminal
 	int					is_erro_cmd;
 	void				*cmds;
 	void				*envp;
-	void				(*input)(void);
+	char				**envp_to_str;
+	void				(*init)(void);
 	char				*(*wildcards)(const char *exts);
 	char				*(*get_exts)(const char *str);
 	void				(*check_command_args)(t_command *this);

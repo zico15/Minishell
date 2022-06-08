@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 19:08:51 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:44:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@
 // 	printf("================\n");
 // 	array(l)->for_each(print_e, o);
 // }
+void	token_destroy_element(t_element	*e)
+{
+	void	*list;
+
+	list = e->value;
+	array(list)->destroy();
+	e->value = NULL;
+	free_ob(e->key);
+	free_ob(e);
+}
 
 void	*token(char *line)
 {
