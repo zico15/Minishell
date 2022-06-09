@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:48:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:22:19 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_memory
 }	t_memory;
 
 void		rl_replace_line(const char *text, int clear_undo);
-int			rl_crlf(void);
+void		rl_clear_history(void);
 
 //			UTIL
 char		*get_path(t_command	*c, char *arg, const char *path);

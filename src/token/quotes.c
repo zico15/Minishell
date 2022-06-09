@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 19:39:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:23:21 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 // arr[3] :  "number of times DOUBLE QUOTE appears at the RIGHT of index"
 // example: str = (hello "world" this '$TERM' is in '42') | index = 21
 // |-> arr = {2, 1, 3, 0}
+
 static int	*ft_count_quotes(const char *str, int index, int *arr)
 {
 	int	i;

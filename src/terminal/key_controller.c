@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   key_controller.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 19:43:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:16:40 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
+#define gotoxy(x) printf("\033[%dC", (x))
 
 // static int	ft_terminate_command(int signo)
 // {
@@ -34,17 +35,20 @@ static void	server_list(int signo)
 {
 	if (signo == SIGINT)
 	{
-		//array(terminal()->cmds)->for_each(kill_all, NULL);
 		write(0, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	else if (signo == SIGQUIT)
+	{
+		gotoxy(string().size(rl_line_buffer) + 10);
+	}
 }
 
 void	init_keys(void)
 {
-	//signal(SIGQUIT, server_list);
+	signal(SIGQUIT, server_list);
 	signal(SIGINT, server_list);
 	signal(SIGUSR1, ft_read_signal);
 	signal(SIGUSR2, ft_read_signal);
