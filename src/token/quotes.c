@@ -6,11 +6,22 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/09 14:23:21 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:54:01 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
+
+static int	str_isspace(const char *str, int size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size && str[i])
+		if (!string().is_space(str[i]))
+			return (0);
+	return (1);
+}
 
 // ft_count_quotes,
 // receives the string that contains the commands (str),
@@ -84,7 +95,8 @@ void	*ft_divide_quotes(const char *str)
 		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) \
 		&& !is_quotes(str, i))
 		{
-			(array(cmds))->add(string().copy_n(str, i));
+			if (!str_isspace(str, i))
+				(array(cmds))->add(string().copy_n(str, i));
 			str += i + !(i == (ft_separator(str) - 1));
 			i = 0;
 			if (!(ft_separator(str) - 1))

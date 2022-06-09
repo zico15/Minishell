@@ -26,7 +26,6 @@ void print_l(t_element *e, void *o)
 
 //scanf("%[^\n]", str);
 
-// !!! NAO APAGUES ESTE MAIN !!!
 int main3(void)
 {
 	char str[BUFFER_SIZE];
