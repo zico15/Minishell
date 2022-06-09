@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2022/06/04 14:49:49 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/09 16:02:54 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/06/09 16:03:41 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <ft_pipex.h>
 
@@ -33,7 +32,7 @@ static int	*input(t_command *previou, t_command *this)
 	return (this->fd);
 }
 
-t_command	*new_redirect_input()
+t_command	*new_redirect_input(void)
 {	
 	t_command	*c;
 

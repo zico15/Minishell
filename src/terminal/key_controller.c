@@ -6,25 +6,20 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 15:16:40 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:07:38 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
-#define gotoxy(x) printf("\033[%dC", (x))
 
-// static int	ft_terminate_command(int signo)
-// {
-// 	// stop execution if there is any
-// 	if (signo == SIGINT)
-// 	{
-// 		// create new line
-// 	}
-// }
-
-void kill_all(t_element *e, void *o)
+static void	gotoxy(int x)
 {
-	t_command *c;
+	printf("\033[%dC", x);
+}
+
+void	kill_all(t_element *e, void *o)
+{
+	t_command	*c;
 
 	c = e->value;
 	(void) o;
