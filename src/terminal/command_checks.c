@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/10 10:42:16 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:09:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	__check_args(t_command *this)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (!this)
 		return ;
-	while (this->commands[++i])
+	while (this->commands && this->commands[++i])
 		this->commands[i] = check_wildcards(this->commands[i]);
 	i = -1;
 	if (!this->path[0] && !access(this->commands[0], F_OK) && this->commands)
