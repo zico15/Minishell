@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/10 12:48:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:15:49 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
+	if (string().equals(this->path, *this->commands))
+		this->is_print = 1;
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
 		if (this->commands)
@@ -37,7 +39,7 @@ static int	execute(t_command *this, int input, int out)
 	{
 		if (!this->is_print && this->next && (dup2(out, 1) < 0 || close(out)))
 			exit(0);
-		if (dup2(input, 0) < 0 || close(input))
+		if (!this->is_print && (dup2(input, 0) < 0 || close(input)))
 			exit(0);
 		status = execve(this->path, this->commands, terminal()->envp_to_str);
 		exit(errno);
