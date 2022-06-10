@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:51:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:48:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static int	*ft_destroy(t_command *this)
 		close(this->fd[0]);
 		close(this->fd[1]);
 		free_list(this->commands);
+		free_ob(this);
 	}
 	return (fd);
 }

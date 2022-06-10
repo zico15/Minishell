@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 22:45:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:31:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_send_exit(void);
 int		ft_separator(const char *str);
 void	*ft_divide_cmds(void *list);
 int		ft_sep_move(const char *str);
-void	token_destroy_element(t_element	*e);
+void	set_fun_destroy_token(t_element *e, void *o);
 void	command_destroy_element(t_element	*e);
 
 // QUOTES HANDELING

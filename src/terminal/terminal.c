@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 15:14:19 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:15:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	print_cmd(t_element *e, void *o)
 		printf(" %s", c->commands[i++]);
 	printf("\n");
 }*/
-static void	execute(t_terminal	*t, void *token)
+void	execute(t_terminal	*t, void *token)
 {
 	t_command	*c;
 	t_command	*run;

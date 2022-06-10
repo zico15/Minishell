@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/09 15:54:01 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:49:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
+#include <ft_base_array_util.h>
 
 static int	str_isspace(const char *str, int size)
 {
@@ -118,7 +119,6 @@ void	*ft_divide_cmds(void *list)
 	void		*token;
 	char		*str;
 	int			i;
-	t_element	*e;
 
 	i = -1;
 	cmds = new_array();
@@ -126,17 +126,17 @@ void	*ft_divide_cmds(void *list)
 	while (++i < array(list)->size)
 	{
 		str = array(list)->get(i);
-		if (ft_separator(str) && array(token)->add(cmds))
+		if (ft_separator(str))
 		{
+			array(token)->add(cmds);
 			cmds = new_array();
 			if (!string().equals(str, "|"))
-				e = array(cmds)->add(string().trim(str));
+				array(cmds)->add(string().trim(str));
 		}
 		else
-			e = array(cmds)->add(string().trim(str));
-		e->destroy = token_destroy_element;
+			array(cmds)->add(string().trim(str));
 	}
 	array(token)->add(cmds);
-	array(list)->destroy();
+	(array(token))->for_each(set_fun_destroy_token, NULL);
 	return (token);
 }

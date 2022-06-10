@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:44:16 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/08 22:47:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:22:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*__str_trim(const char *str)
 	while (str && *str && string().is_space(*str))
 		str++;
 	size = string().size(str) - 1;
-	while (size > 0 && str[size] && string().is_space(*str))
+	while (size > 0 && str[size] && string().is_space(str[size]))
 		size--;
 	return (string().copy_n(str, size + 1));
 }

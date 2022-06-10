@@ -1,0 +1,383 @@
+==77513== Memcheck, a memory error detector
+==77513== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==77513== Using Valgrind-3.19.0.GIT-lbmacos-6ff08b6e31-20220212 and LibVEX; rerun with -h for copyright info
+==77513== Command: ./minishell
+==77513== Parent PID: 77296
+==77513== 
+--77513-- 
+--77513-- Valgrind options:
+--77513--    --leak-check=full
+--77513--    --log-file=logfile.out
+--77513--    -v
+--77513-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--77513--   Darwin Kernel Version 19.6.0: Mon Apr 18 21:50:40 PDT 2022; root:xnu-6153.141.62~1/RELEASE_X86_64
+--77513-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--77513-- Page sizes: currently 4096, max supported 4096
+--77513-- Valgrind library directory: /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind
+--77513-- ./minishell (rx at 0x100000000, rw at 0x10000c000)
+--77513--    reading syms   from primary file (96 54)
+--77513--    dSYM= ./minishell.dSYM/Contents/Resources/DWARF/minishell
+--77513--    dSYM does not have correct UUID (out of date?)
+--77513-- run: /usr/bin/dsymutil "./minishell"
+--77513--    dsyms= ./minishell.dSYM/Contents/Resources/DWARF/minishell
+--77513-- /usr/lib/dyld (rx at 0x100200000, rw at 0x100293000)
+--77513--    reading syms   from primary file (5 2729)
+--77513-- Scheduler: using generic scheduler lock implementation.
+--77513-- Reading suppressions file: /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp
+==77513== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n00018_c000_2l/T//vgdb-pipe-from-vgdb-to-77513-by-edos-san-on-???
+==77513== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n00018_c000_2l/T//vgdb-pipe-to-vgdb-from-77513-by-edos-san-on-???
+==77513== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n00018_c000_2l/T//vgdb-pipe-shared-mem-vgdb-77513-by-edos-san-on-???
+==77513== 
+==77513== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==77513== don't want to do, unless you know exactly what you're doing,
+==77513== or are doing some strange experiment):
+==77513==   /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=77513 ...command...
+==77513== 
+==77513== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==77513==   /path/to/gdb ./minishell
+==77513== and then give GDB the following command
+==77513==   target remote | /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=77513
+==77513== --pid is optional if only one valgrind process is running
+==77513== 
+--77513-- REDIR: 0x100252340 (dyld:strcmp) redirected to 0x25805831e (???)
+--77513-- REDIR: 0x10024c614 (dyld:arc4random) redirected to 0x2580583bc (???)
+--77513-- REDIR: 0x100251720 (dyld:strlen) redirected to 0x2580582ed (???)
+--77513-- REDIR: 0x100252640 (dyld:strcpy) redirected to 0x25805833a (???)
+--77513-- REDIR: 0x10024f7ba (dyld:strcat) redirected to 0x2580582fe (???)
+--77513-- REDIR: 0x10025151a (dyld:strlcat) redirected to 0x258058357 (???)
+--77513-- /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x100306000, rw at 0x10030a000)
+--77513--    reading syms   from primary file (3 53)
+--77513--    dSYM= /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--77513-- /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100312000, rw at 0x10031a000)
+--77513--    reading syms   from primary file (75 62)
+--77513--    dSYM= /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--77513-- /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib (rx at 0x100322000, rw at 0x10034a000)
+--77513--    reading syms   from primary file (717 337)
+--77513--    dSYM= /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib.dSYM/Contents/Resources/DWARF/libreadline.8.1.dylib
+--77513-- /usr/lib/libSystem.B.dylib (rx at 0x100366000, rw at 0x100368000)
+--77513--    reading syms   from primary file (29 8)
+--77513-- /usr/lib/libncurses.5.4.dylib (rx at 0x100370000, rw at 0x1003a0000)
+--77513--    reading syms   from primary file (613 1)
+--77513-- /usr/lib/system/libcache.dylib (rx at 0x1003b4000, rw at 0x1003ba000)
+--77513--    reading syms   from primary file (32 29)
+--77513-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x1003c1000, rw at 0x1003cd000)
+--77513--    reading syms   from primary file (241 173)
+--77513-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x1003dd000, rw at 0x1003e5000)
+--77513--    reading syms   from primary file (505 8)
+--77513-- /usr/lib/system/libcopyfile.dylib (rx at 0x1003f5000, rw at 0x1003ff000)
+--77513--    reading syms   from primary file (11 38)
+--77513-- /usr/lib/system/libcorecrypto.dylib (rx at 0x100407000, rw at 0x10049a000)
+--77513--    reading syms   from primary file (586 845)
+--77513-- /usr/lib/system/libdispatch.dylib (rx at 0x1004ba000, rw at 0x1004fb000)
+--77513--    reading syms   from primary file (328 1607)
+--77513-- /usr/lib/system/libdyld.dylib (rx at 0x100538000, rw at 0x10056f000)
+--77513--    reading syms   from primary file (119 1467)
+--77513-- /usr/lib/system/libkeymgr.dylib (rx at 0x100598000, rw at 0x100599000)
+--77513--    reading syms   from primary file (11 2)
+--77513-- /usr/lib/system/libmacho.dylib (rx at 0x1005a8000, rw at 0x1005ae000)
+--77513--    reading syms   from primary file (105 2)
+--77513-- /usr/lib/system/libquarantine.dylib (rx at 0x1005b6000, rw at 0x1005b9000)
+--77513--    reading syms   from primary file (91 12)
+--77513-- /usr/lib/system/libremovefile.dylib (rx at 0x1005c1000, rw at 0x1005c3000)
+--77513--    reading syms   from primary file (12 8)
+--77513-- /usr/lib/system/libsystem_asl.dylib (rx at 0x1005ca000, rw at 0x1005e2000)
+--77513--    reading syms   from primary file (219 234)
+--77513-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1005f2000, rw at 0x1005f3000)
+--77513--    reading syms   from primary file (21 8)
+--77513-- /usr/lib/system/libsystem_c.dylib (rx at 0x1005fa000, rw at 0x100682000)
+--77513--    reading syms   from primary file (1346 892)
+--77513-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x1006b2000, rw at 0x1006b6000)
+--77513--    reading syms   from primary file (36 68)
+--77513-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x1006bf000, rw at 0x1006c3000)
+--77513--    reading syms   from primary file (14 47)
+--77513-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x1006cb000, rw at 0x1006d4000)
+--77513--    reading syms   from primary file (63 562)
+--77513-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x1006e3000, rw at 0x1006eb000)
+--77513--    reading syms   from primary file (40 26)
+--77513-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x1006f3000, rw at 0x1006f5000)
+--77513--    reading syms   from primary file (1 12)
+--77513-- /usr/lib/system/libsystem_info.dylib (rx at 0x1006fc000, rw at 0x10074a000)
+--77513--    reading syms   from primary file (427 715)
+--77513-- /usr/lib/system/libsystem_m.dylib (rx at 0x100762000, rw at 0x1007aa000)
+--77513--    reading syms   from primary file (811 1)
+--77513-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x1007bb000, rw at 0x1007e3000)
+--77513--    reading syms   from primary file (98 470)
+--77513-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x1007f3000, rw at 0x100801000)
+--77513--    reading syms   from primary file (118 242)
+--77513-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100811000, rw at 0x10081b000)
+--77513--    reading syms   from primary file (23 1)
+--77513-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100823000, rw at 0x100828000)
+--77513--    reading syms   from primary file (112 23)
+--77513-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x100831000, rw at 0x100834000)
+--77513--    reading syms   from primary file (5 20)
+--77513-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x10083b000, rw at 0x100868000)
+--77513--    reading syms   from primary file (1362 230)
+--77513-- /usr/lib/system/libsystem_platform.dylib (rx at 0x100887000, rw at 0x100890000)
+--77513--    reading syms   from primary file (168 103)
+--77513-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x10089a000, rw at 0x1008a5000)
+--77513--    reading syms   from primary file (189 143)
+--77513-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x1008b2000, rw at 0x1008ba000)
+--77513--    reading syms   from primary file (10 86)
+--77513-- /usr/lib/system/libsystem_trace.dylib (rx at 0x1008c2000, rw at 0x1008d9000)
+--77513--    reading syms   from primary file (131 274)
+--77513-- /usr/lib/system/libunwind.dylib (rx at 0x1008ea000, rw at 0x1008f0000)
+--77513--    reading syms   from primary file (102 52)
+--77513-- /usr/lib/system/libxpc.dylib (rx at 0x1008f9000, rw at 0x10092f000)
+--77513--    reading syms   from primary file (627 1467)
+--77513-- /usr/lib/libobjc.A.dylib (rx at 0x10095d000, rw at 0x100991000)
+--77513--    reading syms   from primary file (382 771)
+--77513-- /usr/lib/libc++abi.dylib (rx at 0x1009b5000, rw at 0x1009cb000)
+--77513--    reading syms   from primary file (366 704)
+--77513-- /usr/lib/libc++.1.dylib (rx at 0x1009e9000, rw at 0x100a3c000)
+--77513--    reading syms   from primary file (2088 1160)
+--77513-- REDIR: 0x1008883a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1003168b5 (_platform_memcmp)
+--77513-- REDIR: 0x100887c00 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x100316249 (_platform_strncmp)
+--77513-- REDIR: 0x100887800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x1003162c3 (_platform_strcmp)
+--77513-- REDIR: 0x1007bbce0 (libsystem_malloc.dylib:malloc) redirected to 0x1003144d0 (malloc)
+--77513-- REDIR: 0x1007bdec1 (libsystem_malloc.dylib:calloc) redirected to 0x100314ae6 (calloc)
+--77513-- REDIR: 0x1007bdd67 (libsystem_malloc.dylib:realloc) redirected to 0x100314e64 (realloc)
+--77513-- REDIR: 0x1007be087 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x100315819 (malloc_default_zone)
+--77513-- REDIR: 0x1007bbd12 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x100314738 (malloc_zone_malloc)
+--77513-- REDIR: 0x1007bdef6 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x100314cd2 (malloc_zone_calloc)
+--77513-- REDIR: 0x1007be08f (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x10031585a (malloc_zone_from_ptr)
+--77513-- REDIR: 0x1007bc9b1 (libsystem_malloc.dylib:free) redirected to 0x1003148ac (free)
+--77513-- REDIR: 0x100888300 (libsystem_platform.dylib:_platform_strchr$VARIANT$Haswell) redirected to 0x100315acd (_platform_strchr$VARIANT$Haswell)
+==77513== Warning: ignored attempt to set SIGUSR2 handler in sigaction();
+==77513==          the SIGUSR2 signal is used internally by Valgrind
+--77513-- REDIR: 0x1006510bc (libsystem_c.dylib:strrchr) redirected to 0x100315a6b (strrchr)
+--77513-- REDIR: 0x1008881a0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Haswell) redirected to 0x100316334 (_platform_memchr$VARIANT$Haswell)
+--77525-- REDIR: 0x10067732e (libsystem_c.dylib:__strncpy_chk) redirected to 0x100316020 (__strncpy_chk)
+--77530-- REDIR: 0x10067732e (libsystem_c.dylib:__strncpy_chk) redirected to 0x100316020 (__strncpy_chk)
+--77531-- REDIR: 0x10067732e (libsystem_c.dylib:__strncpy_chk) redirected to 0x100316020 (__strncpy_chk)
+==77513== 
+==77513== HEAP SUMMARY:
+==77513==     in use at exit: 298,997 bytes in 372 blocks
+==77513==   total heap usage: 838 allocs, 466 frees, 331,512 bytes allocated
+==77513== 
+==77513== Searching for pointers to 372 not-freed blocks
+==77513== Checked 70,059,616 bytes
+==77513== 
+==77513== 8 bytes in 1 blocks are definitely lost in loss record 2 of 95
+==77513==    at 0x100314EE6: realloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D26: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100336B2D: expand_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100336FB3: rl_expand_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x1003257ED: rl_set_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325810: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 16 bytes in 1 blocks are definitely lost in loss record 10 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100325A6A: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 22 bytes in 1 blocks are definitely lost in loss record 11 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x1003257B7: rl_set_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325810: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 22 bytes in 1 blocks are definitely lost in loss record 12 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100336ADA: expand_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100336FB3: rl_expand_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x1003257ED: rl_set_prompt (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325810: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 256 bytes in 1 blocks are definitely lost in loss record 41 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032590F: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 50 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D30: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033A7D7: realloc_line (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033702C: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 51 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D30: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033A7ED: realloc_line (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033702C: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 52 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D30: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033A80A: realloc_line (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033702C: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 53 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D30: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033A820: realloc_line (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033702C: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 54 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033705F: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 55 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100337081: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 56 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100337099: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 1,024 bytes in 1 blocks are definitely lost in loss record 57 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x1003370B8: init_line_structures (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100334D72: rl_redisplay (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325C0C: readline_internal_setup (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325836: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 2,032 bytes in 1 blocks are possibly lost in loss record 62 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E47C: _rl_init_terminal_io (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032593D: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 3,776 (1,536 direct, 2,240 indirect) bytes in 1 blocks are definitely lost in loss record 68 of 95
+==77513==    at 0x100314EE6: realloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347D26: xrealloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032A975: rl_add_funmap_entry (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032A9F7: rl_initialize_funmap (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325957: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 4,016 bytes in 1 blocks are definitely lost in loss record 69 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100342048: add_history (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100007696: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 4,112 bytes in 1 blocks are definitely lost in loss record 81 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032AAC6: rl_make_bare_keymap (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330585: rl_generic_bind (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330322: rl_bind_keyseq_if_unbound_in_map (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E8BE: bind_termcap_arrow_keys (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E7A5: _rl_init_terminal_io (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032593D: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 45,232 (4,112 direct, 41,120 indirect) bytes in 1 blocks are definitely lost in loss record 92 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032AAC6: rl_make_bare_keymap (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330585: rl_generic_bind (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330322: rl_bind_keyseq_if_unbound_in_map (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E930: bind_termcap_arrow_keys (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E7A5: _rl_init_terminal_io (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032593D: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 45,232 (4,112 direct, 41,120 indirect) bytes in 1 blocks are definitely lost in loss record 93 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032AAC6: rl_make_bare_keymap (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330585: rl_generic_bind (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330322: rl_bind_keyseq_if_unbound_in_map (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E8BE: bind_termcap_arrow_keys (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E7B1: _rl_init_terminal_io (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032593D: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== 53,456 (4,112 direct, 49,344 indirect) bytes in 1 blocks are definitely lost in loss record 94 of 95
+==77513==    at 0x100314545: malloc (in /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77513==    by 0x100347CDC: xmalloc (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032AAC6: rl_make_bare_keymap (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330585: rl_generic_bind (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100330322: rl_bind_keyseq_if_unbound_in_map (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E8BE: bind_termcap_arrow_keys (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10033E7BD: _rl_init_terminal_io (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10032593D: rl_initialize (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x100325815: readline (in /Users/edos-san/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib)
+==77513==    by 0x10000766E: ft_init (in ./minishell)
+==77513==    by 0x100004E89: main (in ./minishell)
+==77513== 
+==77513== LEAK SUMMARY:
+==77513==    definitely lost: 30,516 bytes in 19 blocks
+==77513==    indirectly lost: 133,824 bytes in 172 blocks
+==77513==      possibly lost: 2,032 bytes in 1 blocks
+==77513==    still reachable: 118,688 bytes in 18 blocks
+==77513==         suppressed: 13,937 bytes in 162 blocks
+==77513== Reachable blocks (those to which a pointer was found) are not shown.
+==77513== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==77513== 
+==77513== ERROR SUMMARY: 20 errors from 20 contexts (suppressed: 5 from 5)
+--77513-- 
+--77513-- used_suppression:      3 OSX1015:dyld-4 /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:751 suppressed: 4,152 bytes in 3 blocks
+--77513-- used_suppression:      1 OSX1015:Leak02-objc /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
+--77513-- used_suppression:     17 OSX1015:dyld-7 /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:781 suppressed: 2,560 bytes in 74 blocks
+--77513-- used_suppression:     15 OSX1015:dyld-8 /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:791 suppressed: 4,913 bytes in 81 blocks
+--77513-- used_suppression:      1 OSX1015:dyld-5 /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:761 suppressed: 264 bytes in 3 blocks
+--77513-- used_suppression:      1 OSX1015:dyld-2 /Users/edos-san/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:733
+==77513== 
+==77513== ERROR SUMMARY: 20 errors from 20 contexts (suppressed: 5 from 5)

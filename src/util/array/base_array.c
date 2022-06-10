@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:08:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	__base_for_each(void (*fun)(t_element *e, void *v), void *o)
 	t_element	*temp;
 	t_element	*select;
 	int			index;
+	void		*this_list;
 
 	if (!this()->array)
 		return ;
+	this_list = this()->array;
 	temp = (this()->array)->begin;
 	index = 0;
 	while (temp)
@@ -30,6 +32,7 @@ void	__base_for_each(void (*fun)(t_element *e, void *v), void *o)
 		select->index = index++;
 		temp = temp->next;
 		fun(select, o);
+		array(this_list);
 	}
 }
 
