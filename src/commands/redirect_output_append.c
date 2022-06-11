@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_output.c                                  :+:      :+:    :+:   */
+/*   redirect_output_append.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/09 16:03:16 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:52:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	*input(t_command *previou, t_command *this)
 	return (this->fd);
 }
 
-t_command	*new_redirect_output(void)
+t_command	*new_redirect_output_append(void)
 {	
 	t_command	*c;
 

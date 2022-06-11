@@ -6,29 +6,56 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:02:54 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/10 18:11:43 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:06:08 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-static int	*input(t_command *previou, t_command *this)
+static	void	cread_cmd(int fd, t_command *this, char **arg)
 {
-	int		fd_open;
-	char	buff[BUFFER_SIZE];
+	t_command	*c;
+
+	if (!arg)
+		return ;
+	c = terminal()->get_cmd(*arg);
+	c->init(c, arg);
+	terminal()->check_command_args(c);
+	close(c->fd[0]);
+	close(c->fd[1]);
+	c->next = this->next;
+	c->execute(c, fd, this->fd[1]);
+	c->destroy(c);
+}
+
+static char	**cread_new_arg(char **arg)
+{
+	void	*list;
+	char	**new;
 	int		i;
 
+	list = new_array();
+	i = 1;
+	while (arg[++i])
+		array(list)->add(string().copy(arg[i]));
+	new = array(list)->to_str();
+	array(list)->destroy();
+	return (new);
+}
+
+static int	*input(t_command *previou, t_command *this)
+{
+	int			fd_open;
+
 	fd_open = 0;
-	printf("redirect_input\n");
 	if (string().size_list(this->commands) >= 3)
 	{
 		fd_open = open(this->commands[1], O_RDONLY);
-		i = read(fd_open, buff, BUFFER_SIZE);
-		buff[i] = 0;
-		write(this->fd[1], buff, i);
-		close(fd_open);
+		if (fd_open >= 0)
+			cread_cmd(fd_open, this, cread_new_arg(this->commands));
 	}
-	close(this->fd[1]);
+	else
+		close(this->fd[1]);
 	next_command(previou, this);
 	return (this->fd);
 }
