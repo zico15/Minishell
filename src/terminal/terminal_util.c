@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 16:25:47 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:08:01 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	__destroy_terminal(char *msg)
 		hashmap(terminal()->envp)->destroy();
 	free_list(terminal()->envp_to_str);
 	rl_clear_history();
+	array(terminal()->history)->destroy();
 	printf("\n=====memory=====\n");
 	printf("malloc: %i\n", memory()->malloc_size);
 	printf("free:   %i\n", memory()->free_size);

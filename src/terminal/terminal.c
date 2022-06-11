@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 15:28:12 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:33:34 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ static t_command	*get_cmd(char *s)
 		return (new_minishell());
 	if (string().equals(s, "unset"))
 		return (new_unset());
+	if (string().equals(s, "history"))
+		return (new_history());
+	if (string().equals(s, "exit"))
+		return (new_exit());
 	return (new_command());
 }
 
@@ -122,9 +126,9 @@ static void	ft_init(void)
 		line = readline(t->title);
 		if (line && *line)
 		{
-			add_history(line);
+			add_history(string().trim(line));
+			array(terminal()->history)->add(line);
 			str = check_dolar(t->envp, line, 0, string().size(line));
-			free_ob(line);
 			line = str;
 		}
 		execute(t, token(line));
@@ -149,6 +153,7 @@ t_terminal	*new_terminal(char *title, char **env)
 	t.update_env = __update_env;
 	t.destroy = __destroy_terminal;
 	t.envp_to_str = env;
+	t.history = new_array();
 	this()->terminal = &t;
 	init_env(this()->terminal);
 	return (this()->terminal);
