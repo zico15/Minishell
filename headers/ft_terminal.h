@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 20:54:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:57:05 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_terminal				*new_terminal(char *title, char **env);
 t_command				*new_command(void);
 t_command				*new_console(void);
 t_command				*new_redirect_output(void);
+t_command				*new_redirect_output_append(void);
 t_command				*new_redirect_input(void);
 t_command				*new_cd(void);
 t_command				*new_echo(void);
