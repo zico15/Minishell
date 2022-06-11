@@ -6,44 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 21:01:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/11 23:09:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 #include <ft_command_util.h>
 #include <termios.h>
-
-static t_command	*get_cmd(char *s)
-{
-	if (string().equals(s, ">"))
-		return (new_redirect_output());
-	if (string().equals(s, "<"))
-		return (new_redirect_input());
-	if (string().equals(s, "cd"))
-		return (new_cd());
-	if (string().equals(s, "echo"))
-		return (new_echo());
-	if (string().equals(s, "pwd"))
-		return (new_pwd());
-	if (string().equals(s, "env"))
-		return (new_env());
-	if (string().equals(s, "teste"))
-		return (new_teste());
-	if (string().equals(s, "export"))
-		return (new_export());
-	if (string().equals(s, "minishell"))
-		return (new_minishell());
-	if (string().equals(s, "unset"))
-		return (new_unset());
-	if (string().equals(s, "history"))
-		return (new_history());
-	if (string().equals(s, "exit"))
-		return (new_exit());
-	if (string().equals(s, ">>"))
-		return (new_redirect_output_append());
-	return (new_command());
-}
 
 static void	cread_cmd(t_element *e, void *cmds)
 {
@@ -59,7 +28,7 @@ static void	cread_cmd(t_element *e, void *cmds)
 	list = array(token)->to_str();
 	if (!list)
 		return ;
-	cmd = get_cmd(*list);
+	cmd = __get_cmd(*list);
 	if (cmd && cmd->init(cmd, list))
 	{
 		cmd->index = array(cmds)->size;
@@ -102,6 +71,7 @@ void	execute(t_terminal	*t, void *token)
 	array(token)->destroy();
 	run = array(t->cmds)->get(0);
 	terminal()->check_command_args(run);
+	close(c->fd[1]);
 	run->input(c, run);
 	c->destroy(c);
 	(array(t->cmds))->for_each(waitpid_all, 0);
@@ -150,6 +120,7 @@ t_terminal	*new_terminal(char *title, char **env)
 	t.pid = getpid();
 	t.cmds = NULL;
 	t.pid_parent = -1;
+	t.get_cmd = __get_cmd;
 	t.sigaction = __sigaction;
 	t.envp = new_hashmap();
 	t.update_env = __update_env;
