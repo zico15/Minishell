@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 18:33:34 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:15:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static t_command	*get_cmd(char *s)
 		return (new_history());
 	if (string().equals(s, "exit"))
 		return (new_exit());
+	if (string().equals(s, "<<"))
+		return (new_left_shift());
 	return (new_command());
 }
 

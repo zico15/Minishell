@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 18:37:10 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:15:20 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ t_command				*new_minishell(void);
 t_command				*new_unset(void);
 t_command				*new_history(void);
 t_command				*new_exit(void);
+t_command				*new_left_shift(void);
 
 #endif
