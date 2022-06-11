@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 11:03:35 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:54:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct s_terminal
 	int					is_erro_cmd;
 	void				*cmds;
 	void				*envp;
+	void				*history;
 	char				**envp_to_str;
 	void				(*init)(void);
 	char				*(*wildcards)(const char *exts);
@@ -57,5 +58,7 @@ t_command				*new_teste(void);
 t_command				*new_export(void);
 t_command				*new_minishell(void);
 t_command				*new_unset(void);
+t_command				*new_history(void);
+t_command				*new_exit(void);
 
 #endif

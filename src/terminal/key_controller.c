@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 16:07:38 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:34:57 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	kill_all(t_element *e, void *o)
 
 static void	server_list(int signo)
 {
-	if (signo == SIGINT)
+	
+	if (signo == SIGINT && !terminal()->cmds)
 	{
 		write(0, "\n", 1);
 		rl_on_new_line();
