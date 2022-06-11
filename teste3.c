@@ -33,10 +33,12 @@ int main3(void)
 	void	*cmd;
 	scanf("%[^\n]", str);
 	printf("===================================================\n");
-	lst = token(str);
+	lst = token(string().copy(str));
+	// lst = ft_divide_quotes(string().copy(str));
 	int	i = -1;
 	while (++i < array(lst)->size)
 	{
+		// printf("(%s)\n", array(lst)->get(i));
 		cmd = array(lst)->get(i);
 		int j = -1;
 		while (++j < array(cmd)->size)
