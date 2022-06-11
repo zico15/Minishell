@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 18:35:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:51:12 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	terminal()->destroy("exit");
+
+	if (!previou->commands || string().equals(previou->commands[0], "||") || \
+	string().equals(previou->commands[0], "&&"))
+		terminal()->destroy("exit");
 	close(this->fd[1]);
 	next_command(previou, this);
 	return (this->fd);
