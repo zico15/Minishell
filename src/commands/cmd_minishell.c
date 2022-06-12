@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 17:56:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:59:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ static int	*ft_input(t_command *previou, t_command *this)
 		printf("===========minishell===========\n");
 		printf("pid: %i\n", terminal()->pid);
 		printf("pid parent: %i\n", terminal()->pid_parent);
-		printf \
-		("created by: (amaria-m) António Maria Mouro Ferreira Abranches Pinto\n");
-		printf("created by: (edos-san) Ezequiel Carlos Dos Santos\n");
+		printf("created by: %s\n", CREATED_1);
+		printf("created by: %s\n", CREATED_2);
 		printf("===========================\n");
 	}	
 	close(this->fd[1]);

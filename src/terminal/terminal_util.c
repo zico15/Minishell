@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 19:30:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:48:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,6 @@ void	waitpid_all(t_element *e, void *o)
 	if (c->status)
 		(terminal())->print_error(c, c->status);
 	terminal()->status_exit = c->status;
-}
-
-/***
- * remover depois * 
- * ***/
-static void	print_memory(void)
-{
-	printf("\n=====memory=====\n");
-	printf("malloc: %i\n", memory()->malloc_size);
-	printf("free:   %i\n", memory()->free_size);
-	printf("================\n\n");
 }
 
 void	__print_error(t_command *c, int status)

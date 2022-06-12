@@ -3,32 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 17:51:13 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:51:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_pipex.h>
 
-static int	*ft_input(t_command *previou, t_command *this)
+static void	write_history(int fd)
 {
-	int		i;
 	int		len;
 	char	*index;
-	int		fd;
+	int		i;
 
 	i = -1;
-	fd = this->fd[1];
-	if (!this->next || this->is_print)
-		fd = 1;
-	if (string().equals(this->commands[1], "-c"))
-	{
-		rl_clear_history();
-		array(terminal()->history)->destroy();
-		terminal()->history = new_array();
-	}
 	while (++i < array(terminal()->history)->size)
 	{
 		len = string().size(array(terminal()->history)->get(i));
@@ -40,6 +30,24 @@ static int	*ft_input(t_command *previou, t_command *this)
 		write(fd, "\n", 1);
 		free_ob(index);
 	}
+}
+
+static int	*ft_input(t_command *previou, t_command *this)
+{
+	char	*index;
+	int		fd;
+
+	fd = this->fd[1];
+	if (!this->next || this->is_print)
+		fd = 1;
+	if (string().equals(this->commands[1], "-c"))
+	{
+		rl_clear_history();
+		array(terminal()->history)->destroy();
+		terminal()->history = new_array();
+	}
+	else
+		write_history(fd);
 	close(this->fd[1]);
 	next_command(previou, this);
 	return (this->fd);

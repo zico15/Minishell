@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 15:33:54 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:59:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 # define FD_WRITE_O 1
 # define FD_READ_O 0
+# define CREATED_1 "(amaria-m) António Maria Mouro Ferreira Abranches Pinto"
+# define CREATED_2 "(edos-san) Ezequiel Carlos Dos Santos"
 
 typedef int	t_pid;
 

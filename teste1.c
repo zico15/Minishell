@@ -6,13 +6,24 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/10 15:45:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:48:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ft_pipex.h>
 #include <ft_base_array.h>
+
+/***
+ * remover depois * 
+ * ***/
+void	print_memory(void)
+{
+	printf("\n=====memory=====\n");
+	printf("malloc: %i\n", memory()->malloc_size);
+	printf("free:   %i\n", memory()->free_size);
+	printf("================\n\n");
+}
 
 void	p(t_element *e, void *o)
 {

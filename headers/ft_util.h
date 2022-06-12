@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 20:21:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:48:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ void		check_operator_and(t_command *this);
 int			free_ob(void *v);
 int			free_list(char **str);
 void		*malloc_ob(size_t __size);
+
+//			remove - testes
+void		print_memory(void);
 
 #endif

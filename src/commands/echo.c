@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 19:37:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:56:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,16 @@ static void	print_echo(int fd, char *str)
 {
 	int	i;
 	int	is_barra;
-	int	is_barra_end;
 
 	i = -1;
 	is_barra = 0;
-	is_barra_end = 1;
 	while (str && str[++i])
 	{
-		/*if (!is_barra && str[i] == '\\')
+		if (!is_barra && str[i] == '\\')
 			is_barra = 1;
-		else if (is_barra && str[i] == '\\' && is_barra_end)
-		{
-			printf("%c", str[i]);
-			is_barra_end = 0;
-		}
-		if (str[i] != '\\')
-		{*/
-		write(fd, &str[i], 1);
+		else
+			write(fd, &str[i], 1);
 		is_barra = 0;
-		is_barra_end = 1;
-		//}
 	}
 }
 

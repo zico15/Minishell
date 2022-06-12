@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:54:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,33 @@ static void	print_declare(t_element *e, void *o)
 	write(this->fd[1], "\"\n", 2);
 }
 
-static int	*ft_input(t_command *previou, t_command *this)
+static void	put_env(t_command *this)
 {
 	char	**str;
 	char	*temp;
 
+	temp = this->commands[1];
+	str = string().split(temp, "=");
+	if (string().size_list(str))
+	{
+		(hashmap(terminal()->envp))->put(str[0], str[1]);
+		free_ob(str);
+	}
+	else
+		free_list(str);
+	if (temp && terminal()->pid_parent != -1)
+	{
+		temp = string().join("export ", temp);
+		ft_send_msg(terminal()->pid_parent, temp);
+		free_ob(temp);
+	}
+}
+
+static int	*ft_input(t_command *previou, t_command *this)
+{
 	if (string().size_list(this->commands) > 1 && \
 	string().contains(this->commands[1], "="))
-	{
-		temp = this->commands[1];
-		str = string().split(temp, "=");
-		if (string().size_list(str))
-		{
-			(hashmap(terminal()->envp))->put(str[0], str[1]);
-			free_ob(str);
-		}
-		else
-			free_list(str);
-		if (temp && terminal()->pid_parent != -1)
-		{
-			temp = string().join("export ", temp);
-			ft_send_msg(terminal()->pid_parent, temp);
-			free_ob(temp);
-		}
-	}
+		put_env(this);
 	else
 		(hashmap(terminal()->envp))->for_each(print_declare, this);
 	close(this->fd[1]);
