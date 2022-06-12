@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 23:22:10 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:39:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	ft_init(void)
 	while (1)
 	{
 		str = NULL;
-		line = readline(t->title);
+		line = readline(t->get_title());
 		if (line && *line)
 		{
 			add_history(string().trim(line));
@@ -107,12 +107,14 @@ static void	ft_init(void)
 	}
 }
 
-t_terminal	*new_terminal(char *title, char **env)
+t_terminal	*new_terminal(char *title, char *color, char **env)
 {
 	static t_terminal	t;
 
 	t.init = ft_init;
-	t.title = title;
+	t.get_title = __get_title;
+	t.title = string().copy(title);
+	t.color = string().copy(color);
 	t.wildcards = __wildcards;
 	t.check_command_args = __check_args;
 	t.get_exts = __get_exts;
@@ -127,6 +129,7 @@ t_terminal	*new_terminal(char *title, char **env)
 	t.destroy = __destroy_terminal;
 	t.envp_to_str = env;
 	t.status_exit = 0;
+	t.print_error = __print_error;
 	t.history = new_array();
 	this()->terminal = &t;
 	init_env(this()->terminal);

@@ -6,11 +6,10 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 13:49:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:41:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
 #include <ft_pipex.h>
 
 static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
@@ -20,16 +19,28 @@ static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 	t_element	*e;
 
 	value = "";
-	e = hashmap(env)->get_key(key);
-	if (e)
-		value = e->value;
+	if (!key || !*key)
+		return (str);
+	else if (string().equals(key, "?"))
+		value = string().itoa(terminal()->status_exit);
+	else
+	{
+		e = hashmap(env)->get_key(key);
+		if (e)
+			value = e->value;
+	}
 	new = string().replace(str, value, dollar);
+	printf("dollar: (%s) key: (%s)\n", dollar, key);
 	free_ob(str);
+	if (string().equals(key, "?"))
+		free_ob(value);
 	return (new);
 }
 
 static int	is_valid(const char *str, int i, int j)
 {
+	if (str[i] == '_' || (str[i] == '?' && j == 1))
+		return (1);
 	if (str[i] == '_')
 		return (1);
 	if (string().is_space(str[i]) || str[i] == '$' || !str[i])
@@ -38,7 +49,8 @@ static int	is_valid(const char *str, int i, int j)
 		return (0);
 	if (i > 0 && string().isnumber(_str(str[i - 1])))
 		return (0);
-	(void) j;
+	if (i > 0 && j > 1 && str[i - 1] == '?' )
+		return (0);
 	return (1);
 }
 

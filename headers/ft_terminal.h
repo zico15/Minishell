@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 23:21:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:39:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_terminal	t_terminal;
 struct s_terminal
 {
 	char				*title;
+	char				*color;
 	int					fd[2];
 	pid_t				pid;
 	pid_t				pid_parent;
@@ -33,6 +34,7 @@ struct s_terminal
 	void				*envp;
 	void				*history;
 	char				**envp_to_str;
+	char				*(*get_title)(void);
 	void				(*init)(void);
 	char				*(*wildcards)(const char *exts);
 	char				*(*get_exts)(const char *str);
@@ -41,10 +43,11 @@ struct s_terminal
 	void				(*sigaction)(char *str);
 	void				(*update_env)(void);
 	void				(*destroy)(char *msg);
+	void				(*print_error)(t_command *c, int status);
 	t_terminal			*next;
 };
 
-t_terminal				*new_terminal(char *title, char **env);
+t_terminal				*new_terminal(char *title, char *color, char **env);
 
 //						commadas
 t_command				*new_command(void);
