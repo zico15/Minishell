@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 23:44:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:47:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 static t_command	*ft_add(t_command *cmd)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   left_shift.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 20:41:09 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 static char	*ft_readline(int fd)
 {

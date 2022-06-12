@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/11 22:06:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 static void	write_file(char *file, void *list)
 {

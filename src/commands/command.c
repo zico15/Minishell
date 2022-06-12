@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 19:29:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>

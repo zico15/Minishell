@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 16:36:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:05:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_pipex.h"
+#include "headers/ft_minishell.h"
 
 // -fsanitize=address -g
 //echo """dsfdsfss""" "s" """'oi'"""

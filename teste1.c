@@ -6,12 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 20:48:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:04:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <ft_pipex.h>
+#include "headers/ft_minishell.h"
 #include <ft_base_array.h>
 
 /***

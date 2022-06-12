@@ -6,14 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/10 14:31:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:05:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TOKEN_H
 # define FT_TOKEN_H
 
-# include <ft_pipex.h>
+# include "ft_minishell.h"
 
 # define SEPARADOES "|<>&"
 

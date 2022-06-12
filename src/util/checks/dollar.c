@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 14:41:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 {

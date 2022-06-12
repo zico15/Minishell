@@ -6,13 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:16:56 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/02 18:04:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 void	ft_read_signal(int signal)
 {

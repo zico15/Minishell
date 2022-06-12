@@ -6,12 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:15:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/10 12:46:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
 int	free_ob(void *v)
 {

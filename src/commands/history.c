@@ -6,13 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 20:51:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:08:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_pipex.h>
+#include <ft_minishell.h>
 
-static void	write_history(int fd)
+static void	write_history_all(int fd)
 {
 	int		len;
 	char	*index;
@@ -34,7 +34,6 @@ static void	write_history(int fd)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	char	*index;
 	int		fd;
 
 	fd = this->fd[1];
@@ -47,7 +46,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 		terminal()->history = new_array();
 	}
 	else
-		write_history(fd);
+		write_history_all(fd);
 	close(this->fd[1]);
 	next_command(previou, this);
 	return (this->fd);
