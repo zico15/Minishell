@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 16:01:00 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:37:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ typedef struct s_string
 	char	**(*split)(char const *s, char *spacer);
 	char	*(*itoa)(int n);
 	int		(*atoi)(const char *v);
+	int		(*isnumber)(const char *str);
 }	t_string;
 
 t_string	string(void);
+char		*_str(const char c);
 
 #endif

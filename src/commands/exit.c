@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 18:51:12 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 12:58:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-
 	if (!previou->commands || string().equals(previou->commands[0], "||") || \
 	string().equals(previou->commands[0], "&&"))
 		terminal()->destroy("exit");

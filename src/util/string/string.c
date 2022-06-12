@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:49:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:41:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,25 @@ static int	ft_contains(const char *str, const char *hey)
 	return (co + (co * p));
 }
 
+static int	__isnumber(const char *str)
+{
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (!(*str >= '0' && *str <= '9'))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 t_string	string(void)
 {
 	static t_string	str = {
 		ft_contains, ft_size, ft_copy, __join, __copy_n, __str_trim,
 		__equals, __equals_n, __is_space, __strnstr, __size_list, __replace,
-		__isalnum, __split_spacer, __itoa, __atoi
+		__isalnum, __split_spacer, __itoa, __atoi, __isnumber
 	};
 
 	return (str);

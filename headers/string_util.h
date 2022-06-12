@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/01 13:59:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:37:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int			__size_list(char **list);
 char		*__replace(const char *str1, const char *str2, const char *hey);
 int			__isalnum(char c);
 char		**__split_spacer(char const *s, char *spacer);
-char		*_str(const char c);
 char		*__itoa(int n);
 int			__atoi(const char *v);
 

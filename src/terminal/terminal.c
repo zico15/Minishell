@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 23:14:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/11 23:22:10 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ t_terminal	*new_terminal(char *title, char **env)
 	t.update_env = __update_env;
 	t.destroy = __destroy_terminal;
 	t.envp_to_str = env;
+	t.status_exit = 0;
 	t.history = new_array();
 	this()->terminal = &t;
 	init_env(this()->terminal);
