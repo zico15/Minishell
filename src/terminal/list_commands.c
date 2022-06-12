@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 23:07:03 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/11 23:12:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:00:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ t_command	*__get_cmd(char *s)
 		return (new_exit());
 	if (string().equals(s, ">>"))
 		return (new_redirect_output_append());
+	if (string().equals(s, "&&"))
+		return (new_operator_and());
+	if (string().equals(s, "||"))
+		return (new_operator_or());
 	return (new_command());
 }

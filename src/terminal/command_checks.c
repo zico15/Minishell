@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 14:27:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:22:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	__check_args(t_command *this)
 	i = -1;
 	if (!this)
 		return ;
+	check_operator_and(this);
+	check_operator_or(this);
 	arg = new_array();
 	while (this->commands && this->commands[++i])
 		check_wildcards(this->commands[i], arg, 0);

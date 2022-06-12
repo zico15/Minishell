@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 16:39:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:56:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ t_command				*new_unset(void);
 t_command				*new_history(void);
 t_command				*new_exit(void);
 t_command				*new_left_shift(void);
+t_command				*new_operator_and(void);
+t_command				*new_operator_or(void);
 
 #endif

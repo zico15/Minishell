@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 16:56:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:30:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,16 @@ void	__update_env(void)
 void	waitpid_all(t_element *e, void *o)
 {
 	t_command	*c;
-	int			status;
 
 	(void) o;
 	c = e->value;
-	status = 0;
 	if (c && c->pid)
-		waitpid(c->pid, &status, 0);
-	status = WEXITSTATUS(status);
-	if (status)
-		(terminal())->print_error(c, status);
-	//printf("status: %i strerror: %s\n", status, strerror(status));
-	terminal()->status_exit = status;
+		waitpid(c->pid, &c->status, 0);
+	c->status = WEXITSTATUS(c->status);
+	if (c->status)
+		(terminal())->print_error(c, c->status);
+	terminal()->status_exit = c->status;
 }
-
 
 /***
  * remover depois * 
@@ -83,7 +79,6 @@ void	__print_error(t_command *c, int status)
 
 void	__destroy_terminal(char *msg)
 {
-	(void) msg;
 	if (terminal()->cmds)
 		array(terminal()->cmds)->destroy();
 	if (terminal()->envp)

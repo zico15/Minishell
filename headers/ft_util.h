@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/09 16:00:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:21:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void		ft_send_msg(int pid_t, const char *msg);
 void		export_add(t_terminal	*t, char *str);
 void		unset_remove(t_terminal	*t, char *str);
 char		*check_dolar(void *env, const char *line, int i, int size);
+void		check_operator_or(t_command *this);
+void		check_operator_and(t_command *this);
 
 //			memory
 int			free_ob(void *v);

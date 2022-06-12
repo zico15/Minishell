@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 16:56:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:29:25 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_command	*new_command(void)
 	c->fd[0] = -1;
 	c->fd[1] = -1;
 	c->pid = 0;
+	c->status = 0;
 	c->index = -1;
 	c->next = NULL;
 	c->path[0] = 0;
