@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 23:07:03 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 20:00:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:44:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static t_command	*get_cmd1(char *s)
 		return (new_pwd());
 	if (string().equals(s, "env"))
 		return (new_env());
-	if (string().equals(s, "teste"))
-		return (new_teste());
 	if (string().equals(s, "export"))
 		return (new_export());
 	if (string().equals(s, "minishell"))
