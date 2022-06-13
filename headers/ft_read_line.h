@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/05/23 16:34:36 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:29:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ struct s_read
 
 t_read	*new_read_line(void);
 char	*read_line(t_terminal *t);
+char	*get_next_line(int fd);
 
 #endif

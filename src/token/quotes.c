@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/11 16:21:43 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:27:39 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,12 @@ static int	str_isspace(const char *str, int size)
 	int	i;
 
 	i = -1;
+	if (!string().size(str) || !size)
+		return (1);
 	while (++i < size && str[i])
 		if (!string().is_space(str[i]))
 			return (0);
 	return (1);
-}
-
-// ft_count_quotes,
-// receives the string that contains the commands (str),
-// receives the index of the character that is possibly 
-// surrounded by quotes (index)
-// and the adress of an ARRAY OF 4 INTEGERS (arr).
-// arr will be returned containing the amount of times each quotation appears:
-// arr[0] :  "number of times DOUBLE QUOTE appears at the LEFT of index"
-// arr[1] :  "number of times SINGEL QUOTE appears at the LEFT of index"
-// arr[2] :  "number of times SINGEL QUOTE appears at the RIGHT of index"
-// arr[3] :  "number of times DOUBLE QUOTE appears at the RIGHT of index"
-// example: str = (hello "world" this '$TERM' is in '42') | index = 21
-// |-> arr = {2, 1, 3, 0}
-
-static int	*ft_count_quotes(const char *str, int index, int *arr)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-		arr[i++] = 0;
-	i = -1;
-	while (str[++i] && i < index)
-	{
-		arr[0] += (str[i] == '\"' && arr[1] % 2 == 0);
-		arr[1] += (str[i] == '\'' && arr[0] % 2 == 0);
-	}
-	arr[0] += (str[index] == '\"' && arr[1] % 2 == 0 && arr[0] % 2 != 0);
-	arr[1] += (str[index] == '\'' && arr[0] % 2 == 0 && arr[1] % 2 != 0);
-	i = index;
-	while (str[++i])
-	{
-		arr[2] += (str[i] == '\'' && (arr[0] + arr[3]) % 2 == 0);
-		arr[3] += (str[i] == '\"' && (arr[1] + arr[2]) % 2 == 0);
-	}
-	return (arr);
-}
-
-// is_quotes,
-// return 0 -> not quoted ()
-// return 1 -> double quoted ("")
-// return 2 -> single quoted ('')
-// return 3 -> both quoted ("" '') (this is not possible i think)
-int	is_quotes(const char *str, int index)
-{
-	int	d_quoted;
-	int	s_quoted;
-	int	arr[4];
-
-	ft_count_quotes(str, index, arr);
-	d_quoted = (arr[0] % 2 != 0 && arr[3] % 2 != 0);
-	s_quoted = (arr[1] % 2 != 0 && arr[2] % 2 != 0);
-	if (d_quoted && !s_quoted)
-		return (DOUBLE_QUOTED);
-	else if (!d_quoted && s_quoted)
-		return (SINGLE_QUOTED);
-	else if (d_quoted && s_quoted)
-		return (BOTH_QUOTED);
-	return (NOT_QUOTED);
 }
 
 void	*ft_divide_quotes(const char *str)
@@ -99,18 +41,39 @@ void	*ft_divide_quotes(const char *str)
 			if (!str_isspace(str, i))
 				(array(cmds))->add(string().copy_n(str, i));
 			str += i + !(i == (ft_separator(str) - 1));
-			i = 0;
+			i = ft_sep_move(str);
 			if (!(ft_separator(str) - 1))
 			{
-				i += ft_sep_move(str);
 				(array(cmds))->add(string().copy_n(str, i));
 				str += i;
 				i = 0;
 			}
 		}
 	}
-	(array(cmds))->add(string().copy_n(str, i));
+	if (!str_isspace(str, i))
+		(array(cmds))->add(string().copy_n(str, i));
 	return (cmds);
+}
+
+static void	div_cmd_block(int *check, void **token, void **cmds, char **str)
+{
+	if (ft_separator(*str))
+	{
+		if (!*check)
+			array(*token)->add(*cmds);
+		*cmds = new_array();
+		*check = 0;
+		if (string().equals(*str, "||") || string().equals(*str, "&&"))
+		{
+			array(*cmds)->add(string().trim(*str));
+			array(*token)->add(*cmds);
+			*check = 1;
+		}
+		else if (!string().equals(*str, "|"))
+			array(*cmds)->add(string().trim(*str));
+	}
+	else if (!*check)
+		array(*cmds)->add(string().trim(*str));
 }
 
 void	*ft_divide_cmds(void *list)
@@ -128,24 +91,8 @@ void	*ft_divide_cmds(void *list)
 	while (++i < array(list)->size)
 	{
 		str = array(list)->get(i);
-		if (ft_separator(str))
-		{
-			if (!check)
-				array(token)->add(cmds);
-			cmds = new_array();
-			check = 0;
-			if (string().equals(str, "||") || string().equals(str, "&&"))
-			{
-				array(cmds)->add(string().trim(str));
-				array(token)->add(cmds);
-				check = 1;
-			}
-			else if (!string().equals(str, "|"))
-				array(cmds)->add(string().trim(str));
-		}
-		else if (!check)
-			array(cmds)->add(string().trim(str));
-		else
+		div_cmd_block(&check, &token, &cmds, &str);
+		if (!ft_separator(str) && check)
 		{
 			cmds = new_array();
 			array(cmds)->add(string().trim(str));

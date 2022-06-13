@@ -1,0 +1,324 @@
+==39547== Memcheck, a memory error detector
+==39547== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==39547== Using Valgrind-3.19.0.GIT-lbmacos-6ff08b6e31-20220212 and LibVEX; rerun with -h for copyright info
+==39547== Command: ./minishell
+==39547== Parent PID: 39340
+==39547== 
+--39547-- 
+--39547-- Valgrind options:
+--39547--    --leak-check=full
+--39547--    --log-file=logfile.out
+--39547--    -v
+--39547-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--39547--   Darwin Kernel Version 19.6.0: Mon Apr 18 21:50:40 PDT 2022; root:xnu-6153.141.62~1/RELEASE_X86_64
+--39547-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--39547-- Page sizes: currently 4096, max supported 4096
+--39547-- Valgrind library directory: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind
+--39547-- ./minishell (rx at 0x100000000, rw at 0x10000c000)
+--39547--    reading syms   from primary file (106 70)
+--39547--    dSYM= ./minishell.dSYM/Contents/Resources/DWARF/minishell
+--39547-- /usr/lib/dyld (rx at 0x1002f4000, rw at 0x100387000)
+--39547--    reading syms   from primary file (5 2729)
+--39547-- Scheduler: using generic scheduler lock implementation.
+--39547-- Reading suppressions file: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp
+==39547== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-from-vgdb-to-39547-by-amaria-m-on-???
+==39547== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-to-vgdb-from-39547-by-amaria-m-on-???
+==39547== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-shared-mem-vgdb-39547-by-amaria-m-on-???
+==39547== 
+==39547== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==39547== don't want to do, unless you know exactly what you're doing,
+==39547== or are doing some strange experiment):
+==39547==   /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=39547 ...command...
+==39547== 
+==39547== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==39547==   /path/to/gdb ./minishell
+==39547== and then give GDB the following command
+==39547==   target remote | /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=39547
+==39547== --pid is optional if only one valgrind process is running
+==39547== 
+--39547-- REDIR: 0x100346340 (dyld:strcmp) redirected to 0x25805831e (???)
+--39547-- REDIR: 0x100340614 (dyld:arc4random) redirected to 0x2580583bc (???)
+--39547-- REDIR: 0x100345720 (dyld:strlen) redirected to 0x2580582ed (???)
+--39547-- REDIR: 0x100346640 (dyld:strcpy) redirected to 0x25805833a (???)
+--39547-- REDIR: 0x1003437ba (dyld:strcat) redirected to 0x2580582fe (???)
+--39547-- REDIR: 0x10034551a (dyld:strlcat) redirected to 0x258058357 (???)
+--39547-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x1003fa000, rw at 0x1003fe000)
+--39547--    reading syms   from primary file (3 53)
+--39547--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--39547-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100406000, rw at 0x10040e000)
+--39547--    reading syms   from primary file (75 62)
+--39547--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--39547-- /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib (rx at 0x100416000, rw at 0x10043e000)
+--39547--    reading syms   from primary file (717 337)
+--39547--    dSYM= /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib.dSYM/Contents/Resources/DWARF/libreadline.8.1.dylib
+--39547-- /usr/lib/libSystem.B.dylib (rx at 0x10045a000, rw at 0x10045c000)
+--39547--    reading syms   from primary file (29 8)
+--39547-- /usr/lib/libncurses.5.4.dylib (rx at 0x100464000, rw at 0x100494000)
+--39547--    reading syms   from primary file (613 1)
+--39547-- /usr/lib/system/libcache.dylib (rx at 0x1004a8000, rw at 0x1004ae000)
+--39547--    reading syms   from primary file (32 29)
+--39547-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x1004b5000, rw at 0x1004c1000)
+--39547--    reading syms   from primary file (241 173)
+--39547-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x1004d1000, rw at 0x1004d9000)
+--39547--    reading syms   from primary file (505 8)
+--39547-- /usr/lib/system/libcopyfile.dylib (rx at 0x1004e9000, rw at 0x1004f3000)
+--39547--    reading syms   from primary file (11 38)
+--39547-- /usr/lib/system/libcorecrypto.dylib (rx at 0x1004fb000, rw at 0x10058e000)
+--39547--    reading syms   from primary file (586 845)
+--39547-- /usr/lib/system/libdispatch.dylib (rx at 0x1005ae000, rw at 0x1005ef000)
+--39547--    reading syms   from primary file (328 1607)
+--39547-- /usr/lib/system/libdyld.dylib (rx at 0x10062c000, rw at 0x100663000)
+--39547--    reading syms   from primary file (119 1467)
+--39547-- /usr/lib/system/libkeymgr.dylib (rx at 0x10068c000, rw at 0x10068d000)
+--39547--    reading syms   from primary file (11 2)
+--39547-- /usr/lib/system/libmacho.dylib (rx at 0x10069c000, rw at 0x1006a2000)
+--39547--    reading syms   from primary file (105 2)
+--39547-- /usr/lib/system/libquarantine.dylib (rx at 0x1006aa000, rw at 0x1006ad000)
+--39547--    reading syms   from primary file (91 12)
+--39547-- /usr/lib/system/libremovefile.dylib (rx at 0x1006b5000, rw at 0x1006b7000)
+--39547--    reading syms   from primary file (12 8)
+--39547-- /usr/lib/system/libsystem_asl.dylib (rx at 0x1006be000, rw at 0x1006d6000)
+--39547--    reading syms   from primary file (219 234)
+--39547-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1006e6000, rw at 0x1006e7000)
+--39547--    reading syms   from primary file (21 8)
+--39547-- /usr/lib/system/libsystem_c.dylib (rx at 0x1006ee000, rw at 0x100776000)
+--39547--    reading syms   from primary file (1346 892)
+--39547-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x1007a6000, rw at 0x1007aa000)
+--39547--    reading syms   from primary file (36 68)
+--39547-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x1007b3000, rw at 0x1007b7000)
+--39547--    reading syms   from primary file (14 47)
+--39547-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x1007bf000, rw at 0x1007c8000)
+--39547--    reading syms   from primary file (63 562)
+--39547-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x1007d7000, rw at 0x1007df000)
+--39547--    reading syms   from primary file (40 26)
+--39547-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x1007e7000, rw at 0x1007e9000)
+--39547--    reading syms   from primary file (1 12)
+--39547-- /usr/lib/system/libsystem_info.dylib (rx at 0x1007f0000, rw at 0x10083e000)
+--39547--    reading syms   from primary file (427 715)
+--39547-- /usr/lib/system/libsystem_m.dylib (rx at 0x100856000, rw at 0x10089e000)
+--39547--    reading syms   from primary file (811 1)
+--39547-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x1008af000, rw at 0x1008d7000)
+--39547--    reading syms   from primary file (98 470)
+--39547-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x1008e7000, rw at 0x1008f5000)
+--39547--    reading syms   from primary file (118 242)
+--39547-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100905000, rw at 0x10090f000)
+--39547--    reading syms   from primary file (23 1)
+--39547-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100917000, rw at 0x10091c000)
+--39547--    reading syms   from primary file (112 23)
+--39547-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x100925000, rw at 0x100928000)
+--39547--    reading syms   from primary file (5 20)
+--39547-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x10092f000, rw at 0x10095c000)
+--39547--    reading syms   from primary file (1362 230)
+--39547-- /usr/lib/system/libsystem_platform.dylib (rx at 0x10097b000, rw at 0x100984000)
+--39547--    reading syms   from primary file (168 103)
+--39547-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x10098e000, rw at 0x100999000)
+--39547--    reading syms   from primary file (189 143)
+--39547-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x1009a6000, rw at 0x1009ae000)
+--39547--    reading syms   from primary file (10 86)
+--39547-- /usr/lib/system/libsystem_trace.dylib (rx at 0x1009b6000, rw at 0x1009cd000)
+--39547--    reading syms   from primary file (131 274)
+--39547-- /usr/lib/system/libunwind.dylib (rx at 0x1009de000, rw at 0x1009e4000)
+--39547--    reading syms   from primary file (102 52)
+--39547-- /usr/lib/system/libxpc.dylib (rx at 0x1009ed000, rw at 0x100a23000)
+--39547--    reading syms   from primary file (627 1467)
+--39547-- /usr/lib/libobjc.A.dylib (rx at 0x100a51000, rw at 0x100a85000)
+--39547--    reading syms   from primary file (382 771)
+--39547-- /usr/lib/libc++abi.dylib (rx at 0x100aa9000, rw at 0x100abf000)
+--39547--    reading syms   from primary file (366 704)
+--39547-- /usr/lib/libc++.1.dylib (rx at 0x100add000, rw at 0x100b30000)
+--39547--    reading syms   from primary file (2088 1160)
+--39547-- REDIR: 0x10097c3a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x10040a8b5 (_platform_memcmp)
+--39547-- REDIR: 0x10097bc00 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x10040a249 (_platform_strncmp)
+--39547-- REDIR: 0x10097b800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x10040a2c3 (_platform_strcmp)
+--39547-- REDIR: 0x1008afce0 (libsystem_malloc.dylib:malloc) redirected to 0x1004084d0 (malloc)
+--39547-- REDIR: 0x1008b1ec1 (libsystem_malloc.dylib:calloc) redirected to 0x100408ae6 (calloc)
+--39547-- REDIR: 0x1008b1d67 (libsystem_malloc.dylib:realloc) redirected to 0x100408e64 (realloc)
+--39547-- REDIR: 0x1008b2087 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x100409819 (malloc_default_zone)
+--39547-- REDIR: 0x1008afd12 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x100408738 (malloc_zone_malloc)
+--39547-- REDIR: 0x1008b1ef6 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x100408cd2 (malloc_zone_calloc)
+--39547-- REDIR: 0x1008b208f (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x10040985a (malloc_zone_from_ptr)
+--39547-- REDIR: 0x1008b09b1 (libsystem_malloc.dylib:free) redirected to 0x1004088ac (free)
+--39547-- REDIR: 0x10097c300 (libsystem_platform.dylib:_platform_strchr$VARIANT$Haswell) redirected to 0x100409acd (_platform_strchr$VARIANT$Haswell)
+==39547== Warning: ignored attempt to set SIGUSR2 handler in sigaction();
+==39547==          the SIGUSR2 signal is used internally by Valgrind
+--39547-- REDIR: 0x1007450bc (libsystem_c.dylib:strrchr) redirected to 0x100409a6b (strrchr)
+--39547-- REDIR: 0x10097c1a0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Haswell) redirected to 0x10040a334 (_platform_memchr$VARIANT$Haswell)
+==39547== Syscall param access(pathname) points to uninitialised byte(s)
+==39547==    at 0x10093067A: access (in /usr/lib/system/libsystem_kernel.dylib)
+==39547==    by 0x10000B47A: get_path (in ./minishell)
+==39547==    by 0x100003A78: init (in ./minishell)
+==39547==    by 0x10000682E: cread_cmd (in ./minishell)
+==39547==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39547==    by 0x1000066D6: execute (in ./minishell)
+==39547==    by 0x100006BE8: ft_init (in ./minishell)
+==39547==    by 0x100003080: main (in ./minishell)
+==39547==  Address 0x100be7951 is 33 bytes inside a block of size 1,072 alloc'd
+==39547==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39547==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39547==    by 0x100003821: new_command (in ./minishell)
+==39547==    by 0x10000642F: __get_cmd (in ./minishell)
+==39547==    by 0x10000680A: cread_cmd (in ./minishell)
+==39547==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39547==    by 0x1000066D6: execute (in ./minishell)
+==39547==    by 0x100006BE8: ft_init (in ./minishell)
+==39547==    by 0x100003080: main (in ./minishell)
+==39547== 
+--39560-- REDIR: 0x10076b32e (libsystem_c.dylib:__strncpy_chk) redirected to 0x10040a020 (__strncpy_chk)
+==39560== Syscall param execve(filename) points to uninitialised byte(s)
+==39560==    at 0x10093641E: execve (in /usr/lib/system/libsystem_kernel.dylib)
+==39560==    by 0x100003BAD: execute (in ./minishell)
+==39560==    by 0x10000399C: ft_input (in ./minishell)
+==39560==    by 0x10000B53E: next_command (in ./minishell)
+==39560==    by 0x100003F72: ft_input (in ./minishell)
+==39560==    by 0x100006741: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560==  Address 0x100be7951 is 33 bytes inside a block of size 1,072 alloc'd
+==39560==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39560==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39560==    by 0x100003821: new_command (in ./minishell)
+==39560==    by 0x10000642F: __get_cmd (in ./minishell)
+==39560==    by 0x10000680A: cread_cmd (in ./minishell)
+==39560==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39560==    by 0x1000066D6: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560== 
+==39560== 
+==39560== HEAP SUMMARY:
+==39560==     in use at exit: 309,303 bytes in 515 blocks
+==39560==   total heap usage: 833 allocs, 318 frees, 331,716 bytes allocated
+==39560== 
+==39560== Searching for pointers to 515 not-freed blocks
+==39560== Checked 71,182,776 bytes
+==39560== 
+==39560== 16 bytes in 1 blocks are definitely lost in loss record 21 of 130
+==39560==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39560==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39560==    by 0x10000A825: __copy_n (in ./minishell)
+==39560==    by 0x10000AA30: __str_trim (in ./minishell)
+==39560==    by 0x100006B39: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560== 
+==39560== LEAK SUMMARY:
+==39560==    definitely lost: 16 bytes in 1 blocks
+==39560==    indirectly lost: 0 bytes in 0 blocks
+==39560==      possibly lost: 0 bytes in 0 blocks
+==39560==    still reachable: 295,464 bytes in 354 blocks
+==39560==         suppressed: 13,823 bytes in 160 blocks
+==39560== Reachable blocks (those to which a pointer was found) are not shown.
+==39560== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==39560== 
+==39560== Use --track-origins=yes to see where uninitialised values come from
+==39560== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 9 from 9)
+==39560== 
+==39560== 1 errors in context 1 of 3:
+==39560== Syscall param execve(filename) points to uninitialised byte(s)
+==39560==    at 0x10093641E: execve (in /usr/lib/system/libsystem_kernel.dylib)
+==39560==    by 0x100003BAD: execute (in ./minishell)
+==39560==    by 0x10000399C: ft_input (in ./minishell)
+==39560==    by 0x10000B53E: next_command (in ./minishell)
+==39560==    by 0x100003F72: ft_input (in ./minishell)
+==39560==    by 0x100006741: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560==  Address 0x100be7951 is 33 bytes inside a block of size 1,072 alloc'd
+==39560==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39560==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39560==    by 0x100003821: new_command (in ./minishell)
+==39560==    by 0x10000642F: __get_cmd (in ./minishell)
+==39560==    by 0x10000680A: cread_cmd (in ./minishell)
+==39560==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39560==    by 0x1000066D6: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560== 
+==39560== 
+==39560== 1 errors in context 2 of 3:
+==39560== Syscall param access(pathname) points to uninitialised byte(s)
+==39560==    at 0x10093067A: access (in /usr/lib/system/libsystem_kernel.dylib)
+==39560==    by 0x10000B47A: get_path (in ./minishell)
+==39560==    by 0x100003A78: init (in ./minishell)
+==39560==    by 0x10000682E: cread_cmd (in ./minishell)
+==39560==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39560==    by 0x1000066D6: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560==  Address 0x100be7951 is 33 bytes inside a block of size 1,072 alloc'd
+==39560==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39560==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39560==    by 0x100003821: new_command (in ./minishell)
+==39560==    by 0x10000642F: __get_cmd (in ./minishell)
+==39560==    by 0x10000680A: cread_cmd (in ./minishell)
+==39560==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39560==    by 0x1000066D6: execute (in ./minishell)
+==39560==    by 0x100006BE8: ft_init (in ./minishell)
+==39560==    by 0x100003080: main (in ./minishell)
+==39560== 
+--39560-- 
+--39560-- used_suppression:      2 OSX1015:dyld-4 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:751 suppressed: 4,128 bytes in 2 blocks
+--39560-- used_suppression:      1 OSX1015:Leak02-objc /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
+--39560-- used_suppression:     15 OSX1015:dyld-7 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:781 suppressed: 4,032 bytes in 120 blocks
+--39560-- used_suppression:     13 OSX1015:dyld-8 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:791 suppressed: 3,191 bytes in 29 blocks
+--39560-- used_suppression:      6 OSX1015:dyld-5 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:761 suppressed: 424 bytes in 8 blocks
+--39560-- used_suppression:      1 OSX1015:dyld-2 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:733
+==39560== 
+==39560== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 9 from 9)
+==39547== 
+==39547== HEAP SUMMARY:
+==39547==     in use at exit: 298,955 bytes in 372 blocks
+==39547==   total heap usage: 826 allocs, 454 frees, 329,338 bytes allocated
+==39547== 
+==39547== Searching for pointers to 372 not-freed blocks
+==39547== Checked 71,175,584 bytes
+==39547== 
+==39547== 16 bytes in 1 blocks are definitely lost in loss record 11 of 92
+==39547==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39547==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39547==    by 0x10000A825: __copy_n (in ./minishell)
+==39547==    by 0x10000AA30: __str_trim (in ./minishell)
+==39547==    by 0x100006B39: ft_init (in ./minishell)
+==39547==    by 0x100003080: main (in ./minishell)
+==39547== 
+==39547== LEAK SUMMARY:
+==39547==    definitely lost: 16 bytes in 1 blocks
+==39547==    indirectly lost: 0 bytes in 0 blocks
+==39547==      possibly lost: 0 bytes in 0 blocks
+==39547==    still reachable: 285,052 bytes in 210 blocks
+==39547==         suppressed: 13,887 bytes in 161 blocks
+==39547== Reachable blocks (those to which a pointer was found) are not shown.
+==39547== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==39547== 
+==39547== Use --track-origins=yes to see where uninitialised values come from
+==39547== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 4 from 4)
+==39547== 
+==39547== 1 errors in context 1 of 2:
+==39547== Syscall param access(pathname) points to uninitialised byte(s)
+==39547==    at 0x10093067A: access (in /usr/lib/system/libsystem_kernel.dylib)
+==39547==    by 0x10000B47A: get_path (in ./minishell)
+==39547==    by 0x100003A78: init (in ./minishell)
+==39547==    by 0x10000682E: cread_cmd (in ./minishell)
+==39547==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39547==    by 0x1000066D6: execute (in ./minishell)
+==39547==    by 0x100006BE8: ft_init (in ./minishell)
+==39547==    by 0x100003080: main (in ./minishell)
+==39547==  Address 0x100be7951 is 33 bytes inside a block of size 1,072 alloc'd
+==39547==    at 0x100408545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==39547==    by 0x100009D8C: malloc_ob (in ./minishell)
+==39547==    by 0x100003821: new_command (in ./minishell)
+==39547==    by 0x10000642F: __get_cmd (in ./minishell)
+==39547==    by 0x10000680A: cread_cmd (in ./minishell)
+==39547==    by 0x100007EA7: __base_for_each (in ./minishell)
+==39547==    by 0x1000066D6: execute (in ./minishell)
+==39547==    by 0x100006BE8: ft_init (in ./minishell)
+==39547==    by 0x100003080: main (in ./minishell)
+==39547== 
+--39547-- 
+--39547-- used_suppression:      2 OSX1015:dyld-4 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:751 suppressed: 4,128 bytes in 2 blocks
+--39547-- used_suppression:      1 OSX1015:Leak02-objc /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
+--39547-- used_suppression:     17 OSX1015:dyld-7 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:781 suppressed: 2,560 bytes in 74 blocks
+--39547-- used_suppression:     15 OSX1015:dyld-8 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:791 suppressed: 4,887 bytes in 81 blocks
+--39547-- used_suppression:      1 OSX1015:dyld-5 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:761 suppressed: 264 bytes in 3 blocks
+--39547-- used_suppression:      1 OSX1015:dyld-2 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:733
+==39547== 
+==39547== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 4 from 4)
