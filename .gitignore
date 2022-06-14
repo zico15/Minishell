@@ -9,5 +9,6 @@ vscode/*
 .vscode/settings.json
 .vscode/tasks.json
 minishell
+minishell.dSYM
 teste.txt
 d

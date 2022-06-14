@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:14:47 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,33 @@ static int	*ft_input(t_command *previou, t_command *this)
 	return (this->fd);
 }
 
+static void	wait_for_cat(int fd)
+{
+	char	*str;
+
+	while (1)
+	{
+		str = get_next_line(0);
+		if (!str)
+			break ;
+		else
+		{
+			write(fd, str, string().size(str));
+			free_ob(str);
+		}
+	}
+}
+
 static int	execute(t_command *this, int input, int out)
 {
 	int		status;
+	int		fd;
 
+	fd = this->fd[1];
+	if (!this->next || this->is_print)
+		fd = 1;
+	if (string().size_list(this->commands) == 1 && string().equals(this->commands[0], "cat"))
+		wait_for_cat(fd);
 	this->pid = fork();
 	status = 0;
 	if (!this->pid)
