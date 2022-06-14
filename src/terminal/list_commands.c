@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 23:07:03 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:51:39 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ t_command	*__get_cmd(char *s)
 		return (new_operator_and());
 	if (string().equals(s, "||"))
 		return (new_operator_or());
+	if (string().equals(s, "<<"))
+		return (new_left_shift());
 	return (new_command());
 }
