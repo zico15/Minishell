@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:05:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/13 12:41:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ static int	list_colores(char *str, char **temp, int i)
 	printf("\033[1;36m 16 - Cyan  Claro\033[0m\n");
 	printf("\033[1;37m 17 - Branco\033[0m\n");
 	return (printf(" SET COLOR (color=number)\n"));
+}
+
+void	set_texto(t_element *e, void *o)
+{
+	if (string().equals(e->value, "casa"))
+		e->value = o;
 }
 
 static int	*ft_input(t_command *previou, t_command *this)

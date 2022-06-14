@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:02:54 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:20:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static	void	cread_cmd(int fd, t_command *this, char **arg)
 	close(c->fd[1]);
 	c->next = this->next;
 	c->execute(c, fd, this->fd[1]);
+	this->status = c->status;
+	this->pid = c->pid;
 	c->destroy(c);
 }
 

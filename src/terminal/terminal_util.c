@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:15:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	waitpid_all(t_element *e, void *o)
 
 	(void) o;
 	c = e->value;
+	if (c && !*c->commands)
+		return ;
 	if (c && c->pid)
 		waitpid(c->pid, &c->status, 0);
 	c->status = WEXITSTATUS(c->status);

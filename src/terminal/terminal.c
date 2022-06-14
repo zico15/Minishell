@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:04:33 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:05:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ void	execute(t_terminal	*t, void *token)
 		return ;
 	t->cmds = new_array();
 	c = new_command();
+	c->pid = 0;
 	c->index = __COMMAND_BEGING_;
 	pipe(c->fd);
 	(array(token))->for_each(cread_cmd, t->cmds);
 	array(token)->destroy();
 	run = array(t->cmds)->get(0);
 	terminal()->check_command_args(run);
-	close(c->fd[1]);
+	//close(c->fd[0]);
 	run->input(c, run);
 	c->destroy(c);
 	(array(t->cmds))->for_each(waitpid_all, 0);
@@ -98,8 +99,9 @@ static void	ft_init(void)
 		line = readline(t->get_title());
 		if (line && *line)
 		{
-			add_history(string().trim(line));
-			array(terminal()->history)->add(line);
+			str = string().trim(line);
+			add_history(str);
+			array(terminal()->history)->add(str);
 			str = check_dolar(t->envp, line, 0, string().size(line));
 			line = str;
 		}
