@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:36:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	*input(t_command *previou, t_command *this)
 	string().size_list(this->commands) > 1)
 	{
 		str = read_all(previou->fd[0]);
+		write(previou->fd[0], "", 1);
 		close(previou->fd[0]);
 		fd_open = open(this->commands[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd_open >= 0 && str)
@@ -31,6 +32,7 @@ static int	*input(t_command *previou, t_command *this)
 		close(fd_open);
 	}
 	close(this->fd[1]);
+	this->fd[0] = dup(open(this->commands[1], O_RDONLY));
 	return (terminal()->next_command(previou, this));
 }
 
