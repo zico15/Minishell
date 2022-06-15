@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:02:54 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:42:24 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,16 @@ static int	*input(t_command *previou, t_command *this)
 	int			fd_open;
 
 	fd_open = 0;
-	if (string().size_list(this->commands) >= 3)
+	if (string().size_list(this->commands) >= 2)
 	{
 		fd_open = open(this->commands[1], O_RDONLY);
 		if (fd_open >= 0)
 			cread_cmd(fd_open, this, cread_new_arg(this->commands));
+		else
+		{
+			this->status = 1;
+			close(this->fd[1]);
+		}
 	}
 	else
 		close(this->fd[1]);

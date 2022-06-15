@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   left_shift.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:33:55 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 
 	div = NULL;
 	str = NULL;
+	close(this->fd[0]);
+	close(this->fd[1]);
+	pipe(this->fd);
 	if (string().size_list(this->commands) > 1)
 		div = this->commands[1];
 	else

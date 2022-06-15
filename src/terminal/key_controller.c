@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_controller.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:23:03 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	server_list(int signo)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	else if (signo == SIGQUIT)
+	else if (signo == SIGQUIT && !terminal()->cmds)
 	{
 		gotoxy(string().size(rl_line_buffer) + 10);
 	}
