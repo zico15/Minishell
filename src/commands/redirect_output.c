@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static int	*input(t_command *previou, t_command *this)
 		close(fd_open);
 	}
 	close(this->fd[1]);
-	next_command(previou, this);
-	return (this->fd);
+	return (terminal()->next_command(previou, this));
 }
 
 t_command	*new_redirect_output(void)

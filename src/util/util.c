@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:33:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ char	*get_path(t_command	*c, char *arg, const char *path)
 	if (access(c->path, F_OK) == -1)
 		c->path[0] = 0;
 	return (NULL);
-}
-
-int	next_command(t_command *previou, t_command *this)
-{
-	if (this && this->next && this->next->input)
-	{
-		terminal()->check_command_args(this->next);
-		this->next->input(this, this->next);
-	}
-	if (previou)
-	{
-		close(previou->fd[0]);
-		close(previou->fd[1]);
-	}
-	return (1);
 }
 
 char	*read_all(int fd)
@@ -97,4 +82,28 @@ char	*_str(const char c)
 
 	str[0] = c;
 	return (str);
+}
+
+char	**list_commans_bash(void)
+{	
+	static char	**list = {"ls", "df", "top", "cd", "mkdir", "rm", "cat", \
+	"vi", "exit", "logout", "passwd", "rlogin", "ssh", "slogin", \
+	"yppasswd", "mail",	"mesg", "pine",	"talk", "write", "apropos", "find", \
+	"info", "man", "whatis", "whereis", "emacs", "pico", "sed", "vi", "vim", \
+	"cd", "chmod", "chown", "chgrp", "cmp", "comm", "cp", "crypt", "diff", \
+	"file", "grep", "gzip", "ln", "ls", "lsof", "mkdir", "mv", "pwd", "quota", \
+	"rm", "rmdir", "stat", "sync", "sort", "tar", "tee", "tr", "umask", \
+	"uncompress", "uniq", "wc", "cat", "fold", "head", "lpq", "lpr", "lprm", \
+	"more", "less", "page", "pr", "tail", "zcat", "xv", "gv", "xpdf", "ftp", \
+	"rsync", "scp", "netstat", "rsh", "ssh", "nmap", "ifconfig", "ping", \
+	"kill", "bg", "fg", "jobs", "top", "clock", "date", "df", "du", "env", \
+	"finger", "history", "last", "lpq", "manpath", "printenv", "ps", "pwd", \
+	"set", "spend", "uptime", "w", "who", "whois", "whoami", "abiword", "col", \
+	"diction", "diffmk", "dvips", "addbib", "explain", "grap", "hyphen", \
+	"ispell", "latex", "pdfelatex", "latex2html", "lookbib", "macref", "ndx", \
+	"neqn", "nroff", "pic", "psdit", "ptx", "refer", "roffbib", "sortbib", \
+	"spell", "style", "tbl", "tex", "tpic", "wget", "html2ps", "latex2html", \
+	"lynx", "netscape",	"sitecopy", "weblint", "minishell" };
+
+	return (list);
 }

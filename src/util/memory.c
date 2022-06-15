@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:15:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:15:22 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void	*malloc_ob(size_t __size)
 		return (NULL);
 	v = malloc(__size);
 	if (!v)
-		printf("ERROR\n");
-	else
-		memory()->malloc_size++;
+		terminal()->destroy(__ERROR_MEMORY_);
+	memory()->malloc_size++;
 	return (v);
 }

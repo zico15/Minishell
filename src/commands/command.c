@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/14 18:14:47 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 #include <string.h>
 #include <errno.h>
 
+/**
+ * @brief Main function(virtual) to execute a command
+ * @param previou  command previou
+ * @param this command this
+ * @return this->fd
+ */
 static int	*ft_input(t_command *previou, t_command *this)
 {
 	if (string().equals(this->path, *this->commands))
@@ -25,46 +31,28 @@ static int	*ft_input(t_command *previou, t_command *this)
 			print_msg_error(this, __COMMAND_NOT_FOUND__, 1);
 		close(this->fd[1]);
 	}
-	next_command(previou, this);
-	return (this->fd);
+	return (terminal()->next_command(previou, this));
 }
 
-static void	wait_for_cat(int fd)
-{
-	char	*str;
-
-	while (1)
-	{
-		str = get_next_line(0);
-		if (!str)
-			break ;
-		else
-		{
-			write(fd, str, string().size(str));
-			free_ob(str);
-		}
-	}
-}
-
+/**
+ * @brief Executes the actual command getting the input (0) 
+ * of the previous command plus the output (1) of the 
+ * current command
+ * @param this  command this
+ * @param input (0)
+ * @param out	(1)
+ * @return **** void
+ */
 static int	execute(t_command *this, int input, int out)
 {
-	int		status;
-	int		fd;
-
-	fd = this->fd[1];
-	if (!this->next || this->is_print)
-		fd = 1;
-	if (string().size_list(this->commands) == 1 && string().equals(this->commands[0], "cat"))
-		wait_for_cat(fd);
 	this->pid = fork();
-	status = 0;
 	if (!this->pid)
 	{
 		if (!this->is_print && this->next && (dup2(out, 1) < 0 || close(out)))
 			exit(0);
 		if (!this->is_print && (dup2(input, 0) < 0 || close(input)))
 			exit(0);
-		status = execve(this->path, this->commands, terminal()->envp_to_str);
+		execve(this->path, this->commands, terminal()->envp_to_str);
 		exit(127);
 	}
 	close(input);
@@ -75,20 +63,16 @@ static int	execute(t_command *this, int input, int out)
 static int	init(t_command *this, char **args)
 {
 	t_element	*e;
-	char		*path;
 	int			i;
 
 	i = -1;
 	this->path[0] = 0;
 	e = hashmap(terminal()->envp)->get_key("PATH");
 	if (e)
-	{
-		path = e->value;
-		get_path(this, *args, path);
-	}
+		get_path(this, *args, e->value);
 	this->commands = args;
 	if (pipe(this->fd) == __PIPE_ERROR__)
-		return (0);
+		terminal()->destroy(__ERROR_PIPE_);
 	return (1);
 }
 

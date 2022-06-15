@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 		(terminal())->print_error(previou, previou->status);
 	terminal()->status_exit = previou->status;
 	if (!previou->status)
-		next_command(previou, this);
+		return (terminal()->next_command(previou, this));
 	return (this->fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:04:35 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:03:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define FD_READ_O 0
 # define CREATED_1 "(amaria-m) António Maria Mouro Ferreira Abranches Pinto"
 # define CREATED_2 "(edos-san) Ezequiel Carlos Dos Santos"
+# define __ERROR_MEMORY_ "Error: memory not allocated.\n"
+# define __ERROR_PIPE_ "Error: opening pipe.\n"
 
 typedef int	t_pid;
 

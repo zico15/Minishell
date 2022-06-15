@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 19:32:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:46:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ struct s_list_cmd
 void					*new_list(void);
 t_list_cmd				*list(t_list_cmd *t);
 void					list_clear(t_command **c);
-int						next_command(t_command *previou, t_command *this);
 
 #endif

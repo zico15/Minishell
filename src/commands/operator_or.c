@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:46:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 	if (!previou->status)
 	{
 		previou->next = this->next->next;
-		next_command(this, previou);
+		return (terminal()->next_command(this, previou));
 	}
-	else
-		next_command(previou, this);
-	return (this->fd);
+	return (terminal()->next_command(previou, this));
 }
 
 t_command	*new_operator_or(void)

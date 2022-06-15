@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 20:44:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:44:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct s_terminal
 	void				(*update_env)(void);
 	void				(*destroy)(char *msg);
 	void				(*print_error)(t_command *c, int status);
+	int					*(*next_command)(t_command *previou, t_command *this);
 	t_terminal			*next;
 };
 
@@ -51,7 +52,6 @@ t_terminal				*new_terminal(char *title, char *color, char **env);
 
 //						commadas
 t_command				*new_command(void);
-t_command				*new_console(void);
 t_command				*new_redirect_output(void);
 t_command				*new_redirect_output_append(void);
 t_command				*new_redirect_input(void);
