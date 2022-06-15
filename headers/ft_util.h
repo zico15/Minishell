@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 13:06:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:05:59 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_this		*this(void);
 
 //			util
 char		*read_all(int fd);
-void		print_msg_error(t_command *this, char *msg, int args);
 void		init_env(t_terminal *t);
 void		ft_read_signal(int signal);
 void		ft_send_msg(int pid_t, const char *msg);

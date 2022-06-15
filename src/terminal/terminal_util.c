@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/13 18:15:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:56:14 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,26 @@ void	waitpid_all(t_element *e, void *o)
 	if (c && !*c->commands)
 		return ;
 	if (c && c->pid)
+	{
 		waitpid(c->pid, &c->status, 0);
-	c->status = WEXITSTATUS(c->status);
-	if (c->status)
+		c->status = WEXITSTATUS(c->status);
+	}
+	if (c->status && !c->pid)
 		(terminal())->print_error(c, c->status);
 	terminal()->status_exit = c->status;
 }
 
-void	__print_error(t_command *c, int status)
+void	__print_error(t_command *this, int status)
 {
-	char	*st;
-	char	*sc;
-	char	*sm;
-
-	st = terminal()->title;
-	if (c->commands)
-		sc = *c->commands;
-	else
-		sc = "";
+	if (!this || !this->commands || !*this->commands)
+		return ;
 	if (status == 1)
-		sm = "No such file or directory";
-	if (status == 127)
-		sm = "command not found";
-	printf("\b\b\b%s %s %s\n", st, sc, sm);
+		printf("bash: %s: %s: No such file or directory\n", this->commands[0], this->commands[1]);
+	else if (status == 127)
+		printf("bash: %s: command not found\n", this->commands[0]);
+	else if (status == 258)
+		printf("bash: syntax error near unexpected token\n");
+	this->status = status;
 }
 
 void	__destroy_terminal(char *msg)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 15:12:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:30:55 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,6 @@ char	*read_all(int fd)
 			break ;
 	}
 	return (str);
-}
-
-void	print_msg_error(t_command *this, char *msg, int args)
-{
-	if (!this || !this->commands || !*this->commands)
-		return ;
-	if (args == 2)
-		printf("bash: %s: %s: %s\n", this->commands[0], this->commands[1], msg);
-	if (args == 1)
-		printf("bash: %s: %s\n", this->commands[0], msg);
-	terminal()->is_erro_cmd = 1;
 }
 
 char	*_str(const char c)
