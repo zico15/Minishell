@@ -3,123 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:28:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/13 17:32:00 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:07:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
+#include <fcntl.h>
 
-// Achar \n na static save(que guarda tudo o que n foi processado)
-// Alocar memoria necessaria p todas as posicoes de chr da linha
-// a ser retornarda mais \n e null 
-static char	*ft_get_line(char *save)
+typedef struct s_line
 {
-	int		i;
-	char	*s;
+	char			*line;
+	long			size_line;
+	long			index;
+	long			size_buffer;
+	long			size_read;
+	struct s_line	*v;
+}	t_line;
 
-	i = 0;
-	if (!save || *save == 0)
-		return (NULL);
-	while (save[i] && save[i] != '\n')
-		i++;
-	s = malloc(sizeof(char) * (i + 2));
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (save[i] && save[i] != '\n')
-	{
-		s[i] = save[i];
-		i++;
-	}
-	if (save[i] == '\n')
-	{
-		s[i] = save[i];
-		i++;
-	}
-	s[i] = '\0';
-	return (s);
-}
-// Processar conteudo da static var 
-// Oq ja foi devolvido pela funcao principal desalocar
-// o que falta ser devolvido = obter e alocar para nova conteudo de save
-// menos oq ja foi devolvido mais o null 
-
-static char	*ft_save(char *save)
+char	*get_line(char *line, char *buffer, long size_buffer, long *size_line)
 {
-	int		i;
-	int		c;
-	char	*s;
+	t_line	data;
 
-	i = 0;
-	while (save[i] && save[i] != '\n')
-		i++;
-	if (!save[i])
+	data.size_line = -1;
+	data.index = -1;
+	data.size_buffer = -1;
+	data.line = line;
+	*size_line += size_buffer;
+	line = malloc_ob(*size_line + 1 * sizeof(char));
+	if (line)
 	{
-		free(save);
-		return (NULL);
-	}
-	s = (char *)malloc(sizeof(char) * (string().size(save) - i + 1));
-	if (!s)
-		return (NULL);
-	i++;
-	c = 0;
-	while (save[i])
-		s[c++] = save[i++];
-	s[c] = '\0';
-	free(save);
-	return (s);
-}
-// Processar conteudo q ainda nao foi lido no fd according BUFFER_SIZE
-// E verificar se nao ha erros de leitura
-// save = backup buffer, ou seja, oq ainda nao foi lido na chamada anterior
-// nao ha erros no processo de leitura e ainda ha bytes a serem lidos no fd
-// unir conteudo da variavel save ao buffer
-
-static char	*ft_read_and_save(int fd, char *save)
-{
-	char	*buff;
-	int		read_bytes;
-	char	*mem;
-
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	read_bytes = 1;
-	while (!string().contains(save, "\n") && read_bytes != 0)
-	{
-		read_bytes = read(fd, buff, BUFFER_SIZE);
-		if (read_bytes == -1)
+		line[*size_line] = 0;
+		while (data.line && data.line[++data.size_line])
+			line[++data.index] = data.line[data.size_line];
+		data.size_line = -1;
+		while (buffer && buffer[++data.size_line])
 		{
-			free(buff);
-			if (save)
-				free(save);
-			return (NULL);
+			if (data.size_line < size_buffer)
+				line[++data.index] = buffer[data.size_line];
+			else
+				buffer[++data.size_buffer] = buffer[data.size_line];
+			buffer[data.size_line] = 0;
 		}
-		buff[read_bytes] = '\0';
-		mem = save;
-		save = string().join(save, buff);
-		free(mem);
 	}
-	free(buff);
-	return (save);
+	free_ob(data.line);
+	return (line);
 }
-// Retorna o que precisa ser lido ate \n
-// save = backup buffer (oq ainda nao foi lido)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*save;
+	static char	f[BUFFER_SIZE + 1];
+	t_line		d;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	save = ft_read_and_save(fd, save);
-	if (!save)
-		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
-	return (line);
+	d.line = NULL;
+	d.size_buffer = 0;
+	d.index = 1;
+	while (fd >= 0 && f[d.size_buffer])
+		d.size_buffer++;
+	d.size_line = 0;
+	while (fd >= 0 && d.index > 0)
+	{
+		if (!f[0] || !d.size_buffer)
+			d.size_buffer = read(fd, f, BUFFER_SIZE);
+		d.index = d.size_buffer;
+		if (d.size_buffer > 0)
+		{
+			d.size_buffer = 0;
+			while (f[d.size_buffer] && f[d.size_buffer] != '\n')
+				d.size_buffer++;
+			d.index = (d.index == d.size_buffer);
+			d.size_buffer += f[d.size_buffer] == '\n';
+			d.line = get_line(d.line, f, d.size_buffer, &d.size_line);
+		}
+	}
+	return (d.line);
 }

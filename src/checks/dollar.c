@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 15:28:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:11:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 			value = e->value;
 	}
 	new = string().replace(str, value, dollar);
-	free_ob(str);
+	//free_ob(str);
 	if (string().equals(key, "?"))
 		free_ob(value);
 	return (new);
@@ -53,14 +53,27 @@ static int	is_valid(const char *str, int i, int j)
 	return (1);
 }
 
+char	*cread_new_str(char *new, int i, void *env, char	*buff)
+{
+	char	*temp1;
+	char	*temp2;
+	char	*result;
+
+	temp1 = string().copy_n(new, i);
+	temp2 = replace_dolar((new + i), env, buff, &buff[1]);
+	result = string().join(temp1, temp2);
+	free_ob(temp1);
+	free_ob(temp2);
+	free_ob(new);
+	return (result);
+}
+
 char	*check_dolar(void *env, const char *line, int i, int size)
 {
 	char	buff[BUFFER_SIZE];
 	char	*new;
 	int		j;
 
-	if (!*line)
-		return (string().copy(line));
 	j = -1;
 	new = string().trim(line);
 	while (line && i <= size)
@@ -68,8 +81,8 @@ char	*check_dolar(void *env, const char *line, int i, int size)
 		if (j >= 0 && !is_valid(line, i, j))
 		{
 			buff[j] = 0;
+			new = cread_new_str(new, (i - j), env, buff);
 			j = -1;
-			new = replace_dolar(new, env, buff, &buff[1]);
 		}
 		else if (j >= 0)
 			buff[j++] = line[i];
