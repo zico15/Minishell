@@ -6,13 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:44:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:45:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TERMINAL_H
 # define FT_TERMINAL_H
 
+# include <ft_read_line.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <ft_command.h>
@@ -34,6 +35,7 @@ struct s_terminal
 	void				*envp;
 	void				*history;
 	char				**envp_to_str;
+	char				home[BUFFER_SIZE];
 	char				*(*get_title)(void);
 	void				(*init)(void);
 	char				*(*wildcards)(const char *exts);
