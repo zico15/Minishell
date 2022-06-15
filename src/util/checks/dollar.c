@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:28:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 			value = e->value;
 	}
 	new = string().replace(str, value, dollar);
-	printf("dollar: (%s) key: (%s)\n", dollar, key);
 	free_ob(str);
 	if (string().equals(key, "?"))
 		free_ob(value);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:15:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,8 @@ static void	print_env(t_element *e, void *v)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	int	fd;
-
-	fd = this->fd[1];
-	if (!this->next || this->is_print)
-		this->fd[1] = 1;
 	if (terminal()->envp)
 		(hashmap(terminal()->envp))->for_each(print_env, this);
-	this->fd[1] = fd;
 	close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
 }

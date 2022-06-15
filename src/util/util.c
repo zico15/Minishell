@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 13:33:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:12:36 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ char	*_str(const char c)
 
 char	**list_commans_bash(void)
 {	
-	static char	**list = {"ls", "df", "top", "cd", "mkdir", "rm", "cat", \
+	static char	*list[147] = {"ls", "df", "top", "cd", "mkdir", "rm", "cat", \
 	"vi", "exit", "logout", "passwd", "rlogin", "ssh", "slogin", \
 	"yppasswd", "mail",	"mesg", "pine",	"talk", "write", "apropos", "find", \
 	"info", "man", "whatis", "whereis", "emacs", "pico", "sed", "vi", "vim", \
 	"cd", "chmod", "chown", "chgrp", "cmp", "comm", "cp", "crypt", "diff", \
-	"file", "grep", "gzip", "ln", "ls", "lsof", "mkdir", "mv", "pwd", "quota", \
+	"file", "grep", "gzip", "ln", "lsof", "mkdir", "mv", "pwd", "quota", \
 	"rm", "rmdir", "stat", "sync", "sort", "tar", "tee", "tr", "umask", \
 	"uncompress", "uniq", "wc", "cat", "fold", "head", "lpq", "lpr", "lprm", \
 	"more", "less", "page", "pr", "tail", "zcat", "xv", "gv", "xpdf", "ftp", \

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:18:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ static void	write_history_all(int fd)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	int		fd;
-
-	fd = this->fd[1];
-	if (!this->next || this->is_print)
-		fd = 1;
 	if (string().equals(this->commands[1], "-c"))
 	{
 		rl_clear_history();
@@ -46,7 +41,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 		terminal()->history = new_array();
 	}
 	else
-		write_history_all(fd);
+		write_history_all(this->fd[1]);
 	close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
 }
