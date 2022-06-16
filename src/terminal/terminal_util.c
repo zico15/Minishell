@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:56:14 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:39:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ void	waitpid_all(t_element *e, void *o)
 		waitpid(c->pid, &c->status, 0);
 		c->status = WEXITSTATUS(c->status);
 	}
-	if (c->status && !c->pid)
+	if (c->status && (!c->pid || c->status == 127))
 		(terminal())->print_error(c, c->status);
+	//printf("bash: syntax error near unexpected token\n");
 	terminal()->status_exit = c->status;
 }
 
 void	__print_error(t_command *this, int status)
 {
-	if (!this || !this->commands || !*this->commands)
+	if (0 && (!this || !this->commands || !*this->commands))
 		return ;
 	if (status == 1)
 		printf("bash: %s: %s: No such file or directory\n", this->commands[0], this->commands[1]);
