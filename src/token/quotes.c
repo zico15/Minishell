@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/13 18:27:39 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:06:04 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,80 +26,84 @@ static int	str_isspace(const char *str, int size)
 	return (1);
 }
 
+static int	is_to_sep(const char *str, int i)
+{
+	if (ft_separator(str) == (i + 1) && !is_quotes(str, i))
+		return (1);
+	if (string().is_space(str[i]) && !is_quotes(str, i))
+		return (1);
+	return (0);
+}
+
+static int	is_sep(const char *str)
+{
+	if (string().contains(str, "||"))
+		return (D_PIPE);
+	else if (string().contains(str, "|"))
+		return (PIPE);
+	else if (string().contains(str, "&&"))
+		return (D_AND);
+	else if (string().contains(str, "&"))
+		return (AND);
+	else if (string().contains(str, ">>"))
+		return (D_SHIFT_RIGHT);
+	else if (string().contains(str, ">"))
+		return (SHIFT_RIGHT);
+	else if (string().contains(str, "<<"))
+		return (D_SHIFT_LEFT);
+	else if (string().contains(str, "<"))
+		return (SHIFT_LEFT);
+	else
+		return(NO_SEP);
+}
+
 void	*ft_divide_quotes(const char *str)
 {
-	void	*cmds;
+	void	*list;
 	int		i;
 
-	cmds = new_array();
-	i = -1;
-	while (str[++i])
+	list = new_array();
+	while (str && *str)
 	{
-		if ((string().is_space(str[i]) || (i == (ft_separator(str) - 1))) \
-		&& !is_quotes(str, i))
-		{
-			if (!str_isspace(str, i))
-				(array(cmds))->add(string().copy_n(str, i));
-			str += i + !(i == (ft_separator(str) - 1));
-			i = ft_sep_move(str);
-			if (!(ft_separator(str) - 1))
-			{
-				(array(cmds))->add(string().copy_n(str, i));
-				str += i;
-				i = 0;
-			}
-		}
+		i = 0;
+		while (str[i] && !is_to_sep(str, i))
+			i++;
+		while (string().is_space(str[i]) && !is_quotes(str, i))
+			i++;
+		if (!str_isspace(str, i))
+			array(list)->add(string().copy_n(str, i));
+		str += i;
+		i = ft_sep_move(str);
+		if (!str_isspace(str, i))
+			array(list)->add(string().copy_n(str, i));
+		str += i;
 	}
-	if (!str_isspace(str, i))
-		(array(cmds))->add(string().copy_n(str, i));
-	return (cmds);
+	return (list);
 }
 
-static void	div_cmd_block(int *check, void **token, void **cmds, char **str)
-{
-	if (ft_separator(*str))
-	{
-		if (!*check)
-			array(*token)->add(*cmds);
-		*cmds = new_array();
-		*check = 0;
-		if (string().equals(*str, "||") || string().equals(*str, "&&"))
-		{
-			array(*cmds)->add(string().trim(*str));
-			array(*token)->add(*cmds);
-			*check = 1;
-		}
-		else if (!string().equals(*str, "|"))
-			array(*cmds)->add(string().trim(*str));
-	}
-	else if (!*check)
-		array(*cmds)->add(string().trim(*str));
-}
-
-void	*ft_divide_cmds(void *list)
+void	*ft_divide_cmds(void *list, int i, int check)
 {
 	void		*cmds;
 	void		*token;
 	char		*str;
-	int			i;
-	int			check;
 
-	i = -1;
-	check = 0;
-	cmds = new_array();
 	token = new_array();
-	while (++i < array(list)->size)
+	while (i < array(list)->size)
 	{
+		check = 0;
+		cmds = new_array();
 		str = array(list)->get(i);
-		div_cmd_block(&check, &token, &cmds, &str);
-		if (!ft_separator(str) && check)
+		while (str && is_sep(str) && !is_quotes(str, ft_separator(str) - 1) && !check)
 		{
-			cmds = new_array();
-			array(cmds)->add(string().trim(str));
-			check = 0;
+			if (is_sep(str) != PIPE || array(cmds)->size)
+				array(cmds)->add(string().trim(str));
+			if (is_sep(str) == D_PIPE || is_sep(str) == D_AND)
+				check = 1;
+			str = array(list)->get(++i);
 		}
+		while (str && (!is_sep(str) || is_quotes(str, ft_separator(str) - 1)) && !check && array(cmds)->add(string().trim(str)))
+			str = array(list)->get(++i);
+		array(token)->add(cmds);
 	}
-	array(token)->add(cmds);
-	(array(token))->for_each(set_fun_destroy_token, NULL);
 	return (token);
 }

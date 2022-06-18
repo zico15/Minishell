@@ -30,21 +30,21 @@ int main3(void)
 {
 	char str[BUFFER_SIZE];
 	void	*lst;
-	void	*cmd;
+	// void	*cmd;
 	scanf("%[^\n]", str);
 	printf("===================================================\n");
-	lst = token(string().copy(str));
-	// lst = ft_divide_quotes(string().copy(str));
+	// lst = token(string().copy(str));
+	lst = ft_divide_quotes(string().copy(str));
 	int	i = -1;
 	while (++i < array(lst)->size)
 	{
-		// printf("(%s)\n", array(lst)->get(i));
-		cmd = array(lst)->get(i);
-		int j = -1;
-		while (++j < array(cmd)->size)
-		{
-			printf("(%s)\n", array(cmd)->get(j));
-		}
+		printf("(%s)\n", array(lst)->get(i));
+		// cmd = array(lst)->get(i);
+		// int j = -1;
+		// while (++j < array(cmd)->size)
+		// {
+		// 	printf("(%s)\n", array(cmd)->get(j));
+		// }
 		printf("===============\n");
 	}
 	return (0);

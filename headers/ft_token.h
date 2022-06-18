@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/12 21:05:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 18:15:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,22 @@ enum e_quotes {
 	BOTH_QUOTED,
 };
 
+enum e_seps {
+	NO_SEP,
+	PIPE,
+	D_PIPE,
+	SHIFT_LEFT,
+	SHIFT_RIGHT,
+	D_SHIFT_LEFT,
+	D_SHIFT_RIGHT,
+	AND,
+	D_AND,
+};
+
 // TOKEN UTILS
 void	*ft_send_exit(void);
 int		ft_separator(const char *str);
-void	*ft_divide_cmds(void *list);
+void	*ft_divide_cmds(void *list, int i, int check);
 int		ft_sep_move(const char *str);
 void	set_fun_destroy_token(t_element *e, void *o);
 void	command_destroy_element(t_element	*e);
