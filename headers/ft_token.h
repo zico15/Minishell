@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 18:15:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:57:44 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	*ft_divide_cmds(void *list, int i, int check);
 int		ft_sep_move(const char *str);
 void	set_fun_destroy_token(t_element *e, void *o);
 void	command_destroy_element(t_element	*e);
+int		is_sep(const char *str);
 
 // QUOTES HANDELING
 int		is_quotes(const char *str, int index);

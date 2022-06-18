@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 18:19:53 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:02:20 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	ft_sep_move(const char *str)
 {
 	if (!str || !*str)
 		return (0);
-	if (*(str + 1) && str[0] == str[1] && ft_separator(str))
+	else if (ft_separator(str) != 1)
+		return (0);
+	else if (*(str + 1) && str[0] == str[1] && ft_separator(str))
 		return (2);
 	else if (ft_separator(str))
 		return (1);

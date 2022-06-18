@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 20:06:04 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:02:55 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_to_sep(const char *str, int i)
 	return (0);
 }
 
-static int	is_sep(const char *str)
+int	is_sep(const char *str)
 {
 	if (string().contains(str, "||"))
 		return (D_PIPE);
