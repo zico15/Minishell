@@ -6,12 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 15:15:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:59:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 #include <ft_string.h>
+#include <ft_command_util.h>
+#include <termios.h>
 
 static void	print_env(t_element *e, void *v)
 {
@@ -46,15 +48,36 @@ t_command	*new_env(void)
 	return (c);
 }
 
+static void	update_env_base(t_terminal *t)
+{
+	t_element	*e;
+	char		*key_pid;
+	char		*key_shlvl;
+
+	key_pid = string().copy(__MINISHELL_PID__);
+	key_shlvl = string().copy("SHLVL");
+	e = hashmap(t->envp)->get_key(key_pid);
+	if (e)
+		t->pid_parent = string().atoi(e->value);
+	e = hashmap(t->envp)->get_key(key_shlvl);
+	if (e)
+		t->shlvl = string().atoi(e->value) + 1;
+	(hashmap(t->envp))->put(key_shlvl, string().itoa(t->shlvl));
+	(hashmap(t->envp))->put(key_pid, string().itoa(getpid()));
+	hashmap(t->envp)->remove_key("OLDPWD");
+	terminal()->envp_to_str = hashmap(terminal()->envp)->to_str();
+}
+
 void	init_env(t_terminal *t)
 {
-	int			i;
-	char		**str;
-	char		*key_pid;
-	t_element	*e;
+	int				i;
+	char			**str;
+	struct termios	ter;
 
+	tcgetattr(0, &ter);
+	ter.c_lflag &= ~ECHOCTL;
+	tcsetattr(0, TCSANOW, &ter);
 	i = -1;
-	key_pid = string().copy(__MINISHELL_PID__);
 	while (terminal()->envp_to_str && terminal()->envp_to_str[++i])
 	{
 		str = string().split(terminal()->envp_to_str[i], "=");
@@ -65,9 +88,5 @@ void	init_env(t_terminal *t)
 		}
 		free_list(str);
 	}
-	e = hashmap(t->envp)->get_key(key_pid);
-	if (e)
-		t->pid_parent = string().atoi(e->value);
-	(hashmap(t->envp))->put(key_pid, string().itoa(getpid()));
-	terminal()->envp_to_str = hashmap(terminal()->envp)->to_str();
+	update_env_base(t);
 }

@@ -1,17 +1,10 @@
- {"ls", "df", "top", "cd", "mkdir", "rm", "cat", "vi", "exit", "logout",
- "passwd", "rlogin", "ssh", "slogin", "yppasswd", "mail", "mesg", "pine",
- "talk", "write", "apropos", "find", "info", "man", "whatis", "whereis",
- "emacs", "pico", "sed", "vi", "vim", "cd", "chmod", "chown", "chgrp",
- "cmp", "comm", "cp", "crypt", "diff", "file", "grep", "gzip", "ln", "ls",
- "lsof", "mkdir", "mv", "pwd", "quota", "rm", "rmdir", "stat", "sync", "sort",
- "tar", "tee", "tr", "umask", "uncompress", "uniq", "wc", "cat", "fold", "head",
- "lpq", "lpr", "lprm", "more", "less", "page", "pr", "tail", "zcat", "xv", "gv",
- "xpdf", "ftp", "rsync", "scp", "netstat", "rsh", "ssh", "nmap", "ifconfig", "ping",
- "kill", "bg", "fg", "jobs", "top", "clock", "date", "df", "du", "env", "finger",
- "history", "last", "lpq", "manpath", "printenv", "ps", "pwd", "set", "spend", "uptime",
- "w", "who", "whois", "whoami", "abiword", "addbib", "col", "diction", "diffmk", "dvips",
- "explain", "grap", "hyphen", "ispell", "latex", "pdfelatex", "latex2html", "lookbib",
- "macref", "ndx", "neqn", "nroff", "pic", "psdit", "ptx", "refer", "roffbib", "sortbib",
- "spell", "style", "tbl", "tex", "tpic", "wget", "html2ps", "latex2html", "lynx", "netscape",
- "sitecopy", "weblint" }
+bash-3.2$ asdads && echo oi || echo a
+bash: asdads: command not found
+a
+bash-3.2$ asdads && (echo oi || echo a)
+bash: asdads: command not found
+\bash-3.2$asdads && (echo oi || echo a)
+bash: asdads: command not found
+bash-3.2$ asdads && (echo oi || echo a)
+
  

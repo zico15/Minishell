@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:06:57 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:14:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 		this->is_print = 1;
 	if (!(this->execute(this, previou->fd[0], this->fd[1])))
 	{
-		terminal()->print_error(this, 127);
+		(terminal())->print_error(this, 127);
 		close(this->fd[1]);
 	}
 	return (terminal()->next_command(previou, this));
@@ -106,6 +106,7 @@ t_command	*new_command(void)
 	c->fd[0] = -1;
 	c->fd[1] = -1;
 	c->pid = 0;
+	c->is_user = 1;
 	c->status = 0;
 	c->index = -1;
 	c->next = NULL;

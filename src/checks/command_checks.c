@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/12 21:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:43:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_wildcards(char *str, void *arg, int index)
 
 	result = str;
 	temp = NULL;
-	if (string().size(str) > 1 && string().equals_n(str, "*", 1))
+	if (string().size(str) > 0 && string().equals_n(str, "*", 1))
 	{
 		paths = terminal()->wildcards(str);
 		if (paths)

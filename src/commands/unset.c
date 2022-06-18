@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:30:22 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ static int	*ft_input(t_command *previou, t_command *this)
 	{
 		temp = this->commands[1];
 		(hashmap(terminal()->envp))->remove_key(temp);
-		if (temp && terminal()->pid_parent != -1)
-		{
-			temp = string().join("unset ", temp);
-			ft_send_msg(terminal()->pid_parent, temp);
-		}
 	}
 	close(this->fd[1]);
 	terminal()->update_env();

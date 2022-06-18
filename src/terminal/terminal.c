@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:56:15 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:35:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,25 @@ static void	execute(t_terminal	*t, void *token)
 
 static void	ft_init(void)
 {
-	t_terminal		*t;
 	char			*str;
 	char			*line;
-	struct termios	ter;
 
-	tcgetattr(0, &ter);
-	ter.c_lflag &= ~ECHOCTL;
-	tcsetattr(0, TCSANOW, &ter);
-	t = this()->terminal;
-	if (!t)
-		return ;
 	while (1)
 	{
 		str = NULL;
-		line = readline(t->get_title());
+		line = test_file();
+		if (terminal()->fd_test == -1)
+			line = readline(terminal()->get_title());
 		if (line && *line)
 		{
 			str = string().trim(line);
 			add_history(str);
 			array(terminal()->history)->add(str);
-			str = check_dolar(t->envp, line, 0, string().size(line));
+			str = check_dolar(terminal()->envp, line, 0, string().size(line));
+			free_ob(line);
 			line = str;
 		}
-		execute(t, token(line));
+		execute(terminal(), token(line));
 	}
 }
 
@@ -104,7 +99,6 @@ t_terminal	*new_terminal(char *title, char *color, char **env)
 	t.check_command_args = __check_args;
 	t.get_exts = __get_exts;
 	t.pid = getpid();
-	t.cmds = NULL;
 	t.pid_parent = -1;
 	t.get_cmd = __get_cmd;
 	t.sigaction = __sigaction;
@@ -115,6 +109,7 @@ t_terminal	*new_terminal(char *title, char *color, char **env)
 	t.print_error = __print_error;
 	t.history = new_array();
 	t.next_command = __next_command;
+	t.fd_test = -1;
 	this()->terminal = &t;
 	init_env(this()->terminal);
 	return (this()->terminal);

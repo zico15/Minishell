@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 13:05:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:32:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ static int	list_colores(char *str, char **temp, int i)
 	return (printf(" SET COLOR (color=number)\n"));
 }
 
-void	set_texto(t_element *e, void *o)
+static int	load_tester(t_command *this)
 {
-	if (string().equals(e->value, "casa"))
-		e->value = o;
+	char	**l;
+
+	l = string().split(this->commands[1], "=");
+	if (l && *l)
+		(terminal()->fd_test) = open(l[1], O_RDONLY);
+	free_list(l);
+	return (1);
 }
 
 static int	*ft_input(t_command *previou, t_command *this)
@@ -53,10 +58,13 @@ static int	*ft_input(t_command *previou, t_command *this)
 	{
 		if (string().equals_n(this->commands[1], "color", 5))
 			print = list_colores(this->commands[1], NULL, 0);
+		else if (string().equals_n(this->commands[1], "tester=", 7))
+			print = load_tester(this);
 	}
 	if (!print)
 	{
 		printf("===========minishell===========\n");
+		printf("shlvl: %i\n", terminal()->shlvl);
 		printf("pid: %i\n", terminal()->pid);
 		printf("pid parent: %i\n", terminal()->pid_parent);
 		printf("created by: %s\n", CREATED_1);
