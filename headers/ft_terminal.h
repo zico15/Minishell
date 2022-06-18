@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 16:45:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:56:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ struct s_terminal
 	pid_t				pid_parent;
 	int					is_erro_cmd;
 	int					status_exit;
+	int					fd_test;
+	int					shlvl;
 	void				*cmds;
 	void				*envp;
 	void				*history;

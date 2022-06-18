@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 17:57:41 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:17:22 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ static int	*ft_input(t_command *previou, t_command *this)
 {
 	char	buff[BUFFER_SIZE];
 	char	*str;
+	char	*key_oldpwd;
 
 	if (this->commands && *this->commands)
 	{
+		key_oldpwd = string().copy("OLDPWD");
+		str = string().copy(getcwd(buff, BUFFER_SIZE));
+		(hashmap(terminal()->envp))->put(key_oldpwd, string().copy(str));
 		str = this->commands[1];
 		if (str == NULL)
 			str = "/";

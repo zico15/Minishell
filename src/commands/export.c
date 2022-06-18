@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:29:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ static void	put_env(t_command *this)
 	}
 	else
 		free_list(str);
-	if (temp && terminal()->pid_parent != -1)
-	{
-		temp = string().join("export ", temp);
-		ft_send_msg(terminal()->pid_parent, temp);
-		free_ob(temp);
-	}
 }
 
 static int	*ft_input(t_command *previou, t_command *this)

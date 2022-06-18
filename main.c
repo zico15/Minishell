@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 17:10:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:33:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	main(int argc, char **argv, char **env)
 {
 	t_terminal	*t;
 
-	(void) argc;
-	(void) argv;
 	init_keys();
 	t = new_terminal("bash-3.3$", "\033[0;32m", env);
+	if (argc > 1)
+		t->fd_test = open(argv[1], O_RDONLY);
 	init_home(t, 0, -1);
 	t->init();
 	return (0);

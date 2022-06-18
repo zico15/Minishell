@@ -6,22 +6,30 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:13:10 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 
-static void	write_file(char *file, void *list)
+static void	write_file(void *list, t_command *this)
 {
 	int		i;
 	int		fd_open;
 	char	*str;
 
-	fd_open = open(file, O_WRONLY | O_CREAT | O_APPEND \
-		| O_TRUNC, 0644);
+	fd_open = open(this->commands[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (this->next && (string().equals(*this->next->commands, ">") \
+	|| string().equals(*this->next->commands, ">>")))
+	{
+		close(fd_open);
+		fd_open = this->fd[1];
+	}
 	if (fd_open < 0)
+	{
+		this->status = 1;
 		return ;
+	}
 	i = -1;
 	while (++i < array(list)->size)
 	{
@@ -49,7 +57,7 @@ static int	*input(t_command *previou, t_command *this)
 		close(fd_open);
 		array(list)->add(read_all(previou->fd[0]));
 		close(previou->fd[0]);
-		write_file(this->commands[1], list);
+		write_file(list, this);
 	}
 	close(this->fd[1]);
 	return (terminal()->next_command(previou, this));

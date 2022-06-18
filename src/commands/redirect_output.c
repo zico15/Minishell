@@ -6,33 +6,49 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/15 18:36:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:10:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 
-static int	*input(t_command *previou, t_command *this)
+static void	redirect(int fd, t_command *previou, t_command *this)
 {
 	char	*str;
+
+	if (fd < 0)
+	{
+		this->status = 1;
+		return ;
+	}
+	str = read_all(previou->fd[0]);
+	write(previou->fd[0], "", 1);
+	close(previou->fd[0]);
+	if (fd >= 0 && str)
+		write(fd, str, string().size(str));
+	free_ob(str);
+	close(fd);
+}
+
+static int	*input(t_command *previou, t_command *this)
+{
 	int		fd_open;
 
 	if (string().size_list(this->commands) <= 1)
-		printf("bash: syntax error near unexpected token `newline'\n");
+		this->status = 258;
 	if (previou->index != __COMMAND_BEGING_ && \
 	string().size_list(this->commands) > 1)
 	{
-		str = read_all(previou->fd[0]);
-		write(previou->fd[0], "", 1);
-		close(previou->fd[0]);
 		fd_open = open(this->commands[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd_open >= 0 && str)
-			write(fd_open, str, string().size(str));
-		free_ob(str);
-		close(fd_open);
+		if (this->next && (string().equals(*this->next->commands, ">") \
+		|| string().equals(*this->next->commands, ">>")))
+		{
+			close(fd_open);
+			fd_open = this->fd[1];
+		}
+		redirect(fd_open, previou, this);
 	}
 	close(this->fd[1]);
-	this->fd[0] = dup(open(this->commands[1], O_RDONLY));
 	return (terminal()->next_command(previou, this));
 }
 

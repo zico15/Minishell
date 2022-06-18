@@ -3,42 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   left_shift.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:33:55 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/18 18:47:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 
-static int	*ft_input(t_command *previou, t_command *this)
+int	*cread_cmd(t_command *previou, t_command *this, char **arg)
 {
-	char	*div;
+	t_command	*c;
+
+	if (!arg)
+		return (terminal()->next_command(previou, this));
+	c = terminal()->get_cmd(*arg);
+	c->init(c, arg);
+	c->next = this->next;
+	this->next = c;
+	(terminal())->next_command(previou, this);
+	this->status = c->status;
+	this->pid = c->pid;
+	return (this->fd);
+}
+
+char	**cread_new_arg(char **arg)
+{
+	void	*list;
+	char	**new;
+	int		i;
+
+	list = new_array();
+	i = 1;
+	while (arg[++i])
+		array(list)->add(string().copy(arg[i]));
+	new = array(list)->to_str();
+	array(list)->destroy();
+	return (new);
+}
+
+static void	heredoc(t_command *this, char *end)
+{
 	char	*str;
 
-	div = NULL;
 	str = NULL;
 	close(this->fd[0]);
 	close(this->fd[1]);
 	pipe(this->fd);
-	if (string().size_list(this->commands) > 1)
-		div = this->commands[1];
-	else
-		this->status = 258;
-	while (div)
+	end = string().join(end, "\n");
+	while (!string().equals(str, end) && free_ob(str))
 	{
 		write(2, "> ", 2);
 		str = get_next_line(0);
-		if (!string().equals_n(str, div, string().size(div)) && str)
-			write(this->fd[1], str, string().size(str));
-		else
+		if (!str)
 			break ;
-		free_ob(str);
-		str = NULL;
+		if (!string().equals(str, end))
+			write (this->fd[1], str, string().size(str));
 	}
-	free_ob(str);
 	close(this->fd[1]);
+	free_ob(str);
+	free_ob(end);
+}
+
+static int	*ft_input(t_command *previou, t_command *this)
+{
+	if (string().size_list(this->commands) >= 2)
+	{
+		heredoc(this, this->commands[1]);
+		return (cread_cmd(previou, this, cread_new_arg(this->commands)));
+	}
+	else
+		this->status = 258;
 	return (terminal()->next_command(previou, this));
 }
 

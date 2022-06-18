@@ -6,24 +6,47 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:35:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:14:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
-
+/*
 static int	*ft_input(t_command *previou, t_command *this)
 {
 	close(this->fd[1]);
 	if (previou->pid)
+	{
 		waitpid(previou->pid, &(previou->status), 0);
-	previou->status = WEXITSTATUS(previou->status);
-	if (previou->status)
+		previou->status = WEXITSTATUS(previou->status);
+	}
+	if (previou->status && !previou->pid)
 		(terminal())->print_error(previou, previou->status);
 	terminal()->status_exit = previou->status;
 	if (!previou->status)
 		return (terminal()->next_command(previou, this));
 	return (this->fd);
+}*/
+
+static int	*ft_input(t_command *previou, t_command *this)
+{
+	close(this->fd[1]);
+	if (previou->pid)
+	{
+		waitpid(previou->pid, &(previou->status), 0);
+		previou->status = WEXITSTATUS(previou->status);
+	}
+	if (previou->status && (!previou->pid || previou->status == 127))
+		(terminal())->print_error(previou, previou->status);
+	if (previou->status && this->next)
+	{
+		this->next->is_user = 0;
+		if (this->next->next && \
+		string().equals(*this->next->next->commands, "||"))
+			return (terminal()->next_command(previou, this->next));
+		return (this->fd);
+	}
+	return (terminal()->next_command(previou, this));
 }
 
 t_command	*new_operator_and(void)
@@ -41,5 +64,8 @@ void	check_operator_and(t_command *this)
 {
 	if (this->next && this->next->commands && \
 	string().equals(*this->next->commands, "&&"))
-			this->is_print = 1;
+	{
+		this->is_print = 1;
+		this->is_user = 0;
+	}
 }

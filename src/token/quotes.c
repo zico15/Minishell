@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/13 18:27:39 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:45:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	*ft_divide_cmds(void *list)
 	token = new_array();
 	while (++i < array(list)->size)
 	{
-		str = array(list)->get(i);
+		str = check_bracket(array(list)->get(i));
 		div_cmd_block(&check, &token, &cmds, &str);
 		if (!ft_separator(str) && check)
 		{
@@ -98,6 +98,7 @@ void	*ft_divide_cmds(void *list)
 			array(cmds)->add(string().trim(str));
 			check = 0;
 		}
+		free_ob(str);
 	}
 	array(token)->add(cmds);
 	(array(token))->for_each(set_fun_destroy_token, NULL);

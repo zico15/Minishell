@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 12:43:03 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/18 13:11:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ t_command	*__get_cmd(char *s);
 void		__print_error(t_command *c, int status);
 char		*__get_title(void);
 int			*__next_command(t_command *previou, t_command *this);
+char		*test_file(void);
 #endif

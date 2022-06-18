@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:05:59 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:46:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		unset_remove(t_terminal	*t, char *str);
 char		*check_dolar(void *env, const char *line, int i, int size);
 void		check_operator_or(t_command *this);
 void		check_operator_and(t_command *this);
+char		*check_bracket(const char *str);
 
 //			memory
 int			free_ob(void *v);
