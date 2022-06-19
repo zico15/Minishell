@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 12:59:55 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:10:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	update_env_base(t_terminal *t)
 	(hashmap(t->envp))->put(key_shlvl, string().itoa(t->shlvl));
 	(hashmap(t->envp))->put(key_pid, string().itoa(getpid()));
 	hashmap(t->envp)->remove_key("OLDPWD");
+	free_list(terminal()->envp_to_str);
 	terminal()->envp_to_str = hashmap(terminal()->envp)->to_str();
 }
 
@@ -88,5 +89,6 @@ void	init_env(t_terminal *t)
 		}
 		free_list(str);
 	}
+	terminal()->envp_to_str = NULL;
 	update_env_base(t);
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 13:03:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 10:48:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define CREATED_2 "(edos-san) Ezequiel Carlos Dos Santos"
 # define __ERROR_MEMORY_ "Error: memory not allocated.\n"
 # define __ERROR_PIPE_ "Error: opening pipe.\n"
+# define __ERROR_1_ "bash: %s: %s: No such file or directory\n"
+# define __ERROR_127_ "bash: %s: command not found\n"
+# define __ERROR_258_ "bash: syntax error near unexpected token `%s'\n"
 
 typedef int	t_pid;
 

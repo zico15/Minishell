@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 11:21:44 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 10:53:10 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,24 @@ void	waitpid_all(t_element *e, void *o)
 	terminal()->status_exit = c->status;
 }
 
+/***
+ * 
+ *  Errors defined in the head ft_minishell.h
+ * 
+ * */
 void	__print_error(t_command *this, int status)
 {
+	char	*cmd1;
+
+	cmd1 = this->commands[1];
+	if (!cmd1)
+		cmd1 = "newline";
 	if (status == 1)
-		printf("bash: %s: %s: No such file or directory\n", this->commands[0], this->commands[1]);
+		printf(__ERROR_1_, this->commands[0], cmd1);
 	else if (status == 127)
-		printf("bash: %s: command not found\n", this->commands[0]);
+		printf(__ERROR_127_, this->commands[0]);
 	else if (status == 258)
-		printf("bash: syntax error near unexpected token\n");
+		printf(__ERROR_258_, cmd1);
 	this->status = status;
 }
 

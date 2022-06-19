@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 18:47:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:04:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,18 @@ static void	heredoc(t_command *this, char *end)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (string().size_list(this->commands) >= 2)
+	if (string().size_list(this->commands) >= 2 && \
+	is_sep(this->commands[1]) == NO_SEP)
 	{
 		heredoc(this, this->commands[1]);
-		return (cread_cmd(previou, this, cread_new_arg(this->commands)));
+		if (string().size_list(this->commands) >= 3)
+			return (cread_cmd(previou, this, cread_new_arg(this->commands)));
+		else
+		{
+			close(this->fd[0]);
+			pipe(this->fd);
+			close(this->fd[1]);
+		}
 	}
 	else
 		this->status = 258;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 21:02:55 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:04:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	is_sep(const char *str)
 	else if (string().contains(str, "<"))
 		return (SHIFT_LEFT);
 	else
-		return(NO_SEP);
+		return (NO_SEP);
 }
 
 void	*ft_divide_quotes(const char *str)
@@ -71,11 +71,11 @@ void	*ft_divide_quotes(const char *str)
 		while (string().is_space(str[i]) && !is_quotes(str, i))
 			i++;
 		if (!str_isspace(str, i))
-			array(list)->add(string().copy_n(str, i));
+			(array(list))->add(string().copy_n(str, i));
 		str += i;
 		i = ft_sep_move(str);
 		if (!str_isspace(str, i))
-			array(list)->add(string().copy_n(str, i));
+			(array(list))->add(string().copy_n(str, i));
 		str += i;
 	}
 	return (list);
@@ -93,7 +93,8 @@ void	*ft_divide_cmds(void *list, int i, int check)
 		check = 0;
 		cmds = new_array();
 		str = array(list)->get(i);
-		while (str && is_sep(str) && !is_quotes(str, ft_separator(str) - 1) && !check)
+		while (str && is_sep(str) && \
+		!is_quotes(str, ft_separator(str) - 1) && !check)
 		{
 			if (is_sep(str) != PIPE || array(cmds)->size)
 				array(cmds)->add(string().trim(str));
@@ -101,7 +102,8 @@ void	*ft_divide_cmds(void *list, int i, int check)
 				check = 1;
 			str = array(list)->get(++i);
 		}
-		while (str && (!is_sep(str) || is_quotes(str, ft_separator(str) - 1)) && !check && array(cmds)->add(string().trim(str)))
+		while (str && (!is_sep(str) || is_quotes(str, ft_separator(str) - 1)) \
+		&& !check && array(cmds)->add(string().trim(str)))
 			str = array(list)->get(++i);
 		array(token)->add(cmds);
 	}

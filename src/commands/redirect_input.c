@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:02:54 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 12:08:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 10:55:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static int	*input(t_command *previou, t_command *this)
 	int			fd_open;
 
 	fd_open = 0;
-	if (string().size_list(this->commands) >= 2)
+	if (string().size_list(this->commands) >= 2 && \
+	is_sep(this->commands[1]) == NO_SEP)
 	{
 		fd_open = open(this->commands[1], O_RDONLY);
 		if (fd_open >= 0)
