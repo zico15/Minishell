@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 17:15:26 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:52:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 
-static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
+static char	*replace_dolar(const char *str, void *env, char *dollar, char *key)
 {
 	char		*value;
 	char		*new;
@@ -20,7 +20,7 @@ static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 
 	value = "";
 	if (!key || !*key)
-		return (str);
+		return (string().copy(str));
 	else if (string().equals(key, "?"))
 		value = string().itoa(terminal()->status_exit);
 	else
@@ -30,7 +30,6 @@ static char	*replace_dolar(char *str, void *env, char *dollar, char *key)
 			value = e->value;
 	}
 	new = string().replace(str, value, dollar);
-	//free_ob(str);
 	if (string().equals(key, "?"))
 		free_ob(value);
 	return (new);
@@ -96,12 +95,12 @@ static char	*check_dolar_line(void *env, const char *line, int i, int size)
 
 void	check_dolar(t_element *e, void *o)
 {
-	char *temp;
+	char	*temp;
 
 	if (!o || string().equals(o, "<<"))
 		return ;
 	temp = e->value;
-	e->value = check_dolar_line(terminal()->envp, e->value, 0, string().size(e->value));
+	e->value = check_dolar_line(terminal()->envp, e->value, 0, \
+	string().size(e->value));
 	free_ob(temp);
 }
-

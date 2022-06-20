@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 16:39:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:24:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 	if (string().size_list(this->commands) > 1)
 	{
 		while (this->commands && this->commands[++i])
-		{
-			if (string().contains(this->commands[i], "="))
-				put_env(this->commands[i]);
-		}
+			put_env(this->commands[i]);
 	}
 	else
 		(hashmap(terminal()->envp))->for_each(print_declare, this);
