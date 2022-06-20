@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 11:10:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:20:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_env(t_element *e, void *v)
 
 	this = v;
 	(void) e;
-	if (string().equals(e->key, __MINISHELL_PID__))
+	if (string().equals(e->key, __MINISHELL_PID__) || string().equals(e->value, ""))
 		return ;
 	write(this->fd[1], e->key, string().size(e->key));
 	write(this->fd[1], "=", 1);
