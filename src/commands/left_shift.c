@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   left_shift.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 18:47:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:01:57 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ static void	heredoc(t_command *this, char *end)
 	close(this->fd[0]);
 	close(this->fd[1]);
 	pipe(this->fd);
-	end = string().join(end, "\n");
 	while (!string().equals(str, end) && free_ob(str))
 	{
-		write(2, "> ", 2);
-		str = get_next_line(0);
+		str = readline("> ");
 		if (!str)
 			break ;
 		if (!string().equals(str, end))
-			write (this->fd[1], str, string().size(str));
+		{
+			write(this->fd[1], str, string().size(str));
+			write(this->fd[1], "\n", 1);
+		}
 	}
 	close(this->fd[1]);
 	free_ob(str);
-	free_ob(end);
 }
 
 static int	*ft_input(t_command *previou, t_command *this)
