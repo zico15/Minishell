@@ -1,179 +1,245 @@
-==30390== Memcheck, a memory error detector
-==30390== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==30390== Using Valgrind-3.19.0.GIT-lbmacos-6ff08b6e31-20220212 and LibVEX; rerun with -h for copyright info
-==30390== Command: ./minishell
-==30390== Parent PID: 30179
-==30390== 
---30390-- 
---30390-- Valgrind options:
---30390--    --leak-check=full
---30390--    --log-file=logfile.out
---30390--    -v
---30390-- Output from sysctl({CTL_KERN,KERN_VERSION}):
---30390--   Darwin Kernel Version 19.6.0: Mon Apr 18 21:50:40 PDT 2022; root:xnu-6153.141.62~1/RELEASE_X86_64
---30390-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---30390-- Page sizes: currently 4096, max supported 4096
---30390-- Valgrind library directory: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind
---30390-- ./minishell (rx at 0x100000000, rw at 0x10000c000)
---30390--    reading syms   from primary file (107 74)
---30390--    dSYM= ./minishell.dSYM/Contents/Resources/DWARF/minishell
---30390--    dSYM does not have correct UUID (out of date?)
---30390-- run: /usr/bin/dsymutil "./minishell"
---30390--    dsyms= ./minishell.dSYM/Contents/Resources/DWARF/minishell
---30390-- /usr/lib/dyld (rx at 0x1005d0000, rw at 0x100663000)
---30390--    reading syms   from primary file (5 2729)
---30390-- Scheduler: using generic scheduler lock implementation.
---30390-- Reading suppressions file: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp
-==30390== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-from-vgdb-to-30390-by-amaria-m-on-???
-==30390== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-to-vgdb-from-30390-by-amaria-m-on-???
-==30390== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-shared-mem-vgdb-30390-by-amaria-m-on-???
-==30390== 
-==30390== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==30390== don't want to do, unless you know exactly what you're doing,
-==30390== or are doing some strange experiment):
-==30390==   /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=30390 ...command...
-==30390== 
-==30390== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==30390==   /path/to/gdb ./minishell
-==30390== and then give GDB the following command
-==30390==   target remote | /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=30390
-==30390== --pid is optional if only one valgrind process is running
-==30390== 
---30390-- REDIR: 0x100622340 (dyld:strcmp) redirected to 0x25805831e (???)
---30390-- REDIR: 0x10061c614 (dyld:arc4random) redirected to 0x2580583bc (???)
---30390-- REDIR: 0x100621720 (dyld:strlen) redirected to 0x2580582ed (???)
---30390-- REDIR: 0x100622640 (dyld:strcpy) redirected to 0x25805833a (???)
---30390-- REDIR: 0x10061f7ba (dyld:strcat) redirected to 0x2580582fe (???)
---30390-- REDIR: 0x10062151a (dyld:strlcat) redirected to 0x258058357 (???)
---30390-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x1006d6000, rw at 0x1006da000)
---30390--    reading syms   from primary file (3 53)
---30390--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
---30390-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x1006e2000, rw at 0x1006ea000)
---30390--    reading syms   from primary file (75 62)
---30390--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
---30390-- /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib (rx at 0x1006f2000, rw at 0x10071a000)
---30390--    reading syms   from primary file (717 337)
---30390--    dSYM= /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib.dSYM/Contents/Resources/DWARF/libreadline.8.1.dylib
---30390-- /usr/lib/libSystem.B.dylib (rx at 0x100736000, rw at 0x100738000)
---30390--    reading syms   from primary file (29 8)
---30390-- /usr/lib/libncurses.5.4.dylib (rx at 0x100740000, rw at 0x100770000)
---30390--    reading syms   from primary file (613 1)
---30390-- /usr/lib/system/libcache.dylib (rx at 0x100784000, rw at 0x10078a000)
---30390--    reading syms   from primary file (32 29)
---30390-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100791000, rw at 0x10079d000)
---30390--    reading syms   from primary file (241 173)
---30390-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x1007ad000, rw at 0x1007b5000)
---30390--    reading syms   from primary file (505 8)
---30390-- /usr/lib/system/libcopyfile.dylib (rx at 0x1007c5000, rw at 0x1007cf000)
---30390--    reading syms   from primary file (11 38)
---30390-- /usr/lib/system/libcorecrypto.dylib (rx at 0x1007d7000, rw at 0x10086a000)
---30390--    reading syms   from primary file (586 845)
---30390-- /usr/lib/system/libdispatch.dylib (rx at 0x10088a000, rw at 0x1008cb000)
---30390--    reading syms   from primary file (328 1607)
---30390-- /usr/lib/system/libdyld.dylib (rx at 0x100908000, rw at 0x10093f000)
---30390--    reading syms   from primary file (119 1467)
---30390-- /usr/lib/system/libkeymgr.dylib (rx at 0x100968000, rw at 0x100969000)
---30390--    reading syms   from primary file (11 2)
---30390-- /usr/lib/system/libmacho.dylib (rx at 0x100978000, rw at 0x10097e000)
---30390--    reading syms   from primary file (105 2)
---30390-- /usr/lib/system/libquarantine.dylib (rx at 0x100986000, rw at 0x100989000)
---30390--    reading syms   from primary file (91 12)
---30390-- /usr/lib/system/libremovefile.dylib (rx at 0x100991000, rw at 0x100993000)
---30390--    reading syms   from primary file (12 8)
---30390-- /usr/lib/system/libsystem_asl.dylib (rx at 0x10099a000, rw at 0x1009b2000)
---30390--    reading syms   from primary file (219 234)
---30390-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1009c2000, rw at 0x1009c3000)
---30390--    reading syms   from primary file (21 8)
---30390-- /usr/lib/system/libsystem_c.dylib (rx at 0x1009ca000, rw at 0x100a52000)
---30390--    reading syms   from primary file (1346 892)
---30390-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100a82000, rw at 0x100a86000)
---30390--    reading syms   from primary file (36 68)
---30390-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100a8f000, rw at 0x100a93000)
---30390--    reading syms   from primary file (14 47)
---30390-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x100a9b000, rw at 0x100aa4000)
---30390--    reading syms   from primary file (63 562)
---30390-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100ab3000, rw at 0x100abb000)
---30390--    reading syms   from primary file (40 26)
---30390-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x100ac3000, rw at 0x100ac5000)
---30390--    reading syms   from primary file (1 12)
---30390-- /usr/lib/system/libsystem_info.dylib (rx at 0x100acc000, rw at 0x100b1a000)
---30390--    reading syms   from primary file (427 715)
---30390-- /usr/lib/system/libsystem_m.dylib (rx at 0x100b32000, rw at 0x100b7a000)
---30390--    reading syms   from primary file (811 1)
---30390-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x100b8b000, rw at 0x100bb3000)
---30390--    reading syms   from primary file (98 470)
---30390-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x100bc3000, rw at 0x100bd1000)
---30390--    reading syms   from primary file (118 242)
---30390-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100be1000, rw at 0x100beb000)
---30390--    reading syms   from primary file (23 1)
---30390-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100bf3000, rw at 0x100bf8000)
---30390--    reading syms   from primary file (112 23)
---30390-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x100c01000, rw at 0x100c04000)
---30390--    reading syms   from primary file (5 20)
---30390-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x100c0b000, rw at 0x100c38000)
---30390--    reading syms   from primary file (1362 230)
---30390-- /usr/lib/system/libsystem_platform.dylib (rx at 0x100c57000, rw at 0x100c60000)
---30390--    reading syms   from primary file (168 103)
---30390-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x100c6a000, rw at 0x100c75000)
---30390--    reading syms   from primary file (189 143)
---30390-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x100c82000, rw at 0x100c8a000)
---30390--    reading syms   from primary file (10 86)
---30390-- /usr/lib/system/libsystem_trace.dylib (rx at 0x100c92000, rw at 0x100ca9000)
---30390--    reading syms   from primary file (131 274)
---30390-- /usr/lib/system/libunwind.dylib (rx at 0x100cba000, rw at 0x100cc0000)
---30390--    reading syms   from primary file (102 52)
---30390-- /usr/lib/system/libxpc.dylib (rx at 0x100cc9000, rw at 0x100cff000)
---30390--    reading syms   from primary file (627 1467)
---30390-- /usr/lib/libobjc.A.dylib (rx at 0x100d2d000, rw at 0x100d61000)
---30390--    reading syms   from primary file (382 771)
---30390-- /usr/lib/libc++abi.dylib (rx at 0x100d85000, rw at 0x100d9b000)
---30390--    reading syms   from primary file (366 704)
---30390-- /usr/lib/libc++.1.dylib (rx at 0x100db9000, rw at 0x100e0c000)
---30390--    reading syms   from primary file (2088 1160)
---30390-- REDIR: 0x100c583a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1006e68b5 (_platform_memcmp)
---30390-- REDIR: 0x100c57c00 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x1006e6249 (_platform_strncmp)
---30390-- REDIR: 0x100c57800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x1006e62c3 (_platform_strcmp)
---30390-- REDIR: 0x100b8bce0 (libsystem_malloc.dylib:malloc) redirected to 0x1006e44d0 (malloc)
---30390-- REDIR: 0x100b8dec1 (libsystem_malloc.dylib:calloc) redirected to 0x1006e4ae6 (calloc)
---30390-- REDIR: 0x100b8dd67 (libsystem_malloc.dylib:realloc) redirected to 0x1006e4e64 (realloc)
---30390-- REDIR: 0x100b8e087 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x1006e5819 (malloc_default_zone)
---30390-- REDIR: 0x100b8bd12 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x1006e4738 (malloc_zone_malloc)
---30390-- REDIR: 0x100b8def6 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x1006e4cd2 (malloc_zone_calloc)
---30390-- REDIR: 0x100b8e08f (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x1006e585a (malloc_zone_from_ptr)
---30390-- REDIR: 0x100b8c9b1 (libsystem_malloc.dylib:free) redirected to 0x1006e48ac (free)
---30390-- REDIR: 0x100c58300 (libsystem_platform.dylib:_platform_strchr$VARIANT$Haswell) redirected to 0x1006e5acd (_platform_strchr$VARIANT$Haswell)
---30390-- REDIR: 0x100c581a0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Haswell) redirected to 0x1006e6334 (_platform_memchr$VARIANT$Haswell)
-==30390== 
-==30390== HEAP SUMMARY:
-==30390==     in use at exit: 22,269 bytes in 169 blocks
-==30390==   total heap usage: 183 allocs, 14 frees, 27,013 bytes allocated
-==30390== 
-==30390== Searching for pointers to 169 not-freed blocks
-==30390== Checked 73,984,264 bytes
-==30390== 
-==30390== 7 bytes in 1 blocks are definitely lost in loss record 3 of 44
-==30390==    at 0x1006E4545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==30390==    by 0x100009BBC: malloc_ob (in ./minishell)
-==30390==    by 0x100009E0E: ft_copy (in ./minishell)
-==30390==    by 0x100002933: main (in ./minishell)
-==30390== 
-==30390== LEAK SUMMARY:
-==30390==    definitely lost: 7 bytes in 1 blocks
-==30390==    indirectly lost: 0 bytes in 0 blocks
-==30390==      possibly lost: 0 bytes in 0 blocks
-==30390==    still reachable: 4,279 bytes in 6 blocks
-==30390==         suppressed: 17,983 bytes in 162 blocks
-==30390== Reachable blocks (those to which a pointer was found) are not shown.
-==30390== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==30390== 
-==30390== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 4 from 4)
---30390-- 
---30390-- used_suppression:      1 OSX1015:Leak01-printf /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:801 suppressed: 4,096 bytes in 1 blocks
---30390-- used_suppression:      2 OSX1015:dyld-4 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:751 suppressed: 4,128 bytes in 2 blocks
---30390-- used_suppression:      1 OSX1015:Leak02-objc /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
---30390-- used_suppression:     17 OSX1015:dyld-7 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:781 suppressed: 2,560 bytes in 74 blocks
---30390-- used_suppression:     15 OSX1015:dyld-8 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:791 suppressed: 4,887 bytes in 81 blocks
---30390-- used_suppression:      1 OSX1015:dyld-5 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:761 suppressed: 264 bytes in 3 blocks
---30390-- used_suppression:      1 OSX1015:dyld-2 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:733
-==30390== 
-==30390== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 4 from 4)
+==22119== Memcheck, a memory error detector
+==22119== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==22119== Using Valgrind-3.19.0.GIT-lbmacos-6ff08b6e31-20220212 and LibVEX; rerun with -h for copyright info
+==22119== Command: ./minishell
+==22119== Parent PID: 21905
+==22119== 
+--22119-- 
+--22119-- Valgrind options:
+--22119--    --leak-check=full
+--22119--    --log-file=logfile.out
+--22119--    -v
+--22119-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--22119--   Darwin Kernel Version 19.6.0: Mon Apr 18 21:50:40 PDT 2022; root:xnu-6153.141.62~1/RELEASE_X86_64
+--22119-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--22119-- Page sizes: currently 4096, max supported 4096
+--22119-- Valgrind library directory: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind
+--22119-- ./minishell (rx at 0x100000000, rw at 0x10000c000)
+--22119--    reading syms   from primary file (111 80)
+--22119-- run: /usr/bin/dsymutil "./minishell"
+--22119--    dsyms= ./minishell.dSYM/Contents/Resources/DWARF/minishell
+--22119-- /usr/lib/dyld (rx at 0x1005d0000, rw at 0x100663000)
+--22119--    reading syms   from primary file (5 2729)
+--22119-- Scheduler: using generic scheduler lock implementation.
+--22119-- Reading suppressions file: /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp
+==22119== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-from-vgdb-to-22119-by-amaria-m-on-???
+==22119== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-to-vgdb-from-22119-by-amaria-m-on-???
+==22119== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n00018mw000_57/T//vgdb-pipe-shared-mem-vgdb-22119-by-amaria-m-on-???
+==22119== 
+==22119== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==22119== don't want to do, unless you know exactly what you're doing,
+==22119== or are doing some strange experiment):
+==22119==   /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=22119 ...command...
+==22119== 
+==22119== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==22119==   /path/to/gdb ./minishell
+==22119== and then give GDB the following command
+==22119==   target remote | /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/../../bin/vgdb --pid=22119
+==22119== --pid is optional if only one valgrind process is running
+==22119== 
+--22119-- REDIR: 0x100622340 (dyld:strcmp) redirected to 0x25805831e (???)
+--22119-- REDIR: 0x10061c614 (dyld:arc4random) redirected to 0x2580583bc (???)
+--22119-- REDIR: 0x100621720 (dyld:strlen) redirected to 0x2580582ed (???)
+--22119-- REDIR: 0x100622640 (dyld:strcpy) redirected to 0x25805833a (???)
+--22119-- REDIR: 0x10061f7ba (dyld:strcat) redirected to 0x2580582fe (???)
+--22119-- REDIR: 0x10062151a (dyld:strlcat) redirected to 0x258058357 (???)
+--22119-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x1006d6000, rw at 0x1006da000)
+--22119--    reading syms   from primary file (3 53)
+--22119--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--22119-- /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x1006e2000, rw at 0x1006ea000)
+--22119--    reading syms   from primary file (75 62)
+--22119--    dSYM= /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--22119-- /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib (rx at 0x1006f2000, rw at 0x10071a000)
+--22119--    reading syms   from primary file (717 337)
+--22119--    dSYM= /Users/amaria-m/.brew/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib.dSYM/Contents/Resources/DWARF/libreadline.8.1.dylib
+--22119-- /usr/lib/libSystem.B.dylib (rx at 0x100736000, rw at 0x100738000)
+--22119--    reading syms   from primary file (29 8)
+--22119-- /usr/lib/libncurses.5.4.dylib (rx at 0x100740000, rw at 0x100770000)
+--22119--    reading syms   from primary file (613 1)
+--22119-- /usr/lib/system/libcache.dylib (rx at 0x100784000, rw at 0x10078a000)
+--22119--    reading syms   from primary file (32 29)
+--22119-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100791000, rw at 0x10079d000)
+--22119--    reading syms   from primary file (241 173)
+--22119-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x1007ad000, rw at 0x1007b5000)
+--22119--    reading syms   from primary file (505 8)
+--22119-- /usr/lib/system/libcopyfile.dylib (rx at 0x1007c5000, rw at 0x1007cf000)
+--22119--    reading syms   from primary file (11 38)
+--22119-- /usr/lib/system/libcorecrypto.dylib (rx at 0x1007d7000, rw at 0x10086a000)
+--22119--    reading syms   from primary file (586 845)
+--22119-- /usr/lib/system/libdispatch.dylib (rx at 0x10088a000, rw at 0x1008cb000)
+--22119--    reading syms   from primary file (328 1607)
+--22119-- /usr/lib/system/libdyld.dylib (rx at 0x100908000, rw at 0x10093f000)
+--22119--    reading syms   from primary file (119 1467)
+--22119-- /usr/lib/system/libkeymgr.dylib (rx at 0x100968000, rw at 0x100969000)
+--22119--    reading syms   from primary file (11 2)
+--22119-- /usr/lib/system/libmacho.dylib (rx at 0x100978000, rw at 0x10097e000)
+--22119--    reading syms   from primary file (105 2)
+--22119-- /usr/lib/system/libquarantine.dylib (rx at 0x100986000, rw at 0x100989000)
+--22119--    reading syms   from primary file (91 12)
+--22119-- /usr/lib/system/libremovefile.dylib (rx at 0x100991000, rw at 0x100993000)
+--22119--    reading syms   from primary file (12 8)
+--22119-- /usr/lib/system/libsystem_asl.dylib (rx at 0x10099a000, rw at 0x1009b2000)
+--22119--    reading syms   from primary file (219 234)
+--22119-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1009c2000, rw at 0x1009c3000)
+--22119--    reading syms   from primary file (21 8)
+--22119-- /usr/lib/system/libsystem_c.dylib (rx at 0x1009ca000, rw at 0x100a52000)
+--22119--    reading syms   from primary file (1346 892)
+--22119-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100a82000, rw at 0x100a86000)
+--22119--    reading syms   from primary file (36 68)
+--22119-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100a8f000, rw at 0x100a93000)
+--22119--    reading syms   from primary file (14 47)
+--22119-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x100a9b000, rw at 0x100aa4000)
+--22119--    reading syms   from primary file (63 562)
+--22119-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100ab3000, rw at 0x100abb000)
+--22119--    reading syms   from primary file (40 26)
+--22119-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x100ac3000, rw at 0x100ac5000)
+--22119--    reading syms   from primary file (1 12)
+--22119-- /usr/lib/system/libsystem_info.dylib (rx at 0x100acc000, rw at 0x100b1a000)
+--22119--    reading syms   from primary file (427 715)
+--22119-- /usr/lib/system/libsystem_m.dylib (rx at 0x100b32000, rw at 0x100b7a000)
+--22119--    reading syms   from primary file (811 1)
+--22119-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x100b8b000, rw at 0x100bb3000)
+--22119--    reading syms   from primary file (98 470)
+--22119-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x100bc3000, rw at 0x100bd1000)
+--22119--    reading syms   from primary file (118 242)
+--22119-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100be1000, rw at 0x100beb000)
+--22119--    reading syms   from primary file (23 1)
+--22119-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100bf3000, rw at 0x100bf8000)
+--22119--    reading syms   from primary file (112 23)
+--22119-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x100c01000, rw at 0x100c04000)
+--22119--    reading syms   from primary file (5 20)
+--22119-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x100c0b000, rw at 0x100c38000)
+--22119--    reading syms   from primary file (1362 230)
+--22119-- /usr/lib/system/libsystem_platform.dylib (rx at 0x100c57000, rw at 0x100c60000)
+--22119--    reading syms   from primary file (168 103)
+--22119-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x100c6a000, rw at 0x100c75000)
+--22119--    reading syms   from primary file (189 143)
+--22119-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x100c82000, rw at 0x100c8a000)
+--22119--    reading syms   from primary file (10 86)
+--22119-- /usr/lib/system/libsystem_trace.dylib (rx at 0x100c92000, rw at 0x100ca9000)
+--22119--    reading syms   from primary file (131 274)
+--22119-- /usr/lib/system/libunwind.dylib (rx at 0x100cba000, rw at 0x100cc0000)
+--22119--    reading syms   from primary file (102 52)
+--22119-- /usr/lib/system/libxpc.dylib (rx at 0x100cc9000, rw at 0x100cff000)
+--22119--    reading syms   from primary file (627 1467)
+--22119-- /usr/lib/libobjc.A.dylib (rx at 0x100d2d000, rw at 0x100d61000)
+--22119--    reading syms   from primary file (382 771)
+--22119-- /usr/lib/libc++abi.dylib (rx at 0x100d85000, rw at 0x100d9b000)
+--22119--    reading syms   from primary file (366 704)
+--22119-- /usr/lib/libc++.1.dylib (rx at 0x100db9000, rw at 0x100e0c000)
+--22119--    reading syms   from primary file (2088 1160)
+--22119-- REDIR: 0x100c583a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1006e68b5 (_platform_memcmp)
+--22119-- REDIR: 0x100c57c00 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x1006e6249 (_platform_strncmp)
+--22119-- REDIR: 0x100c57800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x1006e62c3 (_platform_strcmp)
+--22119-- REDIR: 0x100b8bce0 (libsystem_malloc.dylib:malloc) redirected to 0x1006e44d0 (malloc)
+--22119-- REDIR: 0x100b8dec1 (libsystem_malloc.dylib:calloc) redirected to 0x1006e4ae6 (calloc)
+--22119-- REDIR: 0x100b8dd67 (libsystem_malloc.dylib:realloc) redirected to 0x1006e4e64 (realloc)
+--22119-- REDIR: 0x100b8e087 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x1006e5819 (malloc_default_zone)
+--22119-- REDIR: 0x100b8bd12 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x1006e4738 (malloc_zone_malloc)
+--22119-- REDIR: 0x100b8def6 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x1006e4cd2 (malloc_zone_calloc)
+--22119-- REDIR: 0x100b8e08f (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x1006e585a (malloc_zone_from_ptr)
+--22119-- REDIR: 0x100b8c9b1 (libsystem_malloc.dylib:free) redirected to 0x1006e48ac (free)
+--22119-- REDIR: 0x100c58300 (libsystem_platform.dylib:_platform_strchr$VARIANT$Haswell) redirected to 0x1006e5acd (_platform_strchr$VARIANT$Haswell)
+==22119== Warning: ignored attempt to set SIGUSR2 handler in sigaction();
+==22119==          the SIGUSR2 signal is used internally by Valgrind
+--22119-- REDIR: 0x100a210bc (libsystem_c.dylib:strrchr) redirected to 0x1006e5a6b (strrchr)
+--22119-- REDIR: 0x100c581a0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Haswell) redirected to 0x1006e6334 (_platform_memchr$VARIANT$Haswell)
+==22119== Invalid free() / delete / delete[] / realloc()
+==22119==    at 0x1006E491D: free (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009ACB: free_ob (in ./minishell)
+==22119==    by 0x1000086E5: __base_set_element (in ./minishell)
+==22119==    by 0x100007E99: take_quotes (in ./minishell)
+==22119==    by 0x100007DA0: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119==  Address 0x100ec2cc0 is 0 bytes inside a block of size 3 free'd
+==22119==    at 0x1006E491D: free (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009ACB: free_ob (in ./minishell)
+==22119==    by 0x1000080DF: ft_rmv_quotes (in ./minishell)
+==22119==    by 0x100007E8D: take_quotes (in ./minishell)
+==22119==    by 0x100007DA0: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119==  Block was alloc'd at
+==22119==    at 0x1006E4545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009BAC: malloc_ob (in ./minishell)
+==22119==    by 0x10000A655: __copy_n (in ./minishell)
+==22119==    by 0x10000A860: __str_trim (in ./minishell)
+==22119==    by 0x100007BAC: ft_divide_cmds (in ./minishell)
+==22119==    by 0x100007D8E: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119== 
+--22128-- REDIR: 0x100a4732e (libsystem_c.dylib:__strncpy_chk) redirected to 0x1006e6020 (__strncpy_chk)
+==22119== 
+==22119== HEAP SUMMARY:
+==22119==     in use at exit: 299,000 bytes in 374 blocks
+==22119==   total heap usage: 821 allocs, 448 frees, 326,483 bytes allocated
+==22119== 
+==22119== Searching for pointers to 374 not-freed blocks
+==22119== Checked 74,173,680 bytes
+==22119== 
+==22119== 2 bytes in 1 blocks are definitely lost in loss record 1 of 94
+==22119==    at 0x1006E4545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009BAC: malloc_ob (in ./minishell)
+==22119==    by 0x100009DFE: ft_copy (in ./minishell)
+==22119==    by 0x1000040A0: init_env (in ./minishell)
+==22119==    by 0x100006A60: new_terminal (in ./minishell)
+==22119==    by 0x100001D35: main (in ./minishell)
+==22119== 
+==22119== 43 (40 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 26 of 94
+==22119==    at 0x1006E4545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009BAC: malloc_ob (in ./minishell)
+==22119==    by 0x1000089FD: base_add_element (in ./minishell)
+==22119==    by 0x100007BB8: ft_divide_cmds (in ./minishell)
+==22119==    by 0x100007D8E: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119== 
+==22119== LEAK SUMMARY:
+==22119==    definitely lost: 42 bytes in 2 blocks
+==22119==    indirectly lost: 3 bytes in 1 blocks
+==22119==      possibly lost: 0 bytes in 0 blocks
+==22119==    still reachable: 285,068 bytes in 210 blocks
+==22119==         suppressed: 13,887 bytes in 161 blocks
+==22119== Reachable blocks (those to which a pointer was found) are not shown.
+==22119== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==22119== 
+==22119== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 4 from 4)
+==22119== 
+==22119== 1 errors in context 1 of 3:
+==22119== Invalid free() / delete / delete[] / realloc()
+==22119==    at 0x1006E491D: free (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009ACB: free_ob (in ./minishell)
+==22119==    by 0x1000086E5: __base_set_element (in ./minishell)
+==22119==    by 0x100007E99: take_quotes (in ./minishell)
+==22119==    by 0x100007DA0: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119==  Address 0x100ec2cc0 is 0 bytes inside a block of size 3 free'd
+==22119==    at 0x1006E491D: free (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009ACB: free_ob (in ./minishell)
+==22119==    by 0x1000080DF: ft_rmv_quotes (in ./minishell)
+==22119==    by 0x100007E8D: take_quotes (in ./minishell)
+==22119==    by 0x100007DA0: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119==  Block was alloc'd at
+==22119==    at 0x1006E4545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==22119==    by 0x100009BAC: malloc_ob (in ./minishell)
+==22119==    by 0x10000A655: __copy_n (in ./minishell)
+==22119==    by 0x10000A860: __str_trim (in ./minishell)
+==22119==    by 0x100007BAC: ft_divide_cmds (in ./minishell)
+==22119==    by 0x100007D8E: token (in ./minishell)
+==22119==    by 0x100006B9F: ft_init (in ./minishell)
+==22119==    by 0x100001D53: main (in ./minishell)
+==22119== 
+--22119-- 
+--22119-- used_suppression:      2 OSX1015:dyld-4 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:751 suppressed: 4,128 bytes in 2 blocks
+--22119-- used_suppression:      1 OSX1015:Leak02-objc /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
+--22119-- used_suppression:     17 OSX1015:dyld-7 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:781 suppressed: 2,560 bytes in 74 blocks
+--22119-- used_suppression:     15 OSX1015:dyld-8 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:791 suppressed: 4,887 bytes in 81 blocks
+--22119-- used_suppression:      1 OSX1015:dyld-5 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:761 suppressed: 264 bytes in 3 blocks
+--22119-- used_suppression:      1 OSX1015:dyld-2 /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/default.supp:733
+==22119== 
+==22119== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 4 from 4)
