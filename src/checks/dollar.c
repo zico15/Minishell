@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:21:51 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 16:38:32 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:15:26 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*cread_new_str(char *new, int i, void *env, char	*buff)
 	return (result);
 }
 
-char	*check_dolar(void *env, const char *line, int i, int size)
+static char	*check_dolar_line(void *env, const char *line, int i, int size)
 {
 	char	buff[BUFFER_SIZE];
 	char	*new;
@@ -93,3 +93,15 @@ char	*check_dolar(void *env, const char *line, int i, int size)
 	}
 	return (new);
 }
+
+void	check_dolar(t_element *e, void *o)
+{
+	char *temp;
+
+	if (!o || string().equals(o, "<<"))
+		return ;
+	temp = e->value;
+	e->value = check_dolar_line(terminal()->envp, e->value, 0, string().size(e->value));
+	free_ob(temp);
+}
+

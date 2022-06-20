@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 17:35:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:00:59 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	ft_init(void)
 			str = string().trim(line);
 			add_history(str);
 			array(terminal()->history)->add(str);
-			str = check_dolar(terminal()->envp, line, 0, string().size(line));
 			free_ob(line);
 			line = str;
 		}

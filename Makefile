@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/20 15:27:39 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/20 17:49:53 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./minishell
 e:
-	@make re && make clean && clear && valgrind ./minishell
+	@make re && make clean && clear && valgrind --leak-check=full ./minishell
 r:
 	@make re && make clean && clear && ./minishell
 
