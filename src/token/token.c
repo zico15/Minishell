@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/20 16:42:21 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:48:02 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void	set_fun_destroy_token(t_element *e, void *o)
 	e->destroy = token_destroy_element;
 }
 
-static void	take_quotes(void *token, int i)
-{
-	void	*list;
-	int		j;
-
-	while (++i < array(token)->size)
-	{
-		j = -1;
-		list = array(token)->get(i);
-		while (++j < array(list)->size)
-		{
-			(array(list))->set(j, ft_rmv_quotes(array(list)->get(j)));
-		}
-	}
-}
-
 void	*token(char *line)
 {
 	void	*token;
@@ -71,8 +55,6 @@ void	*token(char *line)
 		return (NULL);
 	list = ft_divide_quotes(line);
 	token = ft_divide_cmds(list, 0, 0);
-	take_quotes(token, -1);
 	array(list)->destroy();
-	free_ob(line);
 	return (token);
 }

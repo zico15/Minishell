@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/19 10:54:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:37:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ static int	*input(t_command *previou, t_command *this)
 
 	if (string().size_list(this->commands) <= 1 || \
 	is_sep(this->commands[1]) != NO_SEP)
+	{
+		if (previou->pid)
+			kill(previou->pid, SIGTERM);
 		this->status = 258;
-	if (previou->index != __COMMAND_BEGING_ && \
+	}
+	if (!this->status && previou->index != __COMMAND_BEGING_ && \
 	string().size_list(this->commands) > 1)
 	{
 		fd_open = open(this->commands[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
