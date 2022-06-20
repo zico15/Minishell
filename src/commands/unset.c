@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 11:30:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:43:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 static int	*ft_input(t_command *previou, t_command *this)
 {
 	char	*temp;
+	int		i;
 
-	if (string().size_list(this->commands) > 1)
+	i = 0;
+	while (this->commands && this->commands[++i])
 	{
-		temp = this->commands[1];
+		temp = this->commands[i];
 		(hashmap(terminal()->envp))->remove_key(temp);
 	}
 	close(this->fd[1]);
@@ -40,7 +42,9 @@ t_command	*new_unset(void)
 void	unset_remove(t_terminal	*t, char *str)
 {
 	char		**list;
+	int			i;
 
+	i = 0;
 	if (!t || !str || !*str)
 		return ;
 	list = string().split(str, " ");
@@ -49,9 +53,9 @@ void	unset_remove(t_terminal	*t, char *str)
 		free_list(list);
 		return ;
 	}
-	if (string().size_list(list) > 1)
+	while (list && list[++i])
 	{
-		(hashmap(t->envp))->remove_key(list[1]);
+		(hashmap(t->envp))->remove_key(list[i]);
 	}
 	terminal()->update_env();
 	ft_send_msg(terminal()->pid_parent, str);
