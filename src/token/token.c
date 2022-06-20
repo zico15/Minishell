@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/20 16:21:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:42:21 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	take_quotes(void *token, int i)
 		list = array(token)->get(i);
 		while (++j < array(list)->size)
 		{
-			array(list)->set(j, ft_rmv_quotes(array(list)->get(j)));
+			(array(list))->set(j, ft_rmv_quotes(array(list)->get(j)));
 		}
 	}
 }
