@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_hasmap_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/08 22:51:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 19:34:35 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_element	*__put_hasmap(char *key, void	*value)
 	else
 	{
 		free_ob(v->key);
+		free_ob(v->value);
 		v->key = key;
 		v->value = value;
 	}

@@ -6,13 +6,13 @@
 #    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/20 18:05:25 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/06/20 19:29:37 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #CC			= 	gcc -fsanitize=address -g
-CC			= 	gcc
+CC			= 	gcc -g
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	minishell
@@ -51,7 +51,7 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./minishell
 e:
-	@make re && make clean && clear && valgrind --leak-check=full --show-leak-kinds=all ./minishell
+	@make re && make clean && clear && valgrind --leak-check=full --track-origins=yes ./minishell
 r:
 	@make re && make clean && clear && ./minishell
 
