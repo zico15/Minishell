@@ -28,25 +28,29 @@ void print_l(t_element *e, void *o)
 
 int main3(void)
 {
-	char str[BUFFER_SIZE];
+	char *str;
 	void	*lst;
-	// void	*cmd;
-	scanf("%[^\n]", str);
+	void	*cmd;
+	str = readline("write: ");
 	printf("===================================================\n");
-	// lst = token(string().copy(str));
-	lst = ft_divide_quotes(string().copy(str));
+	lst = token(str);
+	free(str);
+	// lst = ft_divide_quotes(string().copy(str));
 	int	i = -1;
 	while (++i < array(lst)->size)
 	{
-		printf("(%s)\n", array(lst)->get(i));
-		// cmd = array(lst)->get(i);
-		// int j = -1;
-		// while (++j < array(cmd)->size)
-		// {
-		// 	printf("(%s)\n", array(cmd)->get(j));
-		// }
+		// printf("(%s)\n", array(lst)->get(i));
+		cmd = array(lst)->get(i);
+		int j = -1;
+		while (++j < array(cmd)->size)
+		{
+			printf("(%s)\n", array(cmd)->get(j));
+		}
 		printf("===============\n");
 	}
+	array(lst)->for_each(set_fun_destroy_token, NULL);
+	array(lst)->destroy();
+	rl_clear_history();
 	return (0);
 }
 // ls | wc > t.txt || < t.txt wc
