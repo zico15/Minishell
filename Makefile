@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
+#    By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/11 20:55:13 by edos-san         ###   ########.fr        #
+#    Updated: 2022/06/20 15:27:39 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,8 @@ m: fclean
 
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./minishell
+e:
+	@make re && make clean && clear && valgrind ./minishell
 r:
 	@make re && make clean && clear && ./minishell
 

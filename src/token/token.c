@@ -6,26 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/19 11:06:29 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:21:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
 
-// static void print_e(t_element *e, void *o)
-// {
-// 	(void) o;
-// 	printf("T: (%s)\n", e->value);
-// }
-
-// static void print_l(t_element *e, void *o)
-// {
-// 	void *l;
-
-// 	l = e->value;
-// 	printf("================\n");
-// 	array(l)->for_each(print_e, o);
-// }
 void	command_destroy_element(t_element	*e)
 {
 	t_command	*c;
@@ -58,17 +44,34 @@ void	set_fun_destroy_token(t_element *e, void *o)
 	e->destroy = token_destroy_element;
 }
 
+static void	take_quotes(void *token, int i)
+{
+	void	*list;
+	int		j;
+
+	while (++i < array(token)->size)
+	{
+		j = -1;
+		list = array(token)->get(i);
+		while (++j < array(list)->size)
+		{
+			array(list)->set(j, ft_rmv_quotes(array(list)->get(j)));
+		}
+	}
+}
+
 void	*token(char *line)
 {
 	void	*token;
 	void	*list;
 
 	if (!line)
-		terminal()->destroy("\rexit");
+		terminal()->destroy("exit");
 	if (!*line)
 		return (NULL);
 	list = ft_divide_quotes(line);
 	token = ft_divide_cmds(list, 0, 0);
+	take_quotes(token, -1);
 	array(list)->destroy();
 	free_ob(line);
 	return (token);

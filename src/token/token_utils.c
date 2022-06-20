@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:47:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 21:02:20 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:30:13 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	*ft_rmv_quotes(char *str)
 	while (str[++i])
 		if (!(!is_quotes(str, i) && (str[i] == '\"' || str[i] == '\'')))
 			mem[j++] = str[i];
-	free_ob(str);
 	return (mem);
 }
 
