@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 11:29:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:39:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,30 @@ static void	print_declare(t_element *e, void *o)
 	write(this->fd[1], "\"\n", 2);
 }
 
-static void	put_env(t_command *this)
+static void	put_env(char *arg)
 {
 	char	**str;
-	char	*temp;
 
-	temp = this->commands[1];
-	str = string().split(temp, "=");
-	if (string().size_list(str))
-	{
-		(hashmap(terminal()->envp))->put(str[0], str[1]);
-		free_ob(str);
-	}
-	else
-		free_list(str);
+	str = string().split(arg, "=");
+	if (!str[1])
+		str[1] = string().copy("");
+	(hashmap(terminal()->envp))->put(str[0], str[1]);
+	free_ob(str);
 }
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (string().size_list(this->commands) > 1 && \
-	string().contains(this->commands[1], "="))
-		put_env(this);
+	int	i;
+
+	i = 0;
+	if (string().size_list(this->commands) > 1)
+	{
+		while (this->commands && this->commands[++i])
+		{
+			if (string().contains(this->commands[i], "="))
+				put_env(this->commands[i]);
+		}
+	}
 	else
 		(hashmap(terminal()->envp))->for_each(print_declare, this);
 	close(this->fd[1]);
