@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/23 15:22:11 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:24:25 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ void	set_fun_destroy_token(t_element *e, void *o)
 	e->destroy = token_destroy_element;
 }
 
+static void	take_brackets(t_element *e, void *o)
+{
+	o = e->value;
+	e->value = check_bracket(e->value);
+	free_ob(o);
+}
+
 void	*token(char *line)
 {
 	void	*token;
@@ -54,6 +61,7 @@ void	*token(char *line)
 	if (!*line)
 		return (NULL);
 	list = ft_divide_quotes(line);
+	array(list)->for_each(take_brackets, NULL);
 	token = ft_divide_cmds(list, 0, 0);
 	array(list)->destroy();
 	return (token);

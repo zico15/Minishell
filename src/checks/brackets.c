@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   brackets.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:16:29 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/17 21:46:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:20:07 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*check_bracket(const char *str)
 	buff[j] = 0;
 	return (string().copy(buff));
 }
+
 /*
 void	check_bracket(t_command *this)
 {
