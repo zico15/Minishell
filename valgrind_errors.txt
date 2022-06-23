@@ -64,3 +64,37 @@
 ==97120==    by 0x100006C9C: ft_init (in ./minishell)
 ==97120==    by 0x100001A03: main (in ./minishell)
 
+# po
+
+Syscall param execve(filename) points to uninitialised byte(s)
+==3546==    at 0x100D0A41E: execve (in /usr/lib/system/libsystem_kernel.dylib)
+==3546==    by 0x100003A86: execute (in ./minishell)
+==3546==    by 0x10000389C: ft_input (in ./minishell)
+==3546==    by 0x1000073D6: __next_command (in ./minishell)
+==3546==    by 0x100006D82: execute (in ./minishell)
+==3546==    by 0x100006C9C: ft_init (in ./minishell)
+==3546==    by 0x100001A03: main (in ./minishell)
+==3546==  Address 0x100fbbe61 is 33 bytes inside a block of size 1,080 alloc'd
+==3546==    at 0x1007DC545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==3546==    by 0x100009BEC: malloc_ob (in ./minishell)
+==3546==    by 0x100003711: new_command (in ./minishell)
+==3546==    by 0x10000681F: __get_cmd (in ./minishell)
+==3546==    by 0x100006E3A: cread_cmd (in ./minishell)
+==3546==    by 0x100008687: __base_for_each (in ./minishell)
+==3546==    by 0x100006D26: execute (in ./minishell)
+==3546==    by 0x100006C9C: ft_init (in ./minishell)
+==3546==    by 0x100001A03: main (in ./minishell)
+==3546==  Uninitialised value was created by a heap allocation
+==3546==    at 0x1007DC545: malloc (in /Users/amaria-m/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==3546==    by 0x100009BEC: malloc_ob (in ./minishell)
+==3546==    by 0x100003711: new_command (in ./minishell)
+==3546==    by 0x10000681F: __get_cmd (in ./minishell)
+==3546==    by 0x100006E3A: cread_cmd (in ./minishell)
+==3546==    by 0x100008687: __base_for_each (in ./minishell)
+==3546==    by 0x100006D26: execute (in ./minishell)
+==3546==    by 0x100006C9C: ft_init (in ./minishell)
+==3546==    by 0x100001A03: main (in ./minishell)
+
+# ls >> ola
+
+==4463== Warning: invalid file descriptor -1 in syscall close()
