@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 13:00:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:10:43 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	*ft_input(t_command *previou, t_command *this)
 			is_line = 0;
 		else
 			print_echo(this->fd[1], str);
-		if (this->commands[++i])
+		if (this->commands[++i] && !(is_line == 0 && i == 2))
 			write(this->fd[1], " ", 1);
 	}
 	if (is_line)
