@@ -95,6 +95,6 @@ Syscall param execve(filename) points to uninitialised byte(s)
 ==3546==    by 0x100006C9C: ft_init (in ./minishell)
 ==3546==    by 0x100001A03: main (in ./minishell)
 
-# ls >> ola
+# ls >> ola (solved)
 
 ==4463== Warning: invalid file descriptor -1 in syscall close()

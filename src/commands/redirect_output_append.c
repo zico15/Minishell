@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_output_append.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/19 10:56:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:29:55 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	write_file(void *list, t_command *this)
 	if (this->next && (string().equals(*this->next->commands, ">") \
 	|| string().equals(*this->next->commands, ">>")))
 	{
-		close(fd_open);
+		if (fd_open != -1)
+			close(fd_open);
 		fd_open = this->fd[1];
 	}
 	if (fd_open < 0)
@@ -37,7 +38,8 @@ static void	write_file(void *list, t_command *this)
 		if (str)
 			write(fd_open, str, string().size(str));
 	}
-	close(fd_open);
+	if (fd_open != -1)
+		close(fd_open);
 	array(list)->destroy();
 }	
 
@@ -46,6 +48,7 @@ static int	*input(t_command *previou, t_command *this)
 	int		fd_open;
 	void	*list;
 
+	fd_open = -1;
 	if (string().size_list(this->commands) <= 1 || \
 	is_sep(this->commands[1]) != NO_SEP)
 		this->status = 258;
@@ -60,7 +63,8 @@ static int	*input(t_command *previou, t_command *this)
 		close(previou->fd[0]);
 		write_file(list, this);
 	}
-	close(this->fd[1]);
+	if (fd_open != -1)
+		close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
 }
 

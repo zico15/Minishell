@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_minishell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 17:32:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:15:09 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 		printf("created by: %s\n", CREATED_1);
 		printf("created by: %s\n", CREATED_2);
 		printf("===========================\n");
-	}	
-	close(this->fd[1]);
+	}
+	if (this->fd[1] != -1)
+		close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
 }
 

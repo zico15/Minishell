@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 20:39:49 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:14:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int	*ft_input(t_command *previou, t_command *this)
 		str = string().copy(getcwd(buff, BUFFER_SIZE));
 		(hashmap(terminal()->envp))->put(string().copy("PWD"), str);
 	}
-	close(this->fd[1]);
+	if (this->fd[1] != -1)
+		close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
 }
 
