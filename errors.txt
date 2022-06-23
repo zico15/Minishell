@@ -1,0 +1,7 @@
+ERROR : the first string comes with a space
+echo -n "ola"
+echo -n "ola" "ffs"
+
+ERROR : the arrow down doesnt always work correctly
+
+ERROR : parenthesis dont work correctly

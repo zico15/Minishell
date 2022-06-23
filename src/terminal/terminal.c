@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 17:00:59 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:01:32 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	ft_init(void)
 			line = readline(terminal()->get_title());
 		if (line && *line)
 		{
-			str = string().trim(line);
+			str = string().copy(line);
 			add_history(str);
 			array(terminal()->history)->add(str);
 			free_ob(line);

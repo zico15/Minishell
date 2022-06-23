@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator_and.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/17 21:14:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:04:09 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	check_operator_and(t_command *this)
 	if (this->next && this->next->commands && \
 	string().equals(*this->next->commands, "&&"))
 	{
-		this->is_print = 1;
+		close(this->fd[1]);
+		this->fd[1] = dup(1);
 		this->is_user = 0;
 	}
 }
