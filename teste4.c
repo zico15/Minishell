@@ -1,6 +1,6 @@
 #include <ft_minishell.h>
 
-int	main()
+int	main4()
 {
 	char	*str;
 	str = readline("write: ");

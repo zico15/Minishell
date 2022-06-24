@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 18:26:27 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 19:26:57 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	init_home(t_terminal *t, int i, int j)
 
 // -fsanitize=address -g
 //echo """dsfdsfss""" "s" """'oi'"""
-int	main4(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	t_terminal	*t;
 
