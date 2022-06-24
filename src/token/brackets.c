@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 19:00:38 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/24 19:04:18 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 19:25:28 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	ft_count_brackets(const char *str, int *arr, int index)
 	return (arr[0] || arr[1] || arr[2] || arr[3]);
 }
 
+// returns -1 if there is a error in brackects numbers
+// else returns level inside brackets (lvl 0 -> no brackects)
 int	ft_handle_brackets(const char *str, int index)
 {
 	int	open;
