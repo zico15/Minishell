@@ -1,3 +1,0 @@
-ERROR : the arrow down doesnt always work correctly
-
-ERROR : parenthesis dont work correctly
