@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 17:08:40 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 18:51:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void		check_dolar(t_element *e, void *o);
 void		check_operator_or(t_command *this);
 void		check_operator_and(t_command *this);
 char		*check_bracket(const char *str);
+char		*create_code_nivel_priority(int i);
+void		check_nivel_priority_teste(char *str);
 
 //			memory
 int			free_ob(void *v);

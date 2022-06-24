@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/23 20:24:25 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 18:53:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*token(char *line)
 	if (!*line)
 		return (NULL);
 	list = ft_divide_quotes(line);
-	array(list)->for_each(take_brackets, NULL);
+	(array(list))->for_each(take_brackets, NULL);
 	token = ft_divide_cmds(list, 0, 0);
 	array(list)->destroy();
 	return (token);

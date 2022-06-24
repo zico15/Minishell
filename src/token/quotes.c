@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/23 20:22:49 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 18:30:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ void	*ft_divide_cmds(void *list, int i, int check)
 			str = array(list)->get(++i);
 		array(token)->add(cmds);
 	}
-	array(token)->for_each(set_fun_destroy_token, NULL);
+	(array(token))->for_each(set_fun_destroy_token, NULL);
 	return (token);
 }

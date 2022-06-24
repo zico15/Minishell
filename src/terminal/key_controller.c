@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   key_controller.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:03:52 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/15 18:23:03 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 17:58:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
 
 static void	gotoxy(int x)
-{
+{	
 	printf("\033[%dC", x);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   brackets.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:16:29 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 20:20:07 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 18:54:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,47 @@ char	*check_bracket(const char *str)
 	return (string().copy(buff));
 }
 
+static char	*code_nivel_priority(void)
+{
+	static char	code[3] = {26, ':', 0};
+
+	return (code);
+}
+
+char	*create_code_nivel_priority(int i)
+{
+	char	*temp;
+	char	*str;
+
+	temp = string().itoa(i);
+	str = string().join(code_nivel_priority(), temp);
+	free_ob(temp);
+	return (str);
+}
+
+void	check_nivel_priority_teste(char *str)
+{
+	if (string().equals_n(str, code_nivel_priority(), 2))
+		printf("code_nivel_priority: OK\n");
+	else
+		printf("code_nivel_priority: KO\n");
+}
+
+void	check_nivel_priority(t_command *this)
+{
+	int	i;
+
+	i = -1;
+	if (!this || !this->commands)
+		return ;
+	while (this->commands[++i])
+	{
+		if (string().equals_n(this->commands[i], code_nivel_priority(), 2))
+			printf("code_nivel_priority: OK");
+		else
+			printf("code_nivel_priority: KO");
+	}
+}
 /*
 void	check_bracket(t_command *this)
 {

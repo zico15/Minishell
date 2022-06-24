@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 17:22:15 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 18:44:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# define __CODE_PRIORITY__ 26:
 # define FD_WRITE_O 1
 # define FD_READ_O 0
 # define CREATED_1 "(amaria-m) António Maria Mouro Ferreira Abranches Pinto"

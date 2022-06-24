@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operator_and.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 18:04:09 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 17:52:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell.h>
-/*
-static int	*ft_input(t_command *previou, t_command *this)
-{
-	close(this->fd[1]);
-	if (previou->pid)
-	{
-		waitpid(previou->pid, &(previou->status), 0);
-		previou->status = WEXITSTATUS(previou->status);
-	}
-	if (previou->status && !previou->pid)
-		(terminal())->print_error(previou, previou->status);
-	terminal()->status_exit = previou->status;
-	if (!previou->status)
-		return (terminal()->next_command(previou, this));
-	return (this->fd);
-}*/
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
