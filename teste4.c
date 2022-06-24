@@ -1,13 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <ft_minishell.h>
 
-int main4()
+int	main()
 {
-    int i =0;
-    while (1)
-    {
-        i++;
-    }
-    
-    return(0);
+	char	*str;
+	str = readline("write: ");
+	printf("===================================================\n");
+	printf("result: %i\n", ft_handle_brackets(str, 30));
+	free(str);
+	rl_clear_history();
+	return (0);
 }

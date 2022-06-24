@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:38:03 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/18 20:57:44 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 19:01:38 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	*ft_divide_quotes(const char *str);
 
 // TOKEN FUCNTION (returns arr of commands)
 void	*token(char *line);
+
+// Brackets handeling
+int		ft_handle_brackets(const char *str, int index);
 
 typedef struct s_token
 {
