@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator_and.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 10:15:55 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:50:59 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	*ft_input(t_command *previou, t_command *this)
 {
 	close(this->fd[1]);
-	printf("NIVEL: %i\n", previou->nivel_priority);
 	if (previou->pid)
 	{
 		waitpid(previou->pid, &(previou->status), 0);
