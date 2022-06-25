@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:16:29 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 18:54:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:24:19 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,52 +40,46 @@ static char	*code_nivel_priority(void)
 	return (code);
 }
 
-char	*create_code_nivel_priority(int i)
+/******
+ * create_code_nivel_priority
+ * *****/
+char	*create_priority(int n)
 {
 	char	*temp;
 	char	*str;
 
-	temp = string().itoa(i);
+	if (n <= 0)
+		return (NULL);
+	temp = string().itoa(n);
 	str = string().join(code_nivel_priority(), temp);
 	free_ob(temp);
 	return (str);
 }
 
-void	check_nivel_priority_teste(char *str)
-{
-	if (string().equals_n(str, code_nivel_priority(), 2))
-		printf("code_nivel_priority: OK\n");
-	else
-		printf("code_nivel_priority: KO\n");
-}
-
 void	check_nivel_priority(t_command *this)
 {
-	int	i;
+	int		i;
+	int		nivel;
+	void	*args;
+	char	*temp;
 
 	i = -1;
-	if (!this || !this->commands)
-		return ;
-	while (this->commands[++i])
+	args = new_array();
+	while (this->commands && this->commands[++i])
 	{
 		if (string().equals_n(this->commands[i], code_nivel_priority(), 2))
-			printf("code_nivel_priority: OK");
+		{
+			temp = this->commands[i];
+			nivel = string().atoi((temp + 2));
+			if (i == 1)
+				this->nivel_priority = nivel;
+			else if (!this->nivel_priority || this->nivel_priority != nivel)
+				this->status = 258;
+		}
 		else
-			printf("code_nivel_priority: KO");
+			array(args)->add(string().copy(this->commands[i]));
 	}
+	free_list(this->commands);
+	this->commands = array(args)->to_str();
+	array(args)->destroy();
 }
-/*
-void	check_bracket(t_command *this)
-{
-	int	i;
-
-	if (!this->commands)
-		return ;
-	i = -1;
-	while (this->commands[++i])
-	{
-		if (string().contains(this->commands[i], "(") \
-		|| string().contains(this->commands[i], ")"))
-			this->commands[i] = remove_bracket(this->commands[i]);
-	}
-}*/

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/18 14:48:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 22:06:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,32 @@ char	*test_file(void)
 			string().size(terminal()->get_title()));
 	}
 	return (line);
+}
+
+void	organize_cmd(t_command	*start)
+{
+	t_command	*cmd;
+	int			nivel;
+
+	cmd = start->next;
+	nivel = 0;
+	while (cmd)
+	{
+		if (nivel && !cmd->nivel_priority)
+			break ;
+		if (cmd->status)
+		{
+			if (nivel < cmd->nivel_priority)
+				nivel = cmd->nivel_priority;
+			printf("cmd: %s s: %i\n", *cmd->commands, cmd->status);
+			if (!start->status)
+			{
+				start->status = cmd->status;
+				start->commands = cmd->commands;
+			}
+		}
+		if (cmd->nivel_priority && cmd->nivel_priority <= nivel)
+			start->next = cmd;
+		cmd = cmd->next;
+	}
 }

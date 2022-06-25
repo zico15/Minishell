@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 17:14:58 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:35:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ static int	*ft_input(t_command *previou, t_command *this)
 	char	buff[BUFFER_SIZE];
 	char	*str;
 	char	*key_oldpwd;
+	int		i;
 
-	if (this->commands && *this->commands)
+	i = (!previou->commands || string().equals(*previou->commands, "&&") || \
+	(previou->index == __COMMAND_BEGING_));
+	if (i && !this->status && this->commands && *this->commands)
 	{
 		key_oldpwd = string().copy("OLDPWD");
 		str = string().copy(getcwd(buff, BUFFER_SIZE));
@@ -68,5 +71,6 @@ t_command	*new_cd(void)
 	if (!c)
 		return (0);
 	c->input = ft_input;
+	c->is_real = 0;
 	return (c);
 }

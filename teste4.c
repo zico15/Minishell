@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 18:51:45 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 20:00:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:05:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 #include <stdlib.h>
 #include <ft_util.h>
 #include <ft_string.h>
+#include <ft_token.h>
 
-int	main(void)
+int	main4(void)
 {
-	char	*code;
-
-	code = create_code_nivel_priority(2);
-	printf("code: (%s) len: %i\n", code, string().size(code));
-	check_nivel_priority_teste(code);
-	free(code);
+	char		*str = "asdads   asdads";
+	t_command	c;
+	
+	(void) c;
+	str = string().copy(str);
+	printf("sizeof: %i\n", sizeof(*str) == sizeof(void *));
 	return (0);
 }

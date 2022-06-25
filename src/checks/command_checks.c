@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:58:46 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 17:54:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:01:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	__check_args(t_command *this)
 	void	*arg;
 
 	i = -1;
-	if (!this)
-		return ;
 	check_operator_and(this);
 	check_operator_or(this);
 	arg = new_array();
@@ -72,4 +70,6 @@ void	__check_args(t_command *this)
 			this->path[i] = this->commands[0][i];
 		this->path[i] = 0;
 	}
+	if (!this->path[0] && this->is_real)
+		this->status = 127;
 }

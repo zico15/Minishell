@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 18:51:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:25:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void		check_dolar(t_element *e, void *o);
 void		check_operator_or(t_command *this);
 void		check_operator_and(t_command *this);
 char		*check_bracket(const char *str);
-char		*create_code_nivel_priority(int i);
-void		check_nivel_priority_teste(char *str);
+char		*create_priority(int i);
+void		check_nivel_priority(t_command *this);
 
 //			memory
 int			free_ob(void *v);

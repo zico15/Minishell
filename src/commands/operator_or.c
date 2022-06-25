@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/17 20:40:05 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:11:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (!previou->is_user)
-		return (terminal()->next_command(previou, this));
 	close(this->fd[1]);
 	if (previou->pid)
 		waitpid(previou->pid, &(previou->status), 0);
@@ -39,6 +37,7 @@ t_command	*new_operator_or(void)
 	if (!c)
 		return (0);
 	c->input = ft_input;
+	c->is_real = 0;
 	return (c);
 }
 

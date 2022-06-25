@@ -6,11 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:45:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/24 18:30:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 20:17:36 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_token.h>
+#include <ft_util.h>
 #include <ft_base_array_util.h>
 
 static int	str_isspace(const char *str, int size)
@@ -70,22 +71,21 @@ void	*ft_divide_quotes(const char *str)
 			i++;
 		while (string().is_space(str[i]) && !is_quotes(str, i))
 			i++;
-		if (!str_isspace(str, i))
-			(array(list))->add(string().copy_n(str, i));
+		if (!str_isspace(str, i) && (array(list))->add(string().copy_n(str, i)))
+			(array(list))->add(create_priority(ft_handle_brackets(str, i / 2)));
 		str += i;
 		i = ft_sep_move(str);
-		if (!str_isspace(str, i))
-			(array(list))->add(string().copy_n(str, i));
+		if (!str_isspace(str, i) && (array(list))->add(string().copy_n(str, i)))
+			(array(list))->add(create_priority(ft_handle_brackets(str, i / 2)));
 		str += i;
 	}
 	return (list);
 }
 
-void	*ft_divide_cmds(void *list, int i, int check)
+void	*ft_divide_cmds(void *list, int i, int check, char *str)
 {
 	void		*cmds;
 	void		*token;
-	char		*str;
 
 	token = new_array();
 	while (i < array(list)->size)

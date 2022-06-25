@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_minishell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 17:15:09 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:00:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_command	*new_minishell(void)
 	if (!c)
 		return (0);
 	c->input = ft_input;
+	c->is_real = 0;
 	return (c);
 }
 

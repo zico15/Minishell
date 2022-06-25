@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 20:20:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 20:59:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	print_env(t_element *e, void *v)
 
 	this = v;
 	(void) e;
-	if (string().equals(e->key, __MINISHELL_PID__) || string().equals(e->value, ""))
+	if (string().equals(e->key, __MINISHELL_PID__) || \
+	string().equals(e->value, ""))
 		return ;
 	write(this->fd[1], e->key, string().size(e->key));
 	write(this->fd[1], "=", 1);
@@ -31,7 +32,7 @@ static void	print_env(t_element *e, void *v)
 
 static int	*ft_input(t_command *previou, t_command *this)
 {
-	if (terminal()->envp)
+	if (!this->status && terminal()->envp)
 		(hashmap(terminal()->envp))->for_each(print_env, this);
 	close(this->fd[1]);
 	return (terminal()->next_command(previou, this));
@@ -45,6 +46,7 @@ t_command	*new_env(void)
 	if (!c)
 		return (0);
 	c->input = ft_input;
+	c->is_real = 0;
 	return (c);
 }
 

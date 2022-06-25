@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:37:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 18:38:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 20:59:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+#include <ft_util.h>
 
 /**
  * @brief Main function(virtual) to execute a command
@@ -25,9 +26,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 {
 	if (string().equals(this->path, *this->commands))
 		this->is_print = 1;
-	if (!(this->execute(this, previou->fd[0], this->fd[1])))
+	if (!this->status && !(this->execute(this, previou->fd[0], this->fd[1])))
 	{
-		(terminal())->print_error(this, 127);
+		(terminal())->print_error(this, this->status);
 		close(this->fd[1]);
 	}
 	return (terminal()->next_command(previou, this));
@@ -70,6 +71,7 @@ static int	init(t_command *this, char **args)
 	if (e)
 		get_path(this, *args, e->value);
 	this->commands = args;
+	check_nivel_priority(this);
 	if (pipe(this->fd) == __PIPE_ERROR__)
 		terminal()->destroy(__ERROR_PIPE_);
 	return (1);
@@ -107,7 +109,7 @@ t_command	*new_command(void)
 	c->fd[1] = -1;
 	c->pid = 0;
 	c->nivel_priority = 0;
-	c->is_user = 1;
+	c->is_real = 1;
 	c->status = 0;
 	c->index = -1;
 	c->next = NULL;

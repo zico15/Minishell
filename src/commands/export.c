@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:52:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 20:24:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:00:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,18 @@ static int	*ft_input(t_command *previou, t_command *this)
 	int	i;
 
 	i = 0;
-	if (string().size_list(this->commands) > 1)
+	if (!this->status)
 	{
-		while (this->commands && this->commands[++i])
-			put_env(this->commands[i]);
+		if (string().size_list(this->commands) > 1)
+		{
+			while (this->commands && this->commands[++i])
+				put_env(this->commands[i]);
+		}
+		else
+			(hashmap(terminal()->envp))->for_each(print_declare, this);
+		terminal()->update_env();
 	}
-	else
-		(hashmap(terminal()->envp))->for_each(print_declare, this);
 	close(this->fd[1]);
-	terminal()->update_env();
 	return (terminal()->next_command(previou, this));
 }
 
@@ -62,6 +65,7 @@ t_command	*new_export(void)
 	if (!c)
 		return (0);
 	c->input = ft_input;
+	c->is_real = 0;
 	return (c);
 }
 

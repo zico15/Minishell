@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:40:58 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/24 18:53:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/24 20:09:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*token(char *line)
 		return (NULL);
 	list = ft_divide_quotes(line);
 	(array(list))->for_each(take_brackets, NULL);
-	token = ft_divide_cmds(list, 0, 0);
+	token = ft_divide_cmds(list, 0, 0, NULL);
 	array(list)->destroy();
 	return (token);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 20:26:30 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:13:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,20 @@ static void	execute(t_terminal	*t, void *token)
 	start.index = __COMMAND_BEGING_;
 	start.fd[0] = dup(0);
 	start.fd[1] = dup(1);
+	start.status = 0;
+	start.commands = NULL;
 	if (!token)
 		return ;
 	t->cmds = new_array();
 	(array(token))->for_each(cread_cmd, t->cmds);
 	array(token)->destroy();
 	start.next = array(t->cmds)->get(0);
+	organize_cmd(&start);
+	if (0 && start.status)
+	{
+		printf("sdsf: %i\n", start.status);
+		t->print_error(&start, start.status);
+	}
 	close(start.fd[1]);
 	(terminal())->next_command(NULL, &start);
 	(array(t->cmds))->for_each(waitpid_all, 0);
