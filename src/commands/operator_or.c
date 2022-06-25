@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:43:32 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 10:11:27 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:04:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static int	*ft_input(t_command *previou, t_command *this)
 	if (previou->status)
 		(terminal())->print_error(previou, previou->status);
 	terminal()->status_exit = previou->status;
+	if (this->next && this->next->next && \
+	(!string().equals(*this->next->next->commands, "&&")))
+		return (this->fd);
 	if (!previou->status)
 	{
 		previou->next = this->next->next;
@@ -46,6 +49,7 @@ void	check_operator_or(t_command *this)
 	if (this->next && this->next->commands && \
 	string().equals(*this->next->commands, "||"))
 	{
-		this->is_print = !this->next->next->next;
+		close(this->fd[1]);
+		this->fd[1] = dup(1);
 	}
 }

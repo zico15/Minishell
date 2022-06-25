@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/24 22:06:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:06:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	organize_cmd(t_command	*start)
 		{
 			if (nivel < cmd->nivel_priority)
 				nivel = cmd->nivel_priority;
-			printf("cmd: %s s: %i\n", *cmd->commands, cmd->status);
 			if (!start->status)
 			{
 				start->status = cmd->status;
