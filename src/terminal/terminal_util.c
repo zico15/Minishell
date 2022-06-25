@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:55:13 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/23 15:24:25 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:59:34 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ void	__destroy_terminal(char *msg)
 	array(terminal()->history)->destroy();
 	if (msg)
 		printf("%s\n", msg);
-	// print_memory();
 	exit(0);
 }

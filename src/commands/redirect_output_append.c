@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:03:14 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/23 17:29:55 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:59:18 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static void	write_file(void *list, t_command *this)
 	if (this->next && (string().equals(*this->next->commands, ">") \
 	|| string().equals(*this->next->commands, ">>")))
 	{
-		if (fd_open != -1)
-			close(fd_open);
+		close(fd_open);
 		fd_open = this->fd[1];
 	}
 	if (fd_open < 0)
@@ -38,8 +37,7 @@ static void	write_file(void *list, t_command *this)
 		if (str)
 			write(fd_open, str, string().size(str));
 	}
-	if (fd_open != -1)
-		close(fd_open);
+	close(fd_open);
 	array(list)->destroy();
 }	
 
