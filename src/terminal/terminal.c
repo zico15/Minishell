@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:39:34 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 10:13:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:06:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,6 @@ static void	execute(t_terminal	*t, void *token)
 	array(token)->destroy();
 	start.next = array(t->cmds)->get(0);
 	organize_cmd(&start);
-	if (0 && start.status)
-	{
-		printf("sdsf: %i\n", start.status);
-		t->print_error(&start, start.status);
-	}
 	close(start.fd[1]);
 	(terminal())->next_command(NULL, &start);
 	(array(t->cmds))->for_each(waitpid_all, 0);
